@@ -1,0 +1,92 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" 
+                    data-toggle="collapse" 
+                    data-target="#contenido-plegable">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <span class="navbar-brand" ></span>
+        </div>
+        <div class="collapse navbar-collapse" id="contenido-plegable">
+            <ul class="nav navbar-nav navbar-left">
+<li><a ng-click="AReserveEvent1()"
+       ng-show="actor=='participante' || false">
+  Reservar</a></li>
+<li><a ng-click="AUsers2()"
+       ng-show="actor=='usuario' || false">
+  Mostrar Participantes</a></li>
+<li><a ng-click="AGenerateCredentials3()"
+       ng-show="actor=='usuario' || false">
+  GenerarCredenciales</a></li>
+<li><a ng-click="AGenerateCertificate4()"
+       ng-show="actor=='usuario' || false">
+  GenerarCertificado</a></li>
+<li><a ng-click="VShowEvent5(eventId)">
+  Cancelar Reserva</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+<li class="navbar-text" ng-show="usuario.nombre" ng-bind="usuario.nombre"></li>
+<li><a ng-click="VListEvents0()">
+    Regresar</a></li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="row">
+    <div class="col-md-4">
+        <br>
+        <br>
+        <div class="thumbnail">
+            <span ng-if="event.poster_path == 'None'">
+                <img ng-src="./uploads/posters/noposter.png" width="300px"/>
+            </span>
+            <span ng-if="event.poster_path.split('.').pop().match('png|jpg|jpeg|gif')">
+                <img ng-src="{{event.poster_path}}" width="300px"/>
+            </span>
+            <span ng-if="event.poster_path.split('.').pop() == 'pdf'">
+                <object width="200" type="application/pdf" data="{{event.poster_path}}">
+                    Tu navegador no soporta visor de pdfs
+                </object>
+            </span>
+        </div>
+        <div class="btn-group" role="group">
+            <a class="btn btn-primary" ng-click="ReserveEvent()" ><span class="glyphicon glyphicon-calendar" aria-hidden="true"> Reservar</span></a>
+            <!--<a class="btn btn-danger" ng-click="CancelReservation()" ><span class="glyphicon glyphicon-remove" aria-hidden="true"> Reservación</span></a>-->
+            <a class="btn btn-info" ng-click="AUsers2(event.eventid)"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"> Participantes</span></a>
+        </div>
+
+    </div>
+
+    <div class="col-md-6">
+        <div class="page-header">
+            <h2>{{event.name}}</h2>
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item"><strong>ID del evento: </strong>{{event.eventid}}</li>
+            <li class="list-group-item"><strong>Cupos restantes: </strong>{{event.n_participants}}</li>
+            <li class="list-group-item"><strong>Fecha del evento: </strong>{{event.event_date}}</li>
+            <li class="list-group-item"><strong>Ubicación del evento: </strong>{{event.event_location}}</li>
+        </ul>
+        <div class="btn-group" role="group">
+            <a class="btn btn-success" ng-click="GenerateCertificate()"><span class="glyphicon glyphicon-file" aria-hidden="true"> Certificado</span></a>
+            <a class="btn btn-success" ng-click="GenerateCredentials()"><span class="glyphicon glyphicon-file" aria-hidden="true"> Credenciales</span></a>
+        </div>
+
+        <div id="right"></div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="page-header">
+            <h3>Descripción del evento</h3>
+        </div>
+        <p>{{event.description}}</p>
+    </div>
+</div>

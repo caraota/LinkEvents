@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+<h2>CasosDeUsoEventPlanner</h2>
+<p></p>
+<ol>
+ <li>
+  <p></p>
+  <ul>
+   <li>URL: '/eventplanner/ACreateUser'</li>
+   <li>Método: POST</li><li>Formato de entrada y salida: JSON</li>
+<li>Parámetros POST:
+    <ul>     <li>user -  
+Requerido. 
+     </li>     <li>password -  
+Requerido. 
+     </li>
+    </ul>
+   </li>
+   <li>Roles: Sin restricción de rol
+   <li>Requisitos: No disponible
+   <li>
+    <p><strong>Cursos posibles</strong></p>
+    <ol>
+     <li>
+<p>Precondición: El usuario a registrar es válido.</p>
+<p>Postcondicion: Se registra el usuario en la BD.</p>
+      <p>resultado:</p>
+      <ul>
+       <li>label:'/VLoginUser',</li>
+       <li> msg:"Usuario registrado exitosamente".</li>
+      </ul>
+     </li>
+     <li>
+<p>Precondición: El usuario a registrar no es válido.</p>
+<p>Postcondicion: No hay cambio de estado.</p>
+      <p>resultado:</p>
+      <ul>
+       <li>label:'/VRegisterUser',</li>
+       <li> msg:"Error al crear usuario".</li>
+      </ul>
+     </li>
+
+    </ol>
+   </li>
+  </ul>
+ </li> <li>
+  <p></p>
+  <ul>
+   <li>URL: '/eventplanner/VRegisterUser'</li>
+   <li>Método: GET</li><li>Formato de salida: JSON</li>
+   <li>Roles: Sin restricción de rol
+  </ul>
+ </li> <li>
+  <p></p>
+  <ul>
+   <li>URL: '/eventplanner/ALoginUser'</li>
+   <li>Método: POST</li><li>Formato de entrada y salida: JSON</li>
+<li>Parámetros POST:
+    <ul>     <li>user -  
+Requerido. 
+     </li>     <li>password -  
+Requerido. 
+     </li>
+    </ul>
+   </li>
+   <li>Roles: Sin restricción de rol
+   <li>Requisitos: No disponible
+   <li>
+    <p><strong>Cursos posibles</strong></p>
+    <ol>
+     <li>
+<p>Precondición: El usuario debe estar registrado en la BD.</p>
+<p>Postcondicion: Usuario exitosamente autenticado.</p>
+      <p>resultado:</p>
+      <ul>
+       <li>label:'/VHome',</li>
+       <li> msg:"".</li>
+      </ul>
+<p>Se continúa con el rol de usuario.</p>
+     </li>
+     <li>
+<p>Precondición: El usuario no esta registrado en la BD.</p>
+<p>Postcondicion: True.</p>
+      <p>resultado:</p>
+      <ul>
+       <li>label:'/VLoginUser',</li>
+       <li> msg:"Error al iniciar sesión".</li>
+      </ul>
+     </li>
+
+    </ol>
+   </li>
+  </ul>
+ </li> <li>
+  <p></p>
+  <ul>
+   <li>URL: '/eventplanner/VLoginUser'</li>
+   <li>Método: GET</li><li>Formato de salida: JSON</li>
+   <li>Roles: Sin restricción de rol
+  </ul>
+ </li> <li>
+  <p></p>
+  <ul>
+   <li>URL: '/eventplanner/AEvents'</li>
+   <li>Método: GET</li><li>Formato de salida: JSON</li>
+Parámetros GET: requestedEvent
+   <li>Roles: Sin restricción de rol
+   <li>Requisitos: No disponible
+   <li>
+    <p><strong>Cursos posibles</strong></p>
+    <ol>
+     <li>
+<p>Precondición: True.</p>
+<p>Postcondicion: No hay cambio de estado.</p>
+      <p>resultado:</p>
+      <ul>
+       <li>label:'/VListEvents',</li>
+       <li> msg:"Se listan los eventos".</li>
+      </ul>
+     </li>
+
+    </ol>
+   </li>
+  </ul>
+ </li> <li>
+  <p></p>
+  <ul>
+   <li>URL: '/eventplanner/VHome'</li>
+   <li>Método: GET</li><li>Formato de salida: JSON</li>
+   <li>Roles: Sin restricción de rol
+  </ul>
+ </li> <li>
+  <p><br></p>
+  <ul>
+   <li>URL: '/eventplanner/ACreateEvent'</li>
+   <li>Método: POST</li><li>Formato de entrada y salida: JSON</li>
+<li>Parámetros POST:
+    <ul>     <li>name -  
+Opcional. 
+     </li>     <li>description -  
+Requerido. 
+     </li>     <li>poster -  
+Opcional. 
+     </li>     <li>event_date -  
+Requerido. 
+     </li>     <li>event_location -  
+Requerido. 
+     </li>     <li>participants -  
+Requerido. 
+     </li>     <li>owner -  
+Opcional. 
+     </li>
+    </ul>
+   </li>
+   <li>Roles: usuario </li>
+   <li>Requisitos: No disponible
+   <li>
+    <p><strong>Cursos posibles</strong></p>
+    <ol>
+     <li>
+<p>Precondición: Evento a registrar es válido.</p>
+<p>Postcondicion: El evento se registra exitosamente.</p>
+      <p>resultado:</p>
+      <ul>
+       <li>label:'/VShowEvent',</li>
+       <li> msg:"Evento creado exitosamente".</li>
+      </ul>
+     </li>
+     <li>
+<p>Precondición: Evento a registrar no es válido.</p>
+<p>Postcondicion: No hay cambio de estado.</p>
+      <p>resultado:</p>
+      <ul>
+       <li>label:'/VRegisterEvent',</li>
+       <li> msg:"Error al crear evento".</li>
+      </ul>
+     </li>
+
+    </ol>
+   </li>
+  </ul>
+ </li> <li>
+  <p></p>
+  <ul>
+   <li>URL: '/eventplanner/VListEvents'</li>
+   <li>Método: GET</li><li>Formato de salida: JSON</li>
+   <li>Roles: Sin restricción de rol
+  </ul>
+ </li> <li>
+  <p></p>
+  <ul>
+   <li>URL: '/eventplanner/ADeleteEvent'</li>
+   <li>Método: GET</li><li>Formato de salida: JSON</li>
+   <li>Roles: usuario </li>
+   <li>Requisitos: No disponible
+   <li>
+    <p><strong>Cursos posibles</strong></p>
+    <ol>
+     <li>
+<p>Precondición: El evento debe existir, y el usuario debe ser el creador del evento.</p>
+<p>Postcondicion: El evento es eliminado exitosamente.</p>
+      <p>resultado:</p>
+      <ul>
+       <li>label:'/VListEvents',</li>
+       <li> msg:"Evento eliminado exitosamente".</li>
+      </ul>
+     </li>
+     <li>
+<p>Precondición: El evento no existe o el usuario no es el creador del evento.</p>
+<p>Postcondicion: No hay cambio de estado.</p>
+      <p>resultado:</p>
+      <ul>
+       <li>label:'/VListEvents',</li>
+       <li> msg:"Error al eliminar evento".</li>
+      </ul>
+     </li>
+
+    </ol>
+   </li>
+  </ul>
+ </li> <li>
+  <p></p>
+  <ul>
+   <li>URL: '/eventplanner/VShowEvent'</li>
+   <li>Método: GET</li><li>Formato de salida: JSON</li>
+Parámetros GET: eventId
+   <li>Roles: Sin restricción de rol
+  </ul>
+ </li> <li>
+  <p></p>
+  <ul>
+   <li>URL: '/eventplanner/ADeleteUser'</li>
+   <li>Método: GET</li><li>Formato de salida: JSON</li>
+   <li>Roles: admin </li>
+   <li>Requisitos: No disponible
+   <li>
+    <p><strong>Cursos posibles</strong></p>
+    <ol>
+     <li>
+<p>Precondición: El usuario debe existir.</p>
+<p>Postcondicion: El usuario es eliminado de la BD.</p>
+      <p>resultado:</p>
+      <ul>
+       <li>label:'/VListUsers',</li>
+       <li> msg:"Usuario eliminado exitosamente".</li>
+      </ul>
+     </li>
+     <li>
+<p>Precondición: El usuario no existe.</p>
+<p>Postcondicion: No hay cambio de estado.</p>
+      <p>resultado:</p>
+      <ul>
+       <li>label:'/VListUsers',</li>
+       <li> msg:"Error al eliminar usuario".</li>
+      </ul>
+     </li>
+
+    </ol>
+   </li>
+  </ul>
+ </li> <li>
+  <p></p>
+  <ul>
+   <li>URL: '/eventplanner/AEditEvent'</li>
+   <li>Método: POST</li><li>Formato de entrada y salida: JSON</li>
+<li>Parámetros POST:
+    <ul>     <li>name -  
+Opcional. 
+     </li>     <li>description -  
+Requerido. 
+     </li>     <li>poster -  
+Opcional. 
+     </li>     <li>event_date -  
+Requerido. 
+     </li>     <li>event_location -  
+Requerido. 
+     </li>     <li>participants -  
+Requerido. 
+     </li>     <li>owner -  
+Opcional. 
+     </li>
+    </ul>
+   </li>
+   <li>Roles: usuario </li>
+   <li>Requisitos: No disponible
+   <li>
+    <p><strong>Cursos posibles</strong></p>
+    <ol>
+     <li>
+<p>Precondición: El evento debe existir, y el usuario debe ser el creador del evento.</p>
+<p>Postcondicion: El evento es actualizado.</p>
+      <p>resultado:</p>
+      <ul>
+       <li>label:'/VShowEvent',</li>
+       <li> msg:"El evento ha sido actualizado".</li>
+      </ul>
+     </li>
+
+    </ol>
+   </li>
+  </ul>
+ </li> <li>
+  <p></p>
+  <ul>
+   <li>URL: '/eventplanner/VEditEvent'</li>
+   <li>Método: GET</li><li>Formato de salida: JSON</li>
+   <li>Roles: Sin restricción de rol
+  </ul>
+ </li> <li>
+  <p></p>
+  <ul>
+   <li>URL: '/eventplanner/AReserveEvent'</li>
+   <li>Método: GET</li><li>Formato de salida: JSON</li>
+   <li>Roles: participante </li>
+   <li>Requisitos: No disponible
+   <li>
+    <p><strong>Cursos posibles</strong></p>
+    <ol>
+     <li>
+<p>Precondición: El evento debe existir, y tiene que tener disponibilidad.</p>
+<p>Postcondicion: El usuario reserva el evento, elimiando un cupo del mismo.</p>
+      <p>resultado:</p>
+      <ul>
+       <li>label:'/VShowEvent',</li>
+       <li> msg:"Evento reservado exitosamente".</li>
+      </ul>
+     </li>
+     <li>
+<p>Precondición: El evento no existe.</p>
+<p>Postcondicion: No hay cambio de estado.</p>
+      <p>resultado:</p>
+      <ul>
+       <li>label:'/VShowEvent',</li>
+       <li> msg:"Error al reservar evento".</li>
+      </ul>
+     </li>
+
+    </ol>
+   </li>
+  </ul>
+ </li> <li>
+  <p></p>
+  <ul>
+   <li>URL: '/eventplanner/VRegisterEvent'</li>
+   <li>Método: GET</li><li>Formato de salida: JSON</li>
+   <li>Roles: Sin restricción de rol
+  </ul>
+ </li> <li>
+  <p></p>
+  <ul>
+   <li>URL: '/eventplanner/AUsers'</li>
+   <li>Método: GET</li><li>Formato de salida: JSON</li>
+   <li>Roles: usuario </li>
+   <li>Requisitos: No disponible
+   <li>
+    <p><strong>Cursos posibles</strong></p>
+    <ol>
+     <li>
+<p>Precondición: El usuario actual es administrador o el creador del evento.</p>
+<p>Postcondicion: No hay cambio de estado.</p>
+      <p>resultado:</p>
+      <ul>
+       <li>label:'/VListUsers',</li>
+       <li> msg:"Se listan los usuarios".</li>
+      </ul>
+     </li>
+
+    </ol>
+   </li>
+  </ul>
+ </li> <li>
+  <p></p>
+  <ul>
+   <li>URL: '/eventplanner/VListUsers'</li>
+   <li>Método: GET</li><li>Formato de salida: JSON</li>
+Parámetros GET: requestedUser
+   <li>Roles: Sin restricción de rol
+  </ul>
+ </li> <li>
+  <p></p>
+  <ul>
+   <li>URL: '/eventplanner/AGenerateCredentials'</li>
+   <li>Método: GET</li><li>Formato de salida: JSON</li>
+   <li>Roles: usuario </li>
+   <li>Requisitos: No disponible
+   <li>
+    <p><strong>Cursos posibles</strong></p>
+    <ol>
+     <li>
+<p>Precondición: El usuario reservó el evento.</p>
+<p>Postcondicion: No hay cambio de estado.</p>
+      <p>resultado:</p>
+      <ul>
+       <li>label:'/VCredential',</li>
+       <li> msg:"Credenciales exitosamente generadas".</li>
+      </ul>
+     </li>
+     <li>
+<p>Precondición: El usuario no reservó el evento.</p>
+<p>Postcondicion: No hay cambio de estado.</p>
+      <p>resultado:</p>
+      <ul>
+       <li>label:'/VShowEvent',</li>
+       <li> msg:"Error al generar credenciales".</li>
+      </ul>
+     </li>
+
+    </ol>
+   </li>
+  </ul>
+ </li> <li>
+  <p></p>
+  <ul>
+   <li>URL: '/eventplanner/VCredential'</li>
+   <li>Método: GET</li><li>Formato de salida: JSON</li>
+   <li>Roles: Sin restricción de rol
+  </ul>
+ </li> <li>
+  <p></p>
+  <ul>
+   <li>URL: '/eventplanner/AGenerateCertificate'</li>
+   <li>Método: GET</li><li>Formato de salida: JSON</li>
+   <li>Roles: usuario </li>
+   <li>Requisitos: No disponible
+   <li>
+    <p><strong>Cursos posibles</strong></p>
+    <ol>
+     <li>
+<p>Precondición: Se verificó que el usuario asistió al evento.</p>
+<p>Postcondicion: No hay cambio de estado.</p>
+      <p>resultado:</p>
+      <ul>
+       <li>label:'/VCertificate',</li>
+       <li> msg:"Certificado exitosamente generado".</li>
+      </ul>
+     </li>
+     <li>
+<p>Precondición: No se ha verificado la asistencia del usuario al evento.</p>
+<p>Postcondicion: No hay cambio de estado.</p>
+      <p>resultado:</p>
+      <ul>
+       <li>label:'/VShowEvent',</li>
+       <li> msg:"Error al generar certificado".</li>
+      </ul>
+     </li>
+
+    </ol>
+   </li>
+  </ul>
+ </li> <li>
+  <p></p>
+  <ul>
+   <li>URL: '/eventplanner/VCertificate'</li>
+   <li>Método: GET</li><li>Formato de salida: JSON</li>
+   <li>Roles: Sin restricción de rol
+  </ul>
+ </li> <li>
+  <p></p>
+  <ul>
+   <li>URL: '/eventplanner/ACancelReservation'</li>
+   <li>Método: GET</li><li>Formato de salida: JSON</li>
+   <li>Roles: Sin restricción de rol
+   <li>Requisitos: No disponible
+   <li>
+    <p><strong>Cursos posibles</strong></p>
+    <ol>
+     <li>
+<p>Precondición: El usuario debe haber reservado el evento o debe ser el adminitrador.</p>
+<p>Postcondicion: La reserva es cancelada.</p>
+      <p>resultado:</p>
+      <ul>
+       <li>label:'/VShowEvent',</li>
+       <li> msg:"Reservación exitosamente cancelada".</li>
+      </ul>
+     </li>
+     <li>
+<p>Precondición: El usuario no reservó el evento o no es el administrador.</p>
+<p>Postcondicion: No hay cambio de estado.</p>
+      <p>resultado:</p>
+      <ul>
+       <li>label:'/VShowEvent',</li>
+       <li> msg:"Error al cancelar reservación".</li>
+      </ul>
+     </li>
+
+    </ol>
+   </li>
+  </ul>
+ </li> <li>
+  <p></p>
+  <ul>
+   <li>URL: '/eventplanner/ALogOutUser'</li>
+   <li>Método: GET</li><li>Formato de salida: JSON</li>
+   <li>Roles: usuario </li>
+   <li>Requisitos: No disponible
+   <li>
+    <p><strong>Cursos posibles</strong></p>
+    <ol>
+     <li>
+<p>Precondición: True.</p>
+<p>Postcondicion: Se elimina el usuario de la sesión.</p>
+      <p>resultado:</p>
+      <ul>
+       <li>label:'/VLoginUser',</li>
+       <li> msg:"Sesión exitosamente cerrada".</li>
+      </ul>
+<p>Se continúa sin rol específico.</p>
+     </li>
+     <li>
+<p>Precondición: True.</p>
+<p>Postcondicion: No hay cambio de estado.</p>
+      <p>resultado:</p>
+      <ul>
+       <li>label:'/VHome',</li>
+       <li> msg:"Error al cerrar sesión".</li>
+      </ul>
+     </li>
+
+    </ol>
+   </li>
+  </ul>
+ </li> <li>
+  <p></p>
+  <ul>
+   <li>URL: '/eventplanner/AVerifyAssitance'</li>
+   <li>Método: GET</li><li>Formato de salida: JSON</li>
+   <li>Roles: admin </li>
+   <li>Requisitos: No disponible
+   <li>
+    <p><strong>Cursos posibles</strong></p>
+    <ol>
+     <li>
+<p>Precondición: True.</p>
+<p>Postcondicion: Se verifica la asistencia del usuario.</p>
+      <p>resultado:</p>
+      <ul>
+       <li>label:'/VListUsers',</li>
+       <li> msg:"Asistencia verificada".</li>
+      </ul>
+     </li>
+     <li>
+<p>Precondición: True.</p>
+<p>Postcondicion: No hay cambio de estado.</p>
+      <p>resultado:</p>
+      <ul>
+       <li>label:'/VListUsers',</li>
+       <li> msg:"Error al verificar asistencia".</li>
+      </ul>
+     </li>
+
+    </ol>
+   </li>
+  </ul>
+ </li>
+</ol>
+
+</html>

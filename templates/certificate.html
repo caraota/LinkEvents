@@ -1,0 +1,11 @@
+<h1>Certificado de asistencia</h1>
+{% if event and user %}
+<p> Certificado de asistencia otorgado a {{user}} por asistir al evento {{ event.name }}</p>
+<ul>
+    <li><strong>ID del evento: </strong> {{event.eventid}}</li>
+    <li><strong>Fecha del evento: </strong>{{event.event_date}}</li>
+    <li><strong>Lugar del evento: </strong>{{event.event_location}}</li>
+</ul>
+{% else %}
+<p> Error generando certificado </p>
+{% endif %}

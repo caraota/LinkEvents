@@ -1,0 +1,41 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" 
+                    data-toggle="collapse" 
+                    data-target="#contenido-plegable">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <span class="navbar-brand" ></span>
+        </div>
+        <div class="collapse navbar-collapse" id="contenido-plegable">
+            <ul class="nav navbar-nav navbar-left">
+<li><a ng-click="VListEvents1()">
+  Regresar</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+<li class="navbar-text" ng-show="usuario.nombre" ng-bind="usuario.nombre"></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <form name="fEventForm" ng-submit="ACreateEvent0(fEventForm.$valid)" novalidate>
+            <div class="form-group" ng-class="{ 'has-error' :  fEventSubmitted && fEventForm.name.$invalid && fEventForm.name.$pristine && fEventSubmitted}"><label for="fEvent_name">Nombre</label><input id="fEvent_name" type="text" name="name" class="form-control" ng-model="fEvent.name" placeholder="Nombre" /><p ng-show="fEventSubmitted && fEventForm.name.$invalid" class="help-block">Error en campo Nombre.</p></div>
+            <div class="form-group" ng-class="{ 'has-error' :  fEventSubmitted && fEventForm.description.$invalid && fEventForm.description.$pristine && fEventSubmitted}"><label for="fEvent_description">Descripción</label><input id="fEvent_description" type="text" name="description" class="form-control" ng-model="fEvent.description" placeholder="Descripción" required/><p ng-show="fEventSubmitted && fEventForm.description.$invalid" class="help-block">Error en campo Descripción.</p></div>
+            <div class="form-group" ng-class="{ 'has-error' :  fEventSubmitted && fEventForm.poster.$invalid && fEventForm.poster.$pristine && fEventSubmitted}"><label for="fEvent_poster">Afiche</label><input type="file" id="fEvent_poster" name="poster" class="form-control" file="fEvent.poster" placeholder="Afiche" /><p ng-show="fEventSubmitted && fEventForm.poster.$invalid" class="help-block">Error en campo Afiche.</p></div>
+            <div class="form-group" ng-class="{ 'has-error' :  fEventSubmitted && fEventForm.event_date.$invalid && fEventForm.event_date.$pristine && fEventSubmitted}"><label for="fEvent_event_date">Fecha del evento</label><input id="fEvent_event_date" type="date" name="event_date" class="form-control" ng-model="fEvent.event_date" placeholder="Fecha del evento" required/><p ng-show="fEventSubmitted && fEventForm.event_date.$invalid" class="help-block">Error en campo Fecha del evento.</p></div>
+            <div class="form-group" ng-class="{ 'has-error' :  fEventSubmitted && fEventForm.event_location.$invalid && fEventForm.event_location.$pristine && fEventSubmitted}"><label for="fEvent_event_location">Ubicación del evento</label><textarea id="fEvent_event_location" name="event_location" class="form-control" ng-model="fEvent.event_location" placeholder="Ubicación del evento" required></textarea><p ng-show="fEventSubmitted && fEventForm.event_location.$invalid" class="help-block">Error en campo Ubicación del evento.</p></div>
+            <div class="form-group" ng-class="{ 'has-error' :  fEventSubmitted && fEventForm.participants.$invalid && fEventForm.participants.$pristine && fEventSubmitted}"><label for="fEvent_participants">Número de participantes</label><input id="fEvent_participants" type="number" name="participants" class="form-control" ng-model="fEvent.participants" placeholder="Número de participantes" required/><p ng-show="fEventSubmitted && fEventForm.participants.$invalid" class="help-block">Error en campo Número de participantes.</p></div>
+            <input id="fEvent_owner" type="hidden" name="owner" ng-model="fEvent.owner" />
+        <button type="submit" class="btn btn-perso btn-lg btn-block">
+            <span class="glyphicon glyphicon-flash"></span>Registrar
+        </button>
+    </form>
+    <hr />
+
+
+<div id="right"></div>

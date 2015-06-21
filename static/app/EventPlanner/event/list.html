@@ -1,0 +1,54 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" 
+                    data-toggle="collapse" 
+                    data-target="#contenido-plegable">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <span class="navbar-brand" ></span>
+        </div>
+        <div class="collapse navbar-collapse" id="contenido-plegable">
+            <ul class="nav navbar-nav navbar-left">
+                <li><a ng-click="VRegisterEvent0()">
+                  Nuevo Evento</a></li>
+                <li><a ng-click="VHome1()">
+                  Regresar</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+<li class="navbar-text" ng-show="usuario.nombre" ng-bind="usuario.nombre"></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<table class="table table-striped">
+    <thead>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Fecha</th>
+        <th>Ubicación</th>
+        <th>Cupos</th>
+        <th>Acciones</th>
+    </thead>
+    <tbody ng-repeat="event in events">
+    <tr>
+        <td>{{event.eventid}}</td>
+        <td>{{event.name}}</td>
+        <td>{{event.event_date}}</td>
+        <td>{{event.event_location}}</td>
+        <td><span class="badge">{{event.n_participants}}</span></td>
+        <td class="btn-group" role="group">
+            <a class="btn btn-default" ng-click="show(event.eventid)"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+            <a class="btn btn-primary"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></a>
+            <span ng-if="event.owner == actor">
+            <a class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+            </span>
+        </td>
+    </tr>
+    <tbody>
+</table>
+
+<div id="right"></div>
