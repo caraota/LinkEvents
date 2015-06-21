@@ -1,8 +1,8 @@
-EventPlannerModule.service('EventPlannerService', ['$q', '$http', function($q, $http) {
+LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http) {
 
     this.ACreateUser = function(fUser) {
         return  $http.post( 
-            "/eventplanner/ACreateUser",
+            "/linkevents/ACreateUser",
             { data: fUser}
            );
            //    var labels = ["/VLoginUser", "/VRegisterUser", ];
@@ -15,7 +15,7 @@ EventPlannerModule.service('EventPlannerService', ['$q', '$http', function($q, $
     this.VRegisterUser = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'eventplanner/VRegisterUser',
+            url: 'linkevents/VRegisterUser',
             method: 'GET',
             params: args
         });
@@ -27,7 +27,7 @@ EventPlannerModule.service('EventPlannerService', ['$q', '$http', function($q, $
 
     this.ALoginUser = function(fLogin) {
         return  $http({
-            url: "eventplanner/ALoginUser",
+            url: "linkevents/ALoginUser",
             data: fLogin,
             method: 'POST',
         });
@@ -41,7 +41,7 @@ EventPlannerModule.service('EventPlannerService', ['$q', '$http', function($q, $
     this.VLoginUser = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'eventplanner/VLoginUser',
+            url: 'linkevents/VLoginUser',
             method: 'GET',
             params: args
         });
@@ -54,7 +54,7 @@ EventPlannerModule.service('EventPlannerService', ['$q', '$http', function($q, $
     this.AEvents = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'eventplanner/AEvents',
+            url: 'linkevents/AEvents',
             method: 'GET',
             params: args
         });
@@ -67,7 +67,7 @@ EventPlannerModule.service('EventPlannerService', ['$q', '$http', function($q, $
     this.VHome = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'eventplanner/VHome',
+            url: 'linkevents/VHome',
             method: 'GET',
             params: args
         });
@@ -79,7 +79,7 @@ EventPlannerModule.service('EventPlannerService', ['$q', '$http', function($q, $
 
     this.ACreateEvent = function(fEvent) {
         return  $http({
-            url: "eventplanner/ACreateEvent",
+            url: "linkevents/ACreateEvent",
             data: fEvent,
             method: 'POST',
             headers: { 'Content-Type': 'multipart/form-data' },
@@ -104,7 +104,7 @@ EventPlannerModule.service('EventPlannerService', ['$q', '$http', function($q, $
     this.VListEvents = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'eventplanner/VListEvents',
+            url: 'linkevents/VListEvents',
             method: 'GET',
             params: args
         });
@@ -117,7 +117,7 @@ EventPlannerModule.service('EventPlannerService', ['$q', '$http', function($q, $
     this.ADeleteEvent = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'eventplanner/ADeleteEvent',
+            url: 'linkevents/ADeleteEvent',
             method: 'GET',
             params: args
         });
@@ -130,7 +130,7 @@ EventPlannerModule.service('EventPlannerService', ['$q', '$http', function($q, $
     this.VShowEvent = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'eventplanner/VShowEvent',
+            url: 'linkevents/VShowEvent',
             method: 'GET',
             params: args
         });
@@ -144,7 +144,7 @@ EventPlannerModule.service('EventPlannerService', ['$q', '$http', function($q, $
         if(typeof args == 'undefined') args={};
         console.log(args); 
         return $http({
-            url: 'eventplanner/VShowUser',
+            url: 'linkevents/VShowUser',
             method: 'GET',
             params: args
         });
@@ -157,7 +157,7 @@ EventPlannerModule.service('EventPlannerService', ['$q', '$http', function($q, $
     this.ADeleteUser = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'eventplanner/ADeleteUser',
+            url: 'linkevents/ADeleteUser',
             method: 'GET',
             params: args
         });
@@ -169,7 +169,7 @@ EventPlannerModule.service('EventPlannerService', ['$q', '$http', function($q, $
     };
     this.AEditEvent = function(fEvent) {
         return  $http({
-            url: "eventplanner/AEditEvent",
+            url: "linkevents/AEditEvent",
             data: fEvent,
             method: 'POST',
             headers: { 'Content-Type': 'multipart/form-data' },
@@ -194,7 +194,7 @@ EventPlannerModule.service('EventPlannerService', ['$q', '$http', function($q, $
     this.VEditEvent = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'eventplanner/VEditEvent',
+            url: 'linkevents/VEditEvent',
             method: 'GET',
             params: args
         });
@@ -207,7 +207,7 @@ EventPlannerModule.service('EventPlannerService', ['$q', '$http', function($q, $
     this.AReserveEvent = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'eventplanner/AReserveEvent',
+            url: 'linkevents/AReserveEvent',
             method: 'GET',
             params: args
         });
@@ -220,7 +220,7 @@ EventPlannerModule.service('EventPlannerService', ['$q', '$http', function($q, $
     this.VRegisterEvent = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'eventplanner/VRegisterEvent',
+            url: 'linkevents/VRegisterEvent',
             method: 'GET',
             params: args
         });
@@ -233,7 +233,7 @@ EventPlannerModule.service('EventPlannerService', ['$q', '$http', function($q, $
     this.AUsers = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'eventplanner/AUsers',
+            url: 'linkevents/AUsers',
             method: 'GET',
             params: args
         });
@@ -246,7 +246,7 @@ EventPlannerModule.service('EventPlannerService', ['$q', '$http', function($q, $
     this.VListUsers = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'eventplanner/VListUsers',
+            url: 'linkevents/VListUsers',
             method: 'GET',
             params: args
         });
@@ -259,7 +259,7 @@ EventPlannerModule.service('EventPlannerService', ['$q', '$http', function($q, $
     this.AGenerateCredentials = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'eventplanner/AGenerateCredentials',
+            url: 'linkevents/AGenerateCredentials',
             method: 'GET',
             params: args
         });
@@ -272,7 +272,7 @@ EventPlannerModule.service('EventPlannerService', ['$q', '$http', function($q, $
     this.VCredential = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'eventplanner/VCredential',
+            url: 'linkevents/VCredential',
             method: 'GET',
             params: args
         });
@@ -285,7 +285,7 @@ EventPlannerModule.service('EventPlannerService', ['$q', '$http', function($q, $
     this.AGenerateCertificate = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'eventplanner/AGenerateCertificate',
+            url: 'linkevents/AGenerateCertificate',
             method: 'GET',
             params: args
         });
@@ -298,7 +298,7 @@ EventPlannerModule.service('EventPlannerService', ['$q', '$http', function($q, $
     this.VCertificate = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'eventplanner/VCertificate',
+            url: 'linkevents/VCertificate',
             method: 'GET',
             params: args
         });
@@ -311,7 +311,7 @@ EventPlannerModule.service('EventPlannerService', ['$q', '$http', function($q, $
     this.ACancelReservation = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'eventplanner/ACancelReservation',
+            url: 'linkevents/ACancelReservation',
             method: 'GET',
             params: args
         });
@@ -324,7 +324,7 @@ EventPlannerModule.service('EventPlannerService', ['$q', '$http', function($q, $
     this.ALogOutUser = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'eventplanner/ALogOutUser',
+            url: 'linkevents/ALogOutUser',
             method: 'GET',
             params: args
         });
@@ -337,7 +337,7 @@ EventPlannerModule.service('EventPlannerService', ['$q', '$http', function($q, $
     this.AVerifyAssitance = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'eventplanner/AVerifyAssitance',
+            url: 'linkevents/AVerifyAssitance',
             method: 'GET',
             params: args
         });

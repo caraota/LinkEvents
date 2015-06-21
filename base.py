@@ -26,8 +26,8 @@ def make_session_permanent():
 def root():
     return app.send_static_file('index.html')
 
-from app.Nodos.EventPlanner import EventPlanner
-app.register_blueprint(EventPlanner)
+from app.Nodos.LinkEvents import LinkEvents
+app.register_blueprint(LinkEvents)
 
 # CONEXION CON LA BASE DE DATOS
 def connect_db():

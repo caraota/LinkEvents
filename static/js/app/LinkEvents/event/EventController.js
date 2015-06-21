@@ -1,31 +1,31 @@
-EventPlannerModule.config(function ($routeProvider) {
+LinkEventsModule.config(function ($routeProvider) {
     $routeProvider.when('/events', {
                 controller: 'ListEventsController',
-                templateUrl: 'app/EventPlanner/event/list.html'
+                templateUrl: 'app/LinkEvents/event/list.html'
             }).when('/event/:id', {
                 controller: 'ShowEventController',
-                templateUrl: 'app/EventPlanner/event/show.html'
+                templateUrl: 'app/LinkEvents/event/show.html'
             }).when('/events/edit/:id', {
                 controller: 'VEditEventController',
-                templateUrl: 'app/EventPlanner/VEditEvent.html'
+                templateUrl: 'app/LinkEvents/VEditEvent.html'
             }).when('/events/new', {
                 controller: 'RegisterEventController',
-                templateUrl: 'app/EventPlanner/event/new.html'
+                templateUrl: 'app/LinkEvents/event/new.html'
             });       
 
 
 }); 
 
-EventPlannerModule.controller('RegisterEventController', 
+LinkEventsModule.controller('RegisterEventController', 
                               ['$scope', '$location', '$route', 'flash', 
-                               'EventPlannerService', 
+                               'LinkEventsService', 
                                function ($scope, $location, $route, 
-                                         flash, EventPlannerService) {
+                                         flash, LinkEventsService) {
 
       $scope.msg = '';
       $scope.fEvent = {};
 
-      EventPlannerService.VRegisterEvent().then(function (object) {
+      LinkEventsService.VRegisterEvent().then(function (object) {
         $scope.res = object.data;
         for (var key in object.data) {
             $scope[key] = object.data[key];
@@ -44,7 +44,7 @@ EventPlannerModule.controller('RegisterEventController',
       $scope.ACreateEvent0 = function(isValid) {
         $scope.fEventSubmitted = true;
         if (isValid) {
-          EventPlannerService.ACreateEvent($scope.fEvent).then(function (object) {
+          LinkEventsService.ACreateEvent($scope.fEvent).then(function (object) {
               var msg = object.data["msg"];
               if (msg) flash(msg);
               var label = object.data["label"];
@@ -58,11 +58,11 @@ EventPlannerModule.controller('RegisterEventController',
       };
 }]);
 
-EventPlannerModule.controller('ListEventsController', 
-        ['$scope', '$location', '$route', 'flash', 'EventPlannerService',
-    function ($scope, $location, $route, flash, EventPlannerService) {
+LinkEventsModule.controller('ListEventsController', 
+        ['$scope', '$location', '$route', 'flash', 'LinkEventsService',
+    function ($scope, $location, $route, flash, LinkEventsService) {
       $scope.msg = '';
-      EventPlannerService.VListEvents().then(function (object) {
+      LinkEventsService.VListEvents().then(function (object) {
         $scope.res = object.data;
         for (var key in object.data) {
             $scope[key] = object.data[key];
@@ -85,7 +85,7 @@ EventPlannerModule.controller('ListEventsController',
       };
 
       $scope.ADeleteEvent3 = function() {
-        EventPlannerService.ADeleteEvent().then(function (object) {
+        LinkEventsService.ADeleteEvent().then(function (object) {
           var msg = object.data["msg"];
           if (msg) flash(msg);
           var label = object.data["label"];
@@ -97,13 +97,13 @@ EventPlannerModule.controller('ListEventsController',
         });};
 }]);
 
-EventPlannerModule.controller('ShowEventController', 
+LinkEventsModule.controller('ShowEventController', 
                               ['$scope', '$location', '$route', 
-                               'flash', '$routeParams', 'EventPlannerService', 
+                               'flash', '$routeParams', 'LinkEventsService', 
                                function ($scope, $location, $route, flash, 
-                                         $routeParams, EventPlannerService) {
+                                         $routeParams, LinkEventsService) {
       $scope.msg = '';
-      EventPlannerService.VShowEvent({"eventId":$routeParams.id}).then(function (object) {
+      LinkEventsService.VShowEvent({"eventId":$routeParams.id}).then(function (object) {
         $scope.res = object.data;
         for (var key in object.data) {
             $scope[key] = object.data[key];
@@ -119,7 +119,7 @@ EventPlannerModule.controller('ShowEventController',
 
       // Reserve the event
       $scope.ReserveEvent = function() {
-        EventPlannerService.AReserveEvent({"eventId" : $routeParams.id}).then(function (object) {
+        LinkEventsService.AReserveEvent({"eventId" : $routeParams.id}).then(function (object) {
           var msg = object.data["msg"];
           if (msg) flash(msg);
           var label = object.data["label"];
@@ -131,7 +131,7 @@ EventPlannerModule.controller('ShowEventController',
         });};
 
       $scope.CancelReservation = function() {
-        EventPlannerService.ACancelReservation({"eventId" : $routeParams.id}).then(function (object) {
+        LinkEventsService.ACancelReservation({"eventId" : $routeParams.id}).then(function (object) {
           var msg = object.data["msg"];
           if (msg) flash(msg);
           var label = object.data["label"];
@@ -145,7 +145,7 @@ EventPlannerModule.controller('ShowEventController',
       }
       // List the users that will assists to this event
       $scope.AUsers2 = function(eventId) {
-        EventPlannerService.VListUsers({"eventId" : $routeParams.id}).then(function (object) {
+        LinkEventsService.VListUsers({"eventId" : $routeParams.id}).then(function (object) {
           var msg = object.data["msg"];
           if (msg) flash(msg);
 
@@ -160,7 +160,7 @@ EventPlannerModule.controller('ShowEventController',
 
       // Generate the credentials 
       $scope.GenerateCredentials = function() {
-        EventPlannerService.AGenerateCredentials({"eventId" : $routeParams.id}).then(function (object) {
+        LinkEventsService.AGenerateCredentials({"eventId" : $routeParams.id}).then(function (object) {
           var msg = object.data["msg"];
           if (msg) flash(msg);
           var credentials_link = object.data["credentials"]
@@ -173,7 +173,7 @@ EventPlannerModule.controller('ShowEventController',
         
       // Generate the certificate 
       $scope.GenerateCertificate = function() {
-        EventPlannerService.AGenerateCertificate({"eventId" : $routeParams.id}).then(function (object) {
+        LinkEventsService.AGenerateCertificate({"eventId" : $routeParams.id}).then(function (object) {
           var msg = object.data["msg"];
           if (msg) flash(msg);
           var label = object.data["label"];

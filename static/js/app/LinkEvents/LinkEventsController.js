@@ -1,37 +1,37 @@
-EventPlannerModule.config(function ($routeProvider) {
+LinkEventsModule.config(function ($routeProvider) {
     // TODO: Fix the routes' names
     $routeProvider.when('/VHome', {
                 controller: 'VHomeController',
-                templateUrl: 'app/EventPlanner/VHome.html'
+                templateUrl: 'app/LinkEvents/VHome.html'
             }).when('/VListEvents', {
                 controller: 'VListEventsController',
-                templateUrl: 'app/EventPlanner/VListEvents.html'
+                templateUrl: 'app/LinkEvents/VListEvents.html'
             }).when('/VShowEvent/:eventId', {
                 controller: 'VShowEventController',
-                templateUrl: 'app/EventPlanner/VShowEvent.html'
+                templateUrl: 'app/LinkEvents/VShowEvent.html'
             }).when('/VEditEvent', {
                 controller: 'VEditEventController',
-                templateUrl: 'app/EventPlanner/VEditEvent.html'
+                templateUrl: 'app/LinkEvents/VEditEvent.html'
             }).when('/VRegisterEvent', {
                 controller: 'VRegisterEventController',
-                templateUrl: 'app/EventPlanner/VRegisterEvent.html'
+                templateUrl: 'app/LinkEvents/VRegisterEvent.html'
             }).when('/VListUsers/:requestedUser', {
                 controller: 'VListUsersController',
-                templateUrl: 'app/EventPlanner/VListUsers.html'
+                templateUrl: 'app/LinkEvents/VListUsers.html'
             }).when('/VCredential', {
                 controller: 'VCredentialController',
-                templateUrl: 'app/EventPlanner/VCredential.html'
+                templateUrl: 'app/LinkEvents/VCredential.html'
             }).when('/VCertificate', {
                 controller: 'VCertificateController',
-                templateUrl: 'app/EventPlanner/VCertificate.html'
+                templateUrl: 'app/LinkEvents/VCertificate.html'
             });
 });
 
-EventPlannerModule.controller('VHomeController', 
-        ['$scope', '$location', '$route', 'flash', 'EventPlannerService',
-    function ($scope, $location, $route, flash, EventPlannerService) {
+LinkEventsModule.controller('VHomeController', 
+        ['$scope', '$location', '$route', 'flash', 'LinkEventsService',
+    function ($scope, $location, $route, flash, LinkEventsService) {
       $scope.msg = '';
-      EventPlannerService.VHome().then(function (object) {
+      LinkEventsService.VHome().then(function (object) {
         $scope.res = object.data;
         for (var key in object.data) {
             $scope[key] = object.data[key];
@@ -45,7 +45,7 @@ EventPlannerModule.controller('VHomeController',
       });
 
       $scope.AEvents = function() {
-        EventPlannerService.AEvents().then(function (object) {
+        LinkEventsService.AEvents().then(function (object) {
           var msg = object.data["msg"];
           if (msg) flash(msg);
           var label = object.data["label"];
@@ -56,7 +56,7 @@ EventPlannerModule.controller('VHomeController',
           }
         });};
       $scope.AEvents1 = function(requestedEvent) {
-        EventPlannerService.AEvents({"requestedEvent":((typeof requestedEvent === 'object')?JSON.stringify(requestedEvent):requestedEvent)}).then(function (object) {
+        LinkEventsService.AEvents({"requestedEvent":((typeof requestedEvent === 'object')?JSON.stringify(requestedEvent):requestedEvent)}).then(function (object) {
           var msg = object.data["msg"];
           if (msg) flash(msg);
           var label = object.data["label"];
@@ -68,7 +68,7 @@ EventPlannerModule.controller('VHomeController',
         });};
 
         $scope.AUsers2 = function() {
-        EventPlannerService.AUsers().then(function (object) {
+        LinkEventsService.AUsers().then(function (object) {
           var msg = object.data["msg"];
           var users = object.data["users"];
           if (users) flash(users)
@@ -85,11 +85,11 @@ EventPlannerModule.controller('VHomeController',
           };
 
     }]);
-EventPlannerModule.controller('VListEventsController', 
-        ['$scope', '$location', '$route', 'flash', 'EventPlannerService',
-    function ($scope, $location, $route, flash, EventPlannerService) {
+LinkEventsModule.controller('VListEventsController', 
+        ['$scope', '$location', '$route', 'flash', 'LinkEventsService',
+    function ($scope, $location, $route, flash, LinkEventsService) {
       $scope.msg = '';
-      EventPlannerService.VListEvents().then(function (object) {
+      LinkEventsService.VListEvents().then(function (object) {
         $scope.res = object.data;
         for (var key in object.data) {
             $scope[key] = object.data[key];
@@ -110,7 +110,7 @@ EventPlannerModule.controller('VListEventsController',
         $location.path('/VShowEvent/'+eventId);
       };
       $scope.ADeleteEvent3 = function() {
-        EventPlannerService.ADeleteEvent().then(function (object) {
+        LinkEventsService.ADeleteEvent().then(function (object) {
           var msg = object.data["msg"];
           if (msg) flash(msg);
           var label = object.data["label"];
@@ -122,11 +122,11 @@ EventPlannerModule.controller('VListEventsController',
         });};
 
     }]);
-EventPlannerModule.controller('VShowEventController', 
-        ['$scope', '$location', '$route', 'flash', '$routeParams', 'EventPlannerService',
-    function ($scope, $location, $route, flash, $routeParams, EventPlannerService) {
+LinkEventsModule.controller('VShowEventController', 
+        ['$scope', '$location', '$route', 'flash', '$routeParams', 'LinkEventsService',
+    function ($scope, $location, $route, flash, $routeParams, LinkEventsService) {
       $scope.msg = '';
-      EventPlannerService.VShowEvent({"eventId":$routeParams.eventId}).then(function (object) {
+      LinkEventsService.VShowEvent({"eventId":$routeParams.eventId}).then(function (object) {
         $scope.res = object.data;
         for (var key in object.data) {
             $scope[key] = object.data[key];
@@ -139,7 +139,7 @@ EventPlannerModule.controller('VShowEventController',
         $location.path('/VListEvents');
       };
       $scope.AReserveEvent1 = function() {
-        EventPlannerService.AReserveEvent().then(function (object) {
+        LinkEventsService.AReserveEvent().then(function (object) {
           var msg = object.data["msg"];
           if (msg) flash(msg);
           var label = object.data["label"];
@@ -150,7 +150,7 @@ EventPlannerModule.controller('VShowEventController',
           }
         });};
       $scope.AUsers2 = function() {
-        EventPlannerService.AUsers().then(function (object) {
+        LinkEventsService.AUsers().then(function (object) {
           var msg = object.data["msg"];
           if (msg) flash(msg);
           var label = object.data["label"];
@@ -161,7 +161,7 @@ EventPlannerModule.controller('VShowEventController',
           }
         });};
       $scope.AGenerateCredentials3 = function() {
-        EventPlannerService.AGenerateCredentials().then(function (object) {
+        LinkEventsService.AGenerateCredentials().then(function (object) {
           var msg = object.data["msg"];
           if (msg) flash(msg);
           var label = object.data["label"];
@@ -172,7 +172,7 @@ EventPlannerModule.controller('VShowEventController',
           }
         });};
       $scope.AGenerateCertificate4 = function() {
-        EventPlannerService.AGenerateCertificate().then(function (object) {
+        LinkEventsService.AGenerateCertificate().then(function (object) {
           var msg = object.data["msg"];
           if (msg) flash(msg);
           var label = object.data["label"];
@@ -187,13 +187,13 @@ EventPlannerModule.controller('VShowEventController',
       };
 
     }]);
-EventPlannerModule.controller('VEditEventController', 
-        ['$scope', '$location', '$route', 'flash', 'EventPlannerService',
-    function ($scope, $location, $route, flash, EventPlannerService) {
+LinkEventsModule.controller('VEditEventController', 
+        ['$scope', '$location', '$route', 'flash', 'LinkEventsService',
+    function ($scope, $location, $route, flash, LinkEventsService) {
       $scope.msg = '';
       $scope.fEvent = {};
 
-      EventPlannerService.VEditEvent().then(function (object) {
+      LinkEventsService.VEditEvent().then(function (object) {
         $scope.res = object.data;
         for (var key in object.data) {
             $scope[key] = object.data[key];
@@ -210,7 +210,7 @@ EventPlannerModule.controller('VEditEventController',
       $scope.AEditEvent1 = function(isValid) {
         $scope.fEventSubmitted = true;
         if (isValid) {
-          EventPlannerService.AEditEvent($scope.fEvent).then(function (object) {
+          LinkEventsService.AEditEvent($scope.fEvent).then(function (object) {
               var msg = object.data["msg"];
               if (msg) flash(msg);
               var label = object.data["label"];
@@ -224,13 +224,13 @@ EventPlannerModule.controller('VEditEventController',
       };
 
     }]);
-EventPlannerModule.controller('VRegisterEventController', 
-        ['$scope', '$location', '$route', 'flash', 'EventPlannerService',
-    function ($scope, $location, $route, flash, EventPlannerService) {
+LinkEventsModule.controller('VRegisterEventController', 
+        ['$scope', '$location', '$route', 'flash', 'LinkEventsService',
+    function ($scope, $location, $route, flash, LinkEventsService) {
       $scope.msg = '';
       $scope.fEvent = {};
 
-      EventPlannerService.VRegisterEvent().then(function (object) {
+      LinkEventsService.VRegisterEvent().then(function (object) {
         $scope.res = object.data;
         for (var key in object.data) {
             $scope[key] = object.data[key];
@@ -247,7 +247,7 @@ EventPlannerModule.controller('VRegisterEventController',
       $scope.ACreateEvent0 = function(isValid) {
         $scope.fEventSubmitted = true;
         if (isValid) {
-          EventPlannerService.ACreateEvent($scope.fEvent).then(function (object) {
+          LinkEventsService.ACreateEvent($scope.fEvent).then(function (object) {
               var msg = object.data["msg"];
               if (msg) flash(msg);
               var label = object.data["label"];
@@ -261,11 +261,11 @@ EventPlannerModule.controller('VRegisterEventController',
       };
 
     }]);
-EventPlannerModule.controller('VCredentialController', 
-        ['$scope', '$location', '$route', 'flash', 'EventPlannerService',
-    function ($scope, $location, $route, flash, EventPlannerService) {
+LinkEventsModule.controller('VCredentialController', 
+        ['$scope', '$location', '$route', 'flash', 'LinkEventsService',
+    function ($scope, $location, $route, flash, LinkEventsService) {
       $scope.msg = '';
-      EventPlannerService.VCredential().then(function (object) {
+      LinkEventsService.VCredential().then(function (object) {
         $scope.res = object.data;
         for (var key in object.data) {
             $scope[key] = object.data[key];
@@ -279,11 +279,11 @@ EventPlannerModule.controller('VCredentialController',
       };
 
     }]);
-EventPlannerModule.controller('VCertificateController', 
-        ['$scope', '$location', '$route', 'flash', 'EventPlannerService',
-    function ($scope, $location, $route, flash, EventPlannerService) {
+LinkEventsModule.controller('VCertificateController', 
+        ['$scope', '$location', '$route', 'flash', 'LinkEventsService',
+    function ($scope, $location, $route, flash, LinkEventsService) {
       $scope.msg = '';
-      EventPlannerService.VCertificate().then(function (object) {
+      LinkEventsService.VCertificate().then(function (object) {
         $scope.res = object.data;
         for (var key in object.data) {
             $scope[key] = object.data[key];

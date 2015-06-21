@@ -3,10 +3,10 @@ from flask import request, session, Blueprint, json, g
 
 from werkzeug import secure_filename
 
-EventPlanner = Blueprint('EventPlanner', __name__)
+LinkEvents = Blueprint('LinkEvents', __name__)
 
 
-@EventPlanner.route('/eventplanner/ACancelReservation')
+@LinkEvents.route('/linkevents/ACancelReservation')
 def ACancelReservation():
 
     eventid = request.args.get('eventId')
@@ -38,7 +38,7 @@ def ACancelReservation():
 
 from app.model.evento import Evento, archivo_permitido, subidas
 import os
-@EventPlanner.route('/eventplanner/ACreateEvent', methods=['POST'])
+@LinkEvents.route('/linkevents/ACreateEvent', methods=['POST'])
 def ACreateEvent():
     #Access to POST/PUT fields using request.form['name']
     #Access to file fields using request.files['name']
@@ -73,13 +73,13 @@ def ACreateEvent():
 
 from flask import send_from_directory
 
-@EventPlanner.route('/cargar_pdf/<filename>')
+@LinkEvents.route('/cargar_pdf/<filename>')
 def get_file(filename):
     return send_from_directory(upload_folder(), filename)
 
 from app.model.usuario import Usuario 
 
-@EventPlanner.route('/eventplanner/ACreateUser', methods=['POST'])
+@LinkEvents.route('/linkevents/ACreateUser', methods=['POST'])
 def ACreateUser():
     #POST/PUT parameters
     params = request.get_json()
@@ -106,7 +106,7 @@ def ACreateUser():
 
 
 
-@EventPlanner.route('/eventplanner/ADeleteEvent')
+@LinkEvents.route('/linkevents/ADeleteEvent')
 def ADeleteEvent():
     #POST/PUT parameters
     params = request.get_json()
@@ -125,7 +125,7 @@ def ADeleteEvent():
 
 
 
-@EventPlanner.route('/eventplanner/ADeleteUser')
+@LinkEvents.route('/linkevents/ADeleteUser')
 def ADeleteUser():
     #POST/PUT parameters
     params = request.get_json()
@@ -144,7 +144,7 @@ def ADeleteUser():
 
 
 
-@EventPlanner.route('/eventplanner/AEditEvent', methods=['POST'])
+@LinkEvents.route('/linkevents/AEditEvent', methods=['POST'])
 def AEditEvent():
     #Access to POST/PUT fields using request.form['name']
     #Access to file fields using request.files['name']
@@ -163,7 +163,7 @@ def AEditEvent():
 
 
 
-@EventPlanner.route('/eventplanner/AEvents')
+@LinkEvents.route('/linkevents/AEvents')
 def AEvents():
     #GET parameter
     results = [{'label':'/events', 'msg':[ur'Se listan los eventos']}, ]
@@ -182,7 +182,7 @@ def AEvents():
 
 from flask import render_template
 from app.model.evento import crear_pdf
-@EventPlanner.route('/eventplanner/AGenerateCertificate')
+@LinkEvents.route('/linkevents/AGenerateCertificate')
 def AGenerateCertificate():
 
     results = [{'label':'/VShowEvent', 'msg':[ur'Certificado exitosamente generado']}, {'label':'/VShowEvent', 'msg':[ur'Error al generar certificado']}, ]
@@ -213,7 +213,7 @@ def AGenerateCertificate():
 
 
 
-@EventPlanner.route('/eventplanner/AGenerateCredentials')
+@LinkEvents.route('/linkevents/AGenerateCredentials')
 def AGenerateCredentials():
     #POST/PUT parameters
 
@@ -244,7 +244,7 @@ def AGenerateCredentials():
 
 
 
-@EventPlanner.route('/eventplanner/ALogOutUser')
+@LinkEvents.route('/linkevents/ALogOutUser')
 def ALogOutUser():
     #POST/PUT parameters
     params = request.get_json()
@@ -263,7 +263,7 @@ def ALogOutUser():
 
 
 
-@EventPlanner.route('/eventplanner/ALoginUser', methods=['POST'])
+@LinkEvents.route('/linkevents/ALoginUser', methods=['POST'])
 def ALoginUser():
     #POST/PUT parameters
     params = request.get_json()
@@ -291,7 +291,7 @@ def ALoginUser():
 
 
 from app.model.asiste import Asiste
-@EventPlanner.route('/eventplanner/AReserveEvent')
+@LinkEvents.route('/linkevents/AReserveEvent')
 def AReserveEvent():
 
     eventid = request.args.get('eventId')
@@ -327,7 +327,7 @@ def AReserveEvent():
 
 
 
-@EventPlanner.route('/eventplanner/AUsers')
+@LinkEvents.route('/linkevents/AUsers')
 def AUsers():
     #POST/PUT parameters
     params = request.get_json()
@@ -353,7 +353,7 @@ def AUsers():
 
 
 
-@EventPlanner.route('/eventplanner/AVerifyAssitance')
+@LinkEvents.route('/linkevents/AVerifyAssitance')
 def AVerifyAssitance():
     #POST/PUT parameters
     params = request.get_json()
@@ -372,7 +372,7 @@ def AVerifyAssitance():
 
 
 
-@EventPlanner.route('/eventplanner/VCertificate')
+@LinkEvents.route('/linkevents/VCertificate')
 def VCertificate():
 
     res = {}
@@ -386,7 +386,7 @@ def VCertificate():
 
 
 
-@EventPlanner.route('/eventplanner/VCredential')
+@LinkEvents.route('/linkevents/VCredential')
 def VCredential():
     res = {}
     if "actor" in session:
@@ -399,7 +399,7 @@ def VCredential():
 
 
 
-@EventPlanner.route('/eventplanner/VEditEvent')
+@LinkEvents.route('/linkevents/VEditEvent')
 def VEditEvent():
     res = {}
     if "actor" in session:
@@ -412,7 +412,7 @@ def VEditEvent():
 
 
 
-@EventPlanner.route('/eventplanner/VHome')
+@LinkEvents.route('/linkevents/VHome')
 def VHome():
     res = {}
     if "actor" in session:
@@ -424,7 +424,7 @@ def VHome():
 
 
 
-@EventPlanner.route('/eventplanner/VListEvents')
+@LinkEvents.route('/linkevents/VListEvents')
 def VListEvents():
     res = {}
     if "actor" in session:
@@ -441,7 +441,7 @@ def VListEvents():
 
 
 
-@EventPlanner.route('/eventplanner/VListUsers')
+@LinkEvents.route('/linkevents/VListUsers')
 def VListUsers():
 
     params = request.args
@@ -467,7 +467,7 @@ def VListUsers():
 
 
 
-@EventPlanner.route('/eventplanner/VLoginUser')
+@LinkEvents.route('/linkevents/VLoginUser')
 def VLoginUser():
     res = {}
     if "actor" in session:
@@ -480,7 +480,7 @@ def VLoginUser():
 
 
 
-@EventPlanner.route('/eventplanner/VRegisterEvent')
+@LinkEvents.route('/linkevents/VRegisterEvent')
 def VRegisterEvent():
     res = {}
     if "actor" in session:
@@ -493,7 +493,7 @@ def VRegisterEvent():
 
 
 
-@EventPlanner.route('/eventplanner/VRegisterUser')
+@LinkEvents.route('/linkevents/VRegisterUser')
 def VRegisterUser():
     res = {}
     if "actor" in session:
@@ -506,7 +506,7 @@ def VRegisterUser():
 
 
 
-@EventPlanner.route('/eventplanner/VShowEvent')
+@LinkEvents.route('/linkevents/VShowEvent')
 def VShowEvent():
 
     eventid = request.args.get('eventId')
@@ -529,7 +529,7 @@ def VShowEvent():
     #Action code ends here
     return json.dumps(res)
 
-@EventPlanner.route('/eventplanner/VShowUser')
+@LinkEvents.route('/linkevents/VShowUser')
 def VShowUser():
 
     print request

@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
 </head>
 <body>
-<h2>CasosDeUsoEventPlanner</h2>
+<h2>CasosDeUsoLinkEvents</h2>
 <p></p>
 <ol>
  <li>
   <p></p>
   <ul>
-   <li>URL: '/eventplanner/ACreateUser'</li>
+   <li>URL: '/LinkEvents/ACreateUser'</li>
    <li>Método: POST</li><li>Formato de entrada y salida: JSON</li>
 <li>Parámetros POST:
     <ul>     <li>user -  
@@ -50,14 +50,14 @@ Requerido.
  </li> <li>
   <p></p>
   <ul>
-   <li>URL: '/eventplanner/VRegisterUser'</li>
+   <li>URL: '/LinkEvents/VRegisterUser'</li>
    <li>Método: GET</li><li>Formato de salida: JSON</li>
    <li>Roles: Sin restricción de rol
   </ul>
  </li> <li>
   <p></p>
   <ul>
-   <li>URL: '/eventplanner/ALoginUser'</li>
+   <li>URL: '/LinkEvents/ALoginUser'</li>
    <li>Método: POST</li><li>Formato de entrada y salida: JSON</li>
 <li>Parámetros POST:
     <ul>     <li>user -  
@@ -98,14 +98,14 @@ Requerido.
  </li> <li>
   <p></p>
   <ul>
-   <li>URL: '/eventplanner/VLoginUser'</li>
+   <li>URL: '/LinkEvents/VLoginUser'</li>
    <li>Método: GET</li><li>Formato de salida: JSON</li>
    <li>Roles: Sin restricción de rol
   </ul>
  </li> <li>
   <p></p>
   <ul>
-   <li>URL: '/eventplanner/AEvents'</li>
+   <li>URL: '/LinkEvents/AEvents'</li>
    <li>Método: GET</li><li>Formato de salida: JSON</li>
 Parámetros GET: requestedEvent
    <li>Roles: Sin restricción de rol
@@ -129,14 +129,14 @@ Parámetros GET: requestedEvent
  </li> <li>
   <p></p>
   <ul>
-   <li>URL: '/eventplanner/VHome'</li>
+   <li>URL: '/LinkEvents/VHome'</li>
    <li>Método: GET</li><li>Formato de salida: JSON</li>
    <li>Roles: Sin restricción de rol
   </ul>
  </li> <li>
   <p><br></p>
   <ul>
-   <li>URL: '/eventplanner/ACreateEvent'</li>
+   <li>URL: '/LinkEvents/ACreateEvent'</li>
    <li>Método: POST</li><li>Formato de entrada y salida: JSON</li>
 <li>Parámetros POST:
     <ul>     <li>name -  
@@ -186,14 +186,14 @@ Opcional.
  </li> <li>
   <p></p>
   <ul>
-   <li>URL: '/eventplanner/VListEvents'</li>
+   <li>URL: '/LinkEvents/VListEvents'</li>
    <li>Método: GET</li><li>Formato de salida: JSON</li>
    <li>Roles: Sin restricción de rol
   </ul>
  </li> <li>
   <p></p>
   <ul>
-   <li>URL: '/eventplanner/ADeleteEvent'</li>
+   <li>URL: '/LinkEvents/ADeleteEvent'</li>
    <li>Método: GET</li><li>Formato de salida: JSON</li>
    <li>Roles: usuario </li>
    <li>Requisitos: No disponible
@@ -225,7 +225,7 @@ Opcional.
  </li> <li>
   <p></p>
   <ul>
-   <li>URL: '/eventplanner/VShowEvent'</li>
+   <li>URL: '/LinkEvents/VShowEvent'</li>
    <li>Método: GET</li><li>Formato de salida: JSON</li>
 Parámetros GET: eventId
    <li>Roles: Sin restricción de rol
@@ -233,7 +233,7 @@ Parámetros GET: eventId
  </li> <li>
   <p></p>
   <ul>
-   <li>URL: '/eventplanner/ADeleteUser'</li>
+   <li>URL: '/LinkEvents/ADeleteUser'</li>
    <li>Método: GET</li><li>Formato de salida: JSON</li>
    <li>Roles: admin </li>
    <li>Requisitos: No disponible
@@ -265,7 +265,7 @@ Parámetros GET: eventId
  </li> <li>
   <p></p>
   <ul>
-   <li>URL: '/eventplanner/AEditEvent'</li>
+   <li>URL: '/LinkEvents/AEditEvent'</li>
    <li>Método: POST</li><li>Formato de entrada y salida: JSON</li>
 <li>Parámetros POST:
     <ul>     <li>name -  
@@ -306,14 +306,14 @@ Opcional.
  </li> <li>
   <p></p>
   <ul>
-   <li>URL: '/eventplanner/VEditEvent'</li>
+   <li>URL: '/LinkEvents/VEditEvent'</li>
    <li>Método: GET</li><li>Formato de salida: JSON</li>
    <li>Roles: Sin restricción de rol
   </ul>
  </li> <li>
   <p></p>
   <ul>
-   <li>URL: '/eventplanner/AReserveEvent'</li>
+   <li>URL: '/LinkEvents/AReserveEvent'</li>
    <li>Método: GET</li><li>Formato de salida: JSON</li>
    <li>Roles: participante </li>
    <li>Requisitos: No disponible
@@ -345,14 +345,14 @@ Opcional.
  </li> <li>
   <p></p>
   <ul>
-   <li>URL: '/eventplanner/VRegisterEvent'</li>
+   <li>URL: '/LinkEvents/VRegisterEvent'</li>
    <li>Método: GET</li><li>Formato de salida: JSON</li>
    <li>Roles: Sin restricción de rol
   </ul>
  </li> <li>
   <p></p>
   <ul>
-   <li>URL: '/eventplanner/AUsers'</li>
+   <li>URL: '/LinkEvents/AUsers'</li>
    <li>Método: GET</li><li>Formato de salida: JSON</li>
    <li>Roles: usuario </li>
    <li>Requisitos: No disponible
@@ -375,7 +375,7 @@ Opcional.
  </li> <li>
   <p></p>
   <ul>
-   <li>URL: '/eventplanner/VListUsers'</li>
+   <li>URL: '/LinkEvents/VListUsers'</li>
    <li>Método: GET</li><li>Formato de salida: JSON</li>
 Parámetros GET: requestedUser
    <li>Roles: Sin restricción de rol
@@ -383,7 +383,7 @@ Parámetros GET: requestedUser
  </li> <li>
   <p></p>
   <ul>
-   <li>URL: '/eventplanner/AGenerateCredentials'</li>
+   <li>URL: '/LinkEvents/AGenerateCredentials'</li>
    <li>Método: GET</li><li>Formato de salida: JSON</li>
    <li>Roles: usuario </li>
    <li>Requisitos: No disponible
@@ -415,14 +415,14 @@ Parámetros GET: requestedUser
  </li> <li>
   <p></p>
   <ul>
-   <li>URL: '/eventplanner/VCredential'</li>
+   <li>URL: '/LinkEvents/VCredential'</li>
    <li>Método: GET</li><li>Formato de salida: JSON</li>
    <li>Roles: Sin restricción de rol
   </ul>
  </li> <li>
   <p></p>
   <ul>
-   <li>URL: '/eventplanner/AGenerateCertificate'</li>
+   <li>URL: '/LinkEvents/AGenerateCertificate'</li>
    <li>Método: GET</li><li>Formato de salida: JSON</li>
    <li>Roles: usuario </li>
    <li>Requisitos: No disponible
@@ -454,14 +454,14 @@ Parámetros GET: requestedUser
  </li> <li>
   <p></p>
   <ul>
-   <li>URL: '/eventplanner/VCertificate'</li>
+   <li>URL: '/LinkEvents/VCertificate'</li>
    <li>Método: GET</li><li>Formato de salida: JSON</li>
    <li>Roles: Sin restricción de rol
   </ul>
  </li> <li>
   <p></p>
   <ul>
-   <li>URL: '/eventplanner/ACancelReservation'</li>
+   <li>URL: '/LinkEvents/ACancelReservation'</li>
    <li>Método: GET</li><li>Formato de salida: JSON</li>
    <li>Roles: Sin restricción de rol
    <li>Requisitos: No disponible
@@ -493,7 +493,7 @@ Parámetros GET: requestedUser
  </li> <li>
   <p></p>
   <ul>
-   <li>URL: '/eventplanner/ALogOutUser'</li>
+   <li>URL: '/LinkEvents/ALogOutUser'</li>
    <li>Método: GET</li><li>Formato de salida: JSON</li>
    <li>Roles: usuario </li>
    <li>Requisitos: No disponible
@@ -526,7 +526,7 @@ Parámetros GET: requestedUser
  </li> <li>
   <p></p>
   <ul>
-   <li>URL: '/eventplanner/AVerifyAssitance'</li>
+   <li>URL: '/LinkEvents/AVerifyAssitance'</li>
    <li>Método: GET</li><li>Formato de salida: JSON</li>
    <li>Roles: admin </li>
    <li>Requisitos: No disponible
