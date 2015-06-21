@@ -1,0 +1,15 @@
+<h1> CERTIFICADO DE ASISTENCIA </h1>
+
+{% if evento and usuario %}
+
+	<p> El presente Certificado se otorga a <strong> {{usuario.nombre}} {{usuario.apellido}} </strong>
+    	por haber asistido al evento <strong> {{evento.nombre}} </strong> celebrado en {{evento.lugar}} el
+    	{{evento.fecha}}
+	</p>
+	<p> Certificado generado por LinkEvents ® </p>
+
+{% else %}
+
+	<p> Error. </p>
+
+{% endif %}

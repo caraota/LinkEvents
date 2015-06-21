@@ -1,0 +1,25 @@
+<h1> CREDENCIAL DE ACCESO </h1>
+
+{% if evento and usuario %}
+
+	<p> Participante </p>
+	<ul>
+		<li><strong> Nombre: </strong> {{usuario.nombre}} </li>
+		<li><strong> Apellido: </strong> {{usuario.apellido}} </li>	
+	</ul>
+
+	<p> Evento </p>
+	<ul>
+		<li><strong> Nombre: </strong> {{evento.nombre}} </li>
+		<li><strong> Fecha: </strong> {{evento.fecha}} </li>	
+		<li><strong> Lugar: </strong> {{evento.lugar}} </li>	
+	</ul>
+
+	<p> Este credencial es intransferible, válido únicamente para el evento indicado. </p>
+	<p> Credencial generada por LinkEvents ® </p>
+
+{% else %}
+
+	<p> Error. </p>
+
+{% endif %}
