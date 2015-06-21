@@ -6,7 +6,6 @@ from werkzeug import secure_filename
 EventPlanner = Blueprint('EventPlanner', __name__)
 
 
-
 @EventPlanner.route('/eventplanner/ACancelReservation')
 def ACancelReservation():
 
@@ -37,7 +36,7 @@ def ACancelReservation():
     return json.dumps(res)
 
 
-from app.model.event import Event, allowed_file, upload_folder
+from app.model.evento import Evento, archivo_permitido, subidas
 import os
 @EventPlanner.route('/eventplanner/ACreateEvent', methods=['POST'])
 def ACreateEvent():
@@ -46,9 +45,9 @@ def ACreateEvent():
     params = request.form.copy()
     poster = request.files.get('poster')
 
-    if poster != None and allowed_file(poster.filename):
+    if poster != None and archivo_permitido(poster.filename):
         filename = secure_filename(poster.filename)
-        poster_path = os.path.join(upload_folder(), filename)
+        poster_path = os.path.join(subidas(), filename)
         poster.save(poster_path)
         params['poster_path'] = poster_path
 
@@ -78,7 +77,7 @@ from flask import send_from_directory
 def get_file(filename):
     return send_from_directory(upload_folder(), filename)
 
-from app.model.user import User 
+from app.model.usuario import Usuario 
 
 @EventPlanner.route('/eventplanner/ACreateUser', methods=['POST'])
 def ACreateUser():
@@ -182,7 +181,7 @@ def AEvents():
     return json.dumps(res)
 
 from flask import render_template
-from app.model.event import create_pdf
+from app.model.evento import crear_pdf
 @EventPlanner.route('/eventplanner/AGenerateCertificate')
 def AGenerateCertificate():
 
@@ -291,7 +290,7 @@ def ALoginUser():
 
 
 
-from app.model.assistance import Assistance
+from app.model.asiste import Asiste
 @EventPlanner.route('/eventplanner/AReserveEvent')
 def AReserveEvent():
 

@@ -97,9 +97,7 @@ class Evento:
 		cursor = db.cursor()
 		cursor.execute(sql)
 		filas = cursor.fetchall()
-		data = map(lambda x:
-			{'eventoid':int(x[0]),'nombre':x[1],'descripcion':x[2],'fecha':x[3],'lugar':x[4],'capacidad':int(x[5]),'afiche':x[6],filas}
-			)
+		data = map(lambda x:{'eventoid':int(x[0]),'nombre':x[1],'descripcion':x[2],'fecha':x[3],'lugar':x[4],'capacidad':int(x[5]),'afiche':x[6]})
 		eventos = map(lambda x: Evento(x), data)
 		return eventos
 
