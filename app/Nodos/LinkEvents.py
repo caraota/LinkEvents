@@ -73,6 +73,37 @@ def VIniciarSesion():
 
 
 
+@LinkEvents.route('/linkevents/ACrearEvento', methods=['POST'])
+def ACrearEvento():
+    #Access to POST/PUT fields using request.form['name']
+    #Access to file fields using request.files['name']
+    params = request.form.copy()
+    poster = request.files.get('afiche')
+
+    if poster != None and archivo_permitido(poster.filename):
+        filename = secure_filename(poster.filename)
+        poster_path = os.path.join(subidas(), filename)
+        poster.save(poster_path)
+        params['afiche'] = poster_path
+
+    evento = Evento(params)
+
+    if evento and evento.save():
+        eventoid = Evento.ultimo()
+        res = { 'label' : '/VEvento/'+str(eventoid), 'msg':[ur'Evento creado exitosamente'] }
+    else:
+        res = { 'label' : '/VCrearEvento', 'msg':[ur'Error al crear evento'] }
+
+
+    #Action code ends here
+    if "actor" in res:
+        if res['actor'] is None:
+            session.pop("actor", None)
+        else:
+            session['actor'] = res['actor']
+    return json.dumps(res)
+
+
 
 # -----------------------------------------------------------------------
 
@@ -113,40 +144,6 @@ def ACancelReservation():
             res = {'label':'/VShowEvent', 'msg':[ur'Reserva cancelada exitosamente']}
         else:
             res = {'label':'/VShowEvent', 'msg':[ur'Error al cancelar la reserva del evento']}
-
-
-    #Action code ends here
-    if "actor" in res:
-        if res['actor'] is None:
-            session.pop("actor", None)
-        else:
-            session['actor'] = res['actor']
-    return json.dumps(res)
-
-
-@LinkEvents.route('/linkevents/ACreateEvent', methods=['POST'])
-def ACreateEvent():
-    #Access to POST/PUT fields using request.form['name']
-    #Access to file fields using request.files['name']
-    params = request.form.copy()
-    poster = request.files.get('poster')
-
-    if poster != None and archivo_permitido(poster.filename):
-        filename = secure_filename(poster.filename)
-        poster_path = os.path.join(subidas(), filename)
-        poster.save(poster_path)
-        params['poster_path'] = poster_path
-
-    if "actor" in session:
-        params['owner'] = session['actor']
-
-    event = Event(params)
-
-    if event and event.save():
-        eventid = Event.last_id()
-        res = { 'label' : '/event/'+str(eventid), 'msg':[ur'Evento creado exitosamente'] }
-    else:
-        res = { 'label' : '/events/new', 'msg':[ur'Error al crear evento'] }
 
 
     #Action code ends here

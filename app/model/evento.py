@@ -44,9 +44,9 @@ class Evento:
 		db = get_database()
 		cursor = db.cursor()
 		try:
-			sql = 'INSERT INTO %s (eventoid, nombre, descripcion, fecha, lugar, capacidad, afiche) VALUES (NULL,"%s","%s","%s","%s","%s","%s"' % (TABLA, self.nombre, self. descripcion, self.fecha, self.lugar, self.capacidad, self.afiche)
+			sql = 'INSERT INTO %s (eventoid, nombre, descripcion, fecha, lugar, capacidad, afiche) VALUES (NULL,"%s","%s","%s","%s","%s","%s")' % (TABLA, self.nombre, self. descripcion, self.fecha, self.lugar, self.capacidad, self.afiche)
 			print "\n" + sql + "\n"
-			cursor.execute(sql)
+			cursor.execute(sql)			
 			db.commit()
 			return True
 		except Exception as e:

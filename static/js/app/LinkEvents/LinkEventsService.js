@@ -77,10 +77,10 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
         //    return deferred.promise;
     };
 
-    this.ACreateEvent = function(fEvent) {
+    this.ACrearEvento = function(fEvento) {
         return  $http({
-            url: "linkevents/ACreateEvent",
-            data: fEvent,
+            url: "linkevents/ACrearEvento",
+            data: fEvento,
             method: 'POST',
             headers: { 'Content-Type': 'multipart/form-data' },
             transformRequest: function (data, headersGetter) {
@@ -217,10 +217,10 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
         //    deferred.resolve(res);
         //    return deferred.promise;
     };
-    this.VRegisterEvent = function(args) {
+    this.VCrearEvento = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'linkevents/VRegisterEvent',
+            url: 'linkevents/VCrearEvento',
             method: 'GET',
             params: args
         });

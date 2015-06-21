@@ -1,5 +1,4 @@
 LinkEventsModule.config(function ($routeProvider) {
-    // TODO: Fix the routes' names
     $routeProvider.when('/VPrincipal', {
                 controller: 'VPrincipalController',
                 templateUrl: 'app/LinkEvents/VPrincipal.html'
@@ -80,8 +79,8 @@ LinkEventsModule.controller('VPrincipalController',
               $location.path(label);
           }
         });};
-        $scope.NewEvent = function() {
-            $location.path('/events/new');
+        $scope.VCrearEvento = function() {
+            $location.path('/VCrearEvento');
           };
 
     }]);

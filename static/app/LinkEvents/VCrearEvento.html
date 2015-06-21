@@ -1,0 +1,84 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" 
+                    data-toggle="collapse" 
+                    data-target="#contenido-plegable">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <span class="navbar-brand" ></span>
+        </div>
+        <div class="collapse navbar-collapse" id="contenido-plegable">
+            <ul class="nav navbar-nav navbar-left">
+<li><a ng-click="VListEvents1()">
+  Regresar</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+<li class="navbar-text" ng-show="usuario.nombre" ng-bind="usuario.nombre"></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <form name="fEventoForm" ng-submit="ACrearEvento0(fEventoForm.$valid)" novalidate>
+        <div class="form-group" 
+            ng-class="{ 'has-error' : fEventoSubmitted && fEventoForm.name.$invalid 
+                                      && fEventoForm.name.$pristine && fEventoCreado}">
+            <label for="fEvento_nombre">Nombre</label>
+            <input id="fEvento_nombre" type="text" name="nombre" 
+                   class="form-control" ng-model="fEvento.nombre" required/>
+            <p ng-show="fEventoCreado && fEventoForm.nombre.$invalid" class="help-block">Error en campo Nombre.</p>
+        </div>
+        <div class="form-group" 
+            ng-class="{ 'has-error' : fEventoSubmitted && fEventoForm.descripcion.$invalid 
+                                      && fEventoForm.descripcion.$pristine && fEventoCreado}">
+            <label for="fEvento_descripcion">Descripción</label>
+            <input id="fEvento_descripcion" type="text" name="descripcion" 
+                   class="form-control" ng-model="fEvento.descripcion" required/>
+            <p ng-show="fEventoCreado && fEventoForm.descripcion.$invalid" class="help-block">Error en campo Descripción.</p>
+        </div>
+        <div class="form-group" 
+            ng-class="{ 'has-error' : fEventoCredo && fEventoForm.fecha.$invalid 
+                                      && fEventoForm.fecha.$pristine && fEventoCreado}">
+            <label for="fEvento_fecha">Fecha </label>
+            <input id="fEvento_fecha" type="date" name="fecha" 
+                   class="form-control" ng-model="fEvento.fecha" required/>
+            <p ng-show="fEventoCreado && fEventoForm.fecha.$invalid" class="help-block">Error en campo Fecha.</p>
+        </div>
+        <div class="form-group" 
+            ng-class="{ 'has-error' : fEventoCreado && fEventoForm.lugar.$invalid 
+                                      && fEventoForm.lugar.$pristine && fEventoCreado}">
+            <label for="fEvento_lugar">Lugar</label>
+            <textarea id="fEvento_lugar" name="lugar" 
+                      class="form-control" ng-model="fEvento.lugar" required></textarea>
+            <p ng-show="fEventoCreado && fEventoForm.lugar.$invalid" class="help-block">Error en campo Lugar.</p>
+        </div>
+        <div class="form-group" 
+            ng-class="{ 'has-error' : fEventoCreado && fEventoForm.capacidad.$invalid 
+                                      && fEventoForm.capacidad.$pristine && fEventoCreado}">
+            <label for="fEvento_capacidad">Capacidad</label>
+            <input id="fEvento_capacidad" type="number" name="capacidad" 
+                   class="form-control" ng-model="fEvento.capacidad" required/>
+            <p ng-show="fEventoCreado && fEventoForm.capacidad.$invalid" class="help-block">Error en campo Capacidad.</p>
+        </div>
+        <div class="form-group" 
+            ng-class="{ 'has-error' : fEventoCreado && fEventoForm.afiche.$invalid 
+                                      && fEventoForm.afiche.$pristine && fEventoCreado}">
+            <label for="fEvento_afiche">Afiche</label>
+            <input type="file" id="fEvento_afiche" name="afiche" 
+                   class="form-control" file="fEvento.afiche" placeholder="Afiche" />
+            <p ng-show="fEventoCreado && fEventoForm.afiche.$invalid" class="help-block">Error en campo Afiche.</p>
+        </div>
+
+        <button type="submit" class="btn btn-md">
+            Agregar Evento
+        </button>
+    </form>
+    <hr />
+
+
+<div id="right"></div>
+

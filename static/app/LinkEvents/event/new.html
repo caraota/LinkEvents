@@ -23,7 +23,7 @@
     </div>
 </nav>
 
-    <form name="fEventForm" ng-submit="ACreateEvent0(fEventForm.$valid)" novalidate>
+    <form name="fEventForm" ng-submit="ACrearEvent0(fEventoForm.$valid)" novalidate>
         <div class="form-group" 
             ng-class="{ 'has-error' : fEventSubmitted && fEventForm.name.$invalid 
                                       && fEventForm.name.$pristine && fEventSubmitted}">
@@ -73,8 +73,8 @@
             <p ng-show="fEventSubmitted && fEventForm.participants.$invalid" class="help-block">Error en campo Número de participantes.</p>
         </div>
 
-        <button type="submit" class="btn btn-perso btn-lg btn-block">
-            <span class="glyphicon glyphicon-flash"></span>Registrar
+        <button type="submit" class="btn btn-md">
+            Agregar Evento
         </button>
     </form>
     <hr />

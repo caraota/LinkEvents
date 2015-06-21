@@ -29,16 +29,45 @@
     </div>
 </nav>
 
-<button ng-click="AEvents()" class="btn btn-perso btn-lg btn-block">
-    <span class="glyphicon glyphicon-plus"></span>
-    &nbsp;Crear Evento
-</button>
+<div align="right"> 
 
+    <button ng-click="AEvents()" class="btn btn-md">
+        <span class="glyphicon glyphicon-pushpin"></span>
+        &nbsp; Mis Eventos
+    </button>
 
-<button ng-click="NewEvent()" class="btn btn-perso btn-lg btn-block">
-    <span class="glyphicon glyphicon-plus"></span>
-    &nbsp; Mis Eventos
-</button>
+    <button ng-click="VCrearEvento()" class="btn btn-md">
+        <span class="glyphicon glyphicon-plus"></span>
+        &nbsp;Crear Evento
+    </button>
 
+</div> 
+
+<table class="table table-striped">
+    <thead>
+        <th class="text-center">ID</th>
+        <th class="text-center">Nombre</th>
+        <th class="text-center">Fecha</th>
+        <th class="text-center">Lugar</th>
+        <th class="text-center">Capacidad</th>
+        <th> </th>
+    </thead>
+    <tbody ng-repeat="event in events">
+    <tr>
+        <td>{{evento.id}}</td>
+        <td>{{evento.nombre}}</td>
+        <td>{{evento.fecha}}</td>
+        <td>{{evento.lugar}}</td>
+        <td><span class="badge">{{evento.capacidad}}</span></td>
+        <td class="btn-group" role="group">
+            <a class="btn btn-default" ng-click="show(event.eventid)"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+            <a class="btn btn-primary"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></a>
+            <span ng-if="event.owner == actor">
+            <a class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+            </span>
+        </td>
+    </tr>
+    <tbody>
+</table>
 
 <div id="right"></div>
