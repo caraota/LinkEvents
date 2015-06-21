@@ -49,7 +49,7 @@ def AIniciarSesion():
     params = request.get_json()
     user = Usuario(params['username'],params['password'],"","","")
 
-    results = [ {'label':'/VHome', 'msg':[], "actor": user.username }, 
+    results = [ {'label':'/VPrincipal', 'msg':[], "actor": user.username }, 
                 {'label':'/usuario/iniciar_sesion', 'msg':[ur'Error al iniciar sesión. Verifique los datos ingresados.']}, ]
 
     if user.autenticar():
@@ -82,7 +82,7 @@ def VIniciarSesion():
 def ALogOutUser():
     #POST/PUT parameters
     params = request.get_json()
-    results = [{'label':'/VIniciarSesion', 'msg':[ur'Sesión exitosamente cerrada'], "actor":None}, {'label':'/VHome', 'msg':[ur'Error al cerrar sesión']}, ]
+    results = [{'label':'/VIniciarSesion', 'msg':[ur'Sesión exitosamente cerrada'], "actor":None}, {'label':'/VPrincipal', 'msg':[ur'Error al cerrar sesión']}, ]
     res = results[0]
     #Action code goes here, res should be a list with a label and a message
 
@@ -383,8 +383,8 @@ def VEditEvent():
     #Action code ends here
     return json.dumps(res)
 
-@LinkEvents.route('/linkevents/VHome')
-def VHome():
+@LinkEvents.route('/linkevents/VPrincipal')
+def VPrincipal():
     res = {}
     if "actor" in session:
         res['actor']=session['actor']

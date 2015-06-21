@@ -1,8 +1,8 @@
 LinkEventsModule.config(function ($routeProvider) {
     // TODO: Fix the routes' names
-    $routeProvider.when('/VHome', {
-                controller: 'VHomeController',
-                templateUrl: 'app/LinkEvents/VHome.html'
+    $routeProvider.when('/VPrincipal', {
+                controller: 'VPrincipalController',
+                templateUrl: 'app/LinkEvents/VPrincipal.html'
             }).when('/VListEvents', {
                 controller: 'VListEventsController',
                 templateUrl: 'app/LinkEvents/VListEvents.html'
@@ -27,11 +27,11 @@ LinkEventsModule.config(function ($routeProvider) {
             });
 });
 
-LinkEventsModule.controller('VHomeController', 
+LinkEventsModule.controller('VPrincipalController', 
         ['$scope', '$location', '$route', 'flash', 'LinkEventsService',
     function ($scope, $location, $route, flash, LinkEventsService) {
       $scope.msg = '';
-      LinkEventsService.VHome().then(function (object) {
+      LinkEventsService.VPrincipal().then(function (object) {
         $scope.res = object.data;
         for (var key in object.data) {
             $scope[key] = object.data[key];
@@ -49,7 +49,7 @@ LinkEventsModule.controller('VHomeController',
           var msg = object.data["msg"];
           if (msg) flash(msg);
           var label = object.data["label"];
-          if (label == '/VHome') {
+          if (label == '/VPrincipal') {
               $route.reload();
           } else {
               $location.path(label);
@@ -60,7 +60,7 @@ LinkEventsModule.controller('VHomeController',
           var msg = object.data["msg"];
           if (msg) flash(msg);
           var label = object.data["label"];
-          if (label == '/VHome') {
+          if (label == '/VPrincipal') {
               $route.reload();
           } else {
               $location.path(label);
@@ -74,7 +74,7 @@ LinkEventsModule.controller('VHomeController',
           if (users) flash(users)
           if (msg) flash(msg);
           var label = object.data["label"];
-          if (label == '/VHome') {
+          if (label == '/VPrincipal') {
               $route.reload();
           } else {
               $location.path(label);
@@ -103,8 +103,8 @@ LinkEventsModule.controller('VListEventsController',
         $location.path('/event/new');
       };
 
-      $scope.VHome1 = function() {
-        $location.path('/VHome');
+      $scope.VPrincipal1 = function() {
+        $location.path('/VPrincipal');
       };
       $scope.VShowEvent2 = function(eventId) {
         $location.path('/VShowEvent/'+eventId);

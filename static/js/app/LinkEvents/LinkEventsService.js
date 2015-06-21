@@ -31,7 +31,7 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
             data: fLogin,
             method: 'POST',
         });
-        //    var labels = ["/VHome", "/VIniciarSesion", ];
+        //    var labels = ["/VPrincipal", "/VIniciarSesion", ];
         //    var res = labels[0];
         //    var deferred = $q.defer();
         //    deferred.resolve(res);
@@ -64,10 +64,10 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
         //    deferred.resolve(res);
         //    return deferred.promise;
     };
-    this.VHome = function(args) {
+    this.VPrincipal = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'linkevents/VHome',
+            url: 'linkevents/VPrincipal',
             method: 'GET',
             params: args
         });
@@ -328,7 +328,7 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
             method: 'GET',
             params: args
         });
-        //    var labels = ["/VIniciarSesion", "/VHome", ];
+        //    var labels = ["/VIniciarSesion", "/VPrincipal", ];
         //    var res = labels[0];
         //    var deferred = $q.defer();
         //    deferred.resolve(res);

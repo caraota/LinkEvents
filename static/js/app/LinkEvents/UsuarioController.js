@@ -81,7 +81,7 @@ LinkEventsModule.controller('IniciarSesionController',
         }
 
         if (object.data['actor']) {
-            //$location.path('/linkevents/VHome');
+            //$location.path('/linkevents/VPrincipal');
         }  
       });
 
@@ -153,8 +153,8 @@ LinkEventsModule.controller('ListUsersController',
         $location.path('/users/show/'+username);
 
       };
-      $scope.VHome1 = function() {
-        $location.path('/VHome');
+      $scope.VPrincipal1 = function() {
+        $location.path('/VPrincipal');
       };
        $scope.VListEvents = function() {
         $location.path('/events');
@@ -180,8 +180,8 @@ LinkEventsModule.controller('ShowUserController', ['$scope', '$location', '$rout
        $scope.VListUsers = function() {
         $location.path('/users');
       };
-      $scope.VHome = function() {
-        $location.path('/VHome');
+      $scope.VPrincipal = function() {
+        $location.path('/VPrincipal');
       };
       $scope.VListEvents = function() {
         $location.path('/events');

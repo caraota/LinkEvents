@@ -12,24 +12,16 @@
         </div>
         <div class="collapse navbar-collapse" id="contenido-plegable">
             <ul class="nav navbar-nav navbar-right">
-                <li class="navbar-text">{{user}}</li>
+                <li class="navbar-text">Usuario: {{user}}</li>
+                <!--li><a ng-click="ACerrarSesion1()">Cerrar sesión</a></li-->
             </ul>
-            <ul class="nav navbar-nav navbar-left">
-                <li>
-                    <a ng-click="AEvents()">Mis Eventos</a> 
-                </li>
-                <li>
-                    <a ng-click="NewEvent()">Nuevo Evento</a>
-                </li>
 
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
+            <!--ul class="nav navbar-nav navbar-right">
                 <li class="navbar-text" ng-show="usuario.nombre" ng-bind="usuario.nombre"></li>
 
-                <li><a ng-click="AUsers2()">
-                    Usuarios</a></li>
+                <li><a ng-click="AUsers2()">   Usuarios</a></li>
 
-            </ul>
+            </ul-->
             <ul class="nav navbar-nav navbar-right">
                 <li class="navbar-text" ng-show="usuario.nombre" ng-bind="usuario.nombre"></li>
             </ul>
@@ -37,10 +29,16 @@
     </div>
 </nav>
 
-            </tr>
-        </table>
+<button ng-click="AEvents()" class="btn btn-perso btn-lg btn-block">
+    <span class="glyphicon glyphicon-plus"></span>
+    &nbsp;Crear Evento
+</button>
 
-<hr />
+
+<button ng-click="NewEvent()" class="btn btn-perso btn-lg btn-block">
+    <span class="glyphicon glyphicon-plus"></span>
+    &nbsp; Mis Eventos
+</button>
 
 
 <div id="right"></div>

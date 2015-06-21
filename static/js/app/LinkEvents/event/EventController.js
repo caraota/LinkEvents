@@ -76,8 +76,8 @@ LinkEventsModule.controller('ListEventsController',
         $location.path('/events/new');
       };
 
-      $scope.VHome1 = function() {
-        $location.path('/VHome');
+      $scope.VPrincipal1 = function() {
+        $location.path('/VPrincipal');
       };
 
       $scope.show = function(eventId) {
