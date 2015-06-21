@@ -5,8 +5,8 @@ var LinkEventsModule = angular.module('LinkEvents', ['ngRoute', 'ngAnimate', 'fl
 LinkEventsModule.config(function ($routeProvider) {
     $routeProvider
         .when('/', {
-            controller: 'LoginUserController',
-            templateUrl: 'app/LinkEvents/user/login.html'
+            controller: 'IniciarSesionController',
+            templateUrl: 'app/LinkEvents/VIniciarSesion.html'
         });
 });
 

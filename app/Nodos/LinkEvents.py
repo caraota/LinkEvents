@@ -1,14 +1,102 @@
 # -*- coding: utf-8 -*-
 from flask import request, session, Blueprint, json, g
-
 from werkzeug import secure_filename
 
 LinkEvents = Blueprint('LinkEvents', __name__)
 
+from app.model.evento import Evento, archivo_permitido, subidas
+import os
+from app.model.usuario import Usuario 
+from flask import send_from_directory
+from flask import render_template
+from app.model.evento import crear_pdf
+from app.model.asiste import Asiste
+
+
+@LinkEvents.route('/linkevents/ACrearUsuario', methods=['POST'])
+def ACrearUsuario():
+    params = request.get_json()
+
+    results = [ {'label':'/usuario/iniciar_sesion', 'msg':[ur'El usuario fue registrado exitosamente.']}, 
+                {'label':'/usuario/nuevo', 'msg':[ur'Error al crear el usuario. Verifique los valores ingresados.']}, ]
+
+    if not('admin' in params.keys()):
+        params['admin'] = False
+
+    user = Usuario(params['data']['username'],params['data']['password'],params['data']['nombre'],params['data']['apellido'],params['admin'])
+
+    if user.save():
+        res = results[0]
+    else:
+        res = results[1]
+
+    if "actor" in res:
+        if res['actor'] is None:
+            session.pop("actor", None)
+        else:
+            session['actor'] = res['actor']
+    return json.dumps(res)
+
+@LinkEvents.route('/linkevents/VRegistrarUsuario')
+def VRegistrarUsuario():
+    res = {}
+    if "actor" in session:
+        res['actor']=session['actor']
+    return json.dumps(res)
+    
+@LinkEvents.route('/linkevents/AIniciarSesion', methods=['POST'])
+def AIniciarSesion():
+    params = request.get_json()
+    user = Usuario(params['username'],params['password'],"","","")
+
+    results = [ {'label':'/VHome', 'msg':[], "actor": user.username }, 
+                {'label':'/usuario/iniciar_sesion', 'msg':[ur'Error al iniciar sesión. Verifique los datos ingresados.']}, ]
+
+    if user.autenticar():
+        res = results[0]
+    else:
+        res = results[1]
+
+    if "actor" in res:
+        if res['actor'] is None:
+            session.pop("actor", None)
+        else:
+            session['actor'] = res['actor']
+    return json.dumps(res)
+
+@LinkEvents.route('/linkevents/VIniciarSesion')
+def VIniciarSesion():
+    res = {}
+    if "actor" in session:
+        res['actor']=session['actor']
+    return json.dumps(res)
+
+
+
+
+# -----------------------------------------------------------------------
+
+
+
+@LinkEvents.route('/linkevents/ALogOutUser')
+def ALogOutUser():
+    #POST/PUT parameters
+    params = request.get_json()
+    results = [{'label':'/VIniciarSesion', 'msg':[ur'Sesión exitosamente cerrada'], "actor":None}, {'label':'/VHome', 'msg':[ur'Error al cerrar sesión']}, ]
+    res = results[0]
+    #Action code goes here, res should be a list with a label and a message
+
+
+    #Action code ends here
+    if "actor" in res:
+        if res['actor'] is None:
+            session.pop("actor", None)
+        else:
+            session['actor'] = res['actor']
+    return json.dumps(res)
 
 @LinkEvents.route('/linkevents/ACancelReservation')
 def ACancelReservation():
-
     eventid = request.args.get('eventId')
     if eventid is None:
         res = {'label':'/VShowEvent', 'msg':[ur'Error al cancelar la reserva del evento']}
@@ -36,8 +124,6 @@ def ACancelReservation():
     return json.dumps(res)
 
 
-from app.model.evento import Evento, archivo_permitido, subidas
-import os
 @LinkEvents.route('/linkevents/ACreateEvent', methods=['POST'])
 def ACreateEvent():
     #Access to POST/PUT fields using request.form['name']
@@ -71,40 +157,9 @@ def ACreateEvent():
             session['actor'] = res['actor']
     return json.dumps(res)
 
-from flask import send_from_directory
-
 @LinkEvents.route('/cargar_pdf/<filename>')
 def get_file(filename):
     return send_from_directory(upload_folder(), filename)
-
-from app.model.usuario import Usuario 
-
-@LinkEvents.route('/linkevents/ACreateUser', methods=['POST'])
-def ACreateUser():
-    #POST/PUT parameters
-    params = request.get_json()
-
-    results = [ {'label':'/user/login', 'msg':[ur'Usuario registrado exitosamente']}, 
-                {'label':'/user/new', 'msg':[ur'Error al crear usuario']}, ]
-
-
-    user = User(params['data'])
-    if user.save():
-        res = results[0]
-    else:
-        res = results[1]
-    #Action code goes here, res should be a list with a label and a message
-
-
-    #Action code ends here
-    if "actor" in res:
-        if res['actor'] is None:
-            session.pop("actor", None)
-        else:
-            session['actor'] = res['actor']
-    return json.dumps(res)
-
-
 
 @LinkEvents.route('/linkevents/ADeleteEvent')
 def ADeleteEvent():
@@ -123,8 +178,6 @@ def ADeleteEvent():
             session['actor'] = res['actor']
     return json.dumps(res)
 
-
-
 @LinkEvents.route('/linkevents/ADeleteUser')
 def ADeleteUser():
     #POST/PUT parameters
@@ -141,8 +194,6 @@ def ADeleteUser():
         else:
             session['actor'] = res['actor']
     return json.dumps(res)
-
-
 
 @LinkEvents.route('/linkevents/AEditEvent', methods=['POST'])
 def AEditEvent():
@@ -161,8 +212,6 @@ def AEditEvent():
             session['actor'] = res['actor']
     return json.dumps(res)
 
-
-
 @LinkEvents.route('/linkevents/AEvents')
 def AEvents():
     #GET parameter
@@ -180,11 +229,8 @@ def AEvents():
 
     return json.dumps(res)
 
-from flask import render_template
-from app.model.evento import crear_pdf
 @LinkEvents.route('/linkevents/AGenerateCertificate')
 def AGenerateCertificate():
-
     results = [{'label':'/VShowEvent', 'msg':[ur'Certificado exitosamente generado']}, {'label':'/VShowEvent', 'msg':[ur'Error al generar certificado']}, ]
     eventid = request.args.get('eventId')
 
@@ -211,12 +257,8 @@ def AGenerateCertificate():
             session['actor'] = res['actor']
     return json.dumps(res)
 
-
-
 @LinkEvents.route('/linkevents/AGenerateCredentials')
 def AGenerateCredentials():
-    #POST/PUT parameters
-
     results = [{'label':'/VShowEvent', 'msg':[ur'Credenciales exitosamente generadas']}, {'label':'/VShowEvent', 'msg':[ur'Error al generar credenciales']}, ]
     eventid = request.args.get('eventId')
 
@@ -242,55 +284,6 @@ def AGenerateCredentials():
             session['actor'] = res['actor']
     return json.dumps(res)
 
-
-
-@LinkEvents.route('/linkevents/ALogOutUser')
-def ALogOutUser():
-    #POST/PUT parameters
-    params = request.get_json()
-    results = [{'label':'/VLoginUser', 'msg':[ur'Sesión exitosamente cerrada'], "actor":None}, {'label':'/VHome', 'msg':[ur'Error al cerrar sesión']}, ]
-    res = results[0]
-    #Action code goes here, res should be a list with a label and a message
-
-
-    #Action code ends here
-    if "actor" in res:
-        if res['actor'] is None:
-            session.pop("actor", None)
-        else:
-            session['actor'] = res['actor']
-    return json.dumps(res)
-
-
-
-@LinkEvents.route('/linkevents/ALoginUser', methods=['POST'])
-def ALoginUser():
-    #POST/PUT parameters
-    params = request.get_json()
-
-    user = User(params)
-
-    results = [ {'label':'/VHome', 'msg':[], "actor": user.user }, 
-                {'label':'/user/login', 'msg':[ur'Error al iniciar sesión']}, ]
-
-
-    if user.authenticate():
-        res = results[0]
-    else:
-        res = results[1]
-
-
-    #Action code ends here
-    if "actor" in res:
-        if res['actor'] is None:
-            session.pop("actor", None)
-        else:
-            session['actor'] = res['actor']
-    return json.dumps(res)
-
-
-
-from app.model.asiste import Asiste
 @LinkEvents.route('/linkevents/AReserveEvent')
 def AReserveEvent():
 
@@ -314,8 +307,6 @@ def AReserveEvent():
         else:
             res = {'label':'/VShowEvent', 'msg':[ur'Error al reservar evento']}
 
-
-    #Action code ends here
     if "actor" in res:
         if res['actor'] is None:
             session.pop("actor", None)
@@ -326,32 +317,20 @@ def AReserveEvent():
     return json.dumps(res)
 
 
-
 @LinkEvents.route('/linkevents/AUsers')
 def AUsers():
-    #POST/PUT parameters
     params = request.get_json()
 
     results = [{'label':'/users', 'msg':[ur'Se listan los usuarios']  }, ]
 
-
-
     res = results[0]
-    #print "ANDREA", res
 
-
-    #Action code goes here, res should be a list with a label and a message
-
-
-    #Action code ends here
     if "actor" in res:
         if res['actor'] is None:
             session.pop("actor", None)
         else:
             session['actor'] = res['actor']
     return json.dumps(res)
-
-
 
 @LinkEvents.route('/linkevents/AVerifyAssitance')
 def AVerifyAssitance():
@@ -370,8 +349,6 @@ def AVerifyAssitance():
             session['actor'] = res['actor']
     return json.dumps(res)
 
-
-
 @LinkEvents.route('/linkevents/VCertificate')
 def VCertificate():
 
@@ -384,8 +361,6 @@ def VCertificate():
     #Action code ends here
     return json.dumps(res)
 
-
-
 @LinkEvents.route('/linkevents/VCredential')
 def VCredential():
     res = {}
@@ -396,8 +371,6 @@ def VCredential():
 
     #Action code ends here
     return json.dumps(res)
-
-
 
 @LinkEvents.route('/linkevents/VEditEvent')
 def VEditEvent():
@@ -410,8 +383,6 @@ def VEditEvent():
     #Action code ends here
     return json.dumps(res)
 
-
-
 @LinkEvents.route('/linkevents/VHome')
 def VHome():
     res = {}
@@ -421,8 +392,6 @@ def VHome():
 
     #Action code ends here
     return json.dumps(res)
-
-
 
 @LinkEvents.route('/linkevents/VListEvents')
 def VListEvents():
@@ -438,8 +407,6 @@ def VListEvents():
  
     #Action code ends here
     return json.dumps(res)
-
-
 
 @LinkEvents.route('/linkevents/VListUsers')
 def VListUsers():
@@ -465,21 +432,6 @@ def VListUsers():
     #Action code ends here
     return json.dumps(res)
 
-
-
-@LinkEvents.route('/linkevents/VLoginUser')
-def VLoginUser():
-    res = {}
-    if "actor" in session:
-        res['actor']=session['actor']
-    #Action code goes here, res should be a JSON structure
-
-
-    #Action code ends here
-    return json.dumps(res)
-
-
-
 @LinkEvents.route('/linkevents/VRegisterEvent')
 def VRegisterEvent():
     res = {}
@@ -490,21 +442,6 @@ def VRegisterEvent():
 
     #Action code ends here
     return json.dumps(res)
-
-
-
-@LinkEvents.route('/linkevents/VRegisterUser')
-def VRegisterUser():
-    res = {}
-    if "actor" in session:
-        res['actor']=session['actor']
-    #Action code goes here, res should be a JSON structure
-
-
-    #Action code ends here
-    return json.dumps(res)
-
-
 
 @LinkEvents.route('/linkevents/VShowEvent')
 def VShowEvent():
@@ -547,8 +484,3 @@ def VShowUser():
 
     #Action code ends here
     return json.dumps(res)
-
-#Use case code starts here
-
-
-#Use case code ends here

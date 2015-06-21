@@ -1,21 +1,21 @@
 LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http) {
 
-    this.ACreateUser = function(fUser) {
+    this.ACrearUsuario = function(fUser) {
         return  $http.post( 
-            "/linkevents/ACreateUser",
+            "/linkevents/ACrearUsuario",
             { data: fUser}
            );
-           //    var labels = ["/VLoginUser", "/VRegisterUser", ];
+           //    var labels = ["/VIniciarSesion", "/VRegistrarUsuario", ];
            //    var res = labels[0];
            //    var deferred = $q.defer();
            //    deferred.resolve(res);
            //    return deferred.promise;
     };
 
-    this.VRegisterUser = function(args) {
+    this.VRegistrarUsuario = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'linkevents/VRegisterUser',
+            url: 'linkevents/VRegistrarUsuario',
             method: 'GET',
             params: args
         });
@@ -25,23 +25,23 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
         //    return deferred.promise;
     };
 
-    this.ALoginUser = function(fLogin) {
+    this.AIniciarSesion = function(fLogin) {
         return  $http({
-            url: "linkevents/ALoginUser",
+            url: "linkevents/AIniciarSesion",
             data: fLogin,
             method: 'POST',
         });
-        //    var labels = ["/VHome", "/VLoginUser", ];
+        //    var labels = ["/VHome", "/VIniciarSesion", ];
         //    var res = labels[0];
         //    var deferred = $q.defer();
         //    deferred.resolve(res);
         //    return deferred.promise;
     };
 
-    this.VLoginUser = function(args) {
+    this.VIniciarSesion = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'linkevents/VLoginUser',
+            url: 'linkevents/VIniciarSesion',
             method: 'GET',
             params: args
         });
@@ -328,7 +328,7 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
             method: 'GET',
             params: args
         });
-        //    var labels = ["/VLoginUser", "/VHome", ];
+        //    var labels = ["/VIniciarSesion", "/VHome", ];
         //    var res = labels[0];
         //    var deferred = $q.defer();
         //    deferred.resolve(res);

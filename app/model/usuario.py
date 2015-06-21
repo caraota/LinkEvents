@@ -6,20 +6,24 @@ TABLA_ASISTE = 'ASISTE'
 TABLA_EVENTO = 'EVENTO'
 
 class Usuario:
+	username = ""
+	password = ""
+	nombre = ""
+	apellido = ""
+	admin = ""
 
-	def __init__(self, data):
-		self.username = data['username']
-		self.password = data['password']
-		self.nombre = data['nombre']
-		self.apellido = data['apellido']
-		self.admin = data['admin']
+	def __init__(self,username,password,nombre,apellido,admin): 
+		self.username = username
+		self.password = password
+		self.nombre = nombre
+		self.apellido = apellido
+		self.admin = admin
 
 	def save(self):
 		db = get_database()
 		cursor = db.cursor()
 		try:
 			sql = 'INSERT INTO %s (username, password, nombre, apellido, admin) VALUES ("%s","%s","%s","%s","%s")' % (TABLA, self.username, self.password, self.nombre, self.apellido, self.admin)
-			print "\n" + sql + "\n"
 			cursor.execute(sql)
 			db.commit()
 			return True
@@ -30,7 +34,6 @@ class Usuario:
 
 	def exists(self):
 		sql = 'SELECT username FROM %s' % TABLA
-		print "\n" + sql + "\n"
 		db = get_database()
 		cursor = db.cursor()
 		cursor.execute(sql)
@@ -39,7 +42,6 @@ class Usuario:
 
 	def autenticar(self):
 		sql = 'SELECT username FROM %s WHERE username="%s" AND password="%s"' % (TABLA, self.username, self.password)
-		print "\n" + sql + "\n"
 		db = get_database()
 		cursor = db.cursor()
 		cursor.execute(sql)
@@ -49,7 +51,6 @@ class Usuario:
 	@staticmethod
 	def get(username):
 		sql = 'SELECT * FROM %s WHERE username="%s"' % (TABLA,username)
-		print "\n " + sql + " \n"
 		db = get_database()		
 		cursor = db.cursor()
 		cursor.execute(sql)
@@ -64,7 +65,6 @@ class Usuario:
 	@staticmethod
 	def all():
 		sql = 'SELECT username FROM %s' % (TABLENAME)
-		print "\n" + sql + "\n"
 		db = get_database()		
 		cursor = db.cursor()
 		cursor.execute(sql)
@@ -75,7 +75,6 @@ class Usuario:
 	@staticmethod
 	def asistencias(username):
 		sql = 'SELECT evento FROM %s WHERE participante="%s"' % (TABLA_ASISTE,username)
-		print "\n" + sql + "\n"
 		db = get_database()		
 		cursor = db.cursor()
 		curs = db.cursor()
@@ -95,10 +94,11 @@ class Usuario:
 	@staticmethod
 	def reservas(evento):
 		sql = 'SELECT participante FROM %s WHERE event="%s"' % (TABLA_ASISTE, evento)
-		print "\n" + sql + "\n"
 		db = get_database()		
 		cursor = db.cursor()
 		cursor.execute(sql)
 		usuarios = cursor.fetchall()
 		usuarios = map(lambda x: x[0], usuarios)
 		return usuarios
+
+# END usuario.py

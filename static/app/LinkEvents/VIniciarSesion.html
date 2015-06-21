@@ -2,8 +2,8 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" 
-                data-toggle="collapse" 
-                data-target="#contenido-plegable">
+                    data-toggle="collapse" 
+                    data-target="#contenido-plegable">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -14,34 +14,35 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="navbar-text" ng-show="usuario.nombre" ng-bind="usuario.nombre"></li>
             </ul>
-
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a ng-click="VRegisterUser0()">Registrarse</a>
+                    <a ng-click="VRegistrarUsuario0()">Registrarse</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 
-<form name="fLoginForm" ng-submit="ALoginUser1(fLoginForm.$valid)" novalidate>
-    <div class="form-group" ng-class="{ 'has-error' :  fLoginSubmitted && fLoginForm.user.$invalid && fLoginForm.user.$pristine && fLoginSubmitted}">
-        <label for="fLogin_user">Nombre de Usuario</label>
-        <input id="fLogin_user" type="text" name="user" class="form-control" ng-model="fLogin.user" placeholder="Nombre de Usuario" required/>
-        <p ng-show="fLoginSubmitted && fLoginForm.user.$invalid" class="help-block">Error en campo Nombre de Usuario.</p>
+<form name="fLoginForm" ng-submit="AIniciarSesion1(fLoginForm.$valid)" novalidate>
+    <div class="form-group" ng-class="{ 'has-error' :  fLoginSubmitted && fLoginForm.username.$invalid && fLoginForm.username.$pristine && fLoginSubmitted}">
+        <label for="fLogin_username">Nombre de Usuario</label>
+        <input id="fLogin_username" type="text" name="username" class="form-control" ng-model="fLogin.username" placeholder="Nombre de Usuario" required/>
+        <p ng-show="fLoginSubmitted && fLoginForm.username.$invalid" class="help-block">
+            <font color="red">Debe ingresar un nombre de usuario.</font>
+        </p>
     </div>
+
     <div class="form-group" ng-class="{ 'has-error' :  fLoginSubmitted && fLoginForm.password.$invalid && fLoginForm.password.$pristine && fLoginSubmitted}">
         <label for="fLogin_password">Contraseña</label>
         <input id="fLogin_password" type="password" name="password" class="form-control" ng-model="fLogin.password" placeholder="Contraseña" required/>
-        <p ng-show="fLoginSubmitted && fLoginForm.password.$invalid" class="help-block">Error en campo Contraseña.</p>
+        <p ng-show="fLoginSubmitted && fLoginForm.password.$invalid" class="help-block">
+            <font color="red">Debe ingresar una contraseña.</font>
+        </p>
     </div>
     <button type="submit" class="btn btn-perso btn-lg btn-block">
-        <span class="glyphicon glyphicon-flash"></span>Iniciar Sesión
+        <span class="glyphicon glyphicon-log-in"></span>
+        &nbsp; Iniciar Sesión
     </button>
 </form>
-
-
-<hr />
-
 
 <div id="right"></div>

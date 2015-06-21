@@ -10,7 +10,7 @@
  <li>
   <p></p>
   <ul>
-   <li>URL: '/linkevents/ACreateUser'</li>
+   <li>URL: '/linkevents/ACrearUsuario'</li>
    <li>Método: POST</li><li>Formato de entrada y salida: JSON</li>
 <li>Parámetros POST:
     <ul>     <li>user -  
@@ -30,7 +30,7 @@ Requerido.
 <p>Postcondicion: Se registra el usuario en la BD.</p>
       <p>resultado:</p>
       <ul>
-       <li>label:'/VLoginUser',</li>
+       <li>label:'/VIniciarSesion',</li>
        <li> msg:"Usuario registrado exitosamente".</li>
       </ul>
      </li>
@@ -39,7 +39,7 @@ Requerido.
 <p>Postcondicion: No hay cambio de estado.</p>
       <p>resultado:</p>
       <ul>
-       <li>label:'/VRegisterUser',</li>
+       <li>label:'/VRegistrarUsuario',</li>
        <li> msg:"Error al crear usuario".</li>
       </ul>
      </li>
@@ -50,14 +50,14 @@ Requerido.
  </li> <li>
   <p></p>
   <ul>
-   <li>URL: '/linkevents/VRegisterUser'</li>
+   <li>URL: '/linkevents/VRegistrarUsuario'</li>
    <li>Método: GET</li><li>Formato de salida: JSON</li>
    <li>Roles: Sin restricción de rol
   </ul>
  </li> <li>
   <p></p>
   <ul>
-   <li>URL: '/linkevents/ALoginUser'</li>
+   <li>URL: '/linkevents/AIniciarSesion'</li>
    <li>Método: POST</li><li>Formato de entrada y salida: JSON</li>
 <li>Parámetros POST:
     <ul>     <li>user -  
@@ -87,7 +87,7 @@ Requerido.
 <p>Postcondicion: True.</p>
       <p>resultado:</p>
       <ul>
-       <li>label:'/VLoginUser',</li>
+       <li>label:'/VIniciarSesion',</li>
        <li> msg:"Error al iniciar sesión".</li>
       </ul>
      </li>
@@ -98,7 +98,7 @@ Requerido.
  </li> <li>
   <p></p>
   <ul>
-   <li>URL: '/linkevents/VLoginUser'</li>
+   <li>URL: '/linkevents/VIniciarSesion'</li>
    <li>Método: GET</li><li>Formato de salida: JSON</li>
    <li>Roles: Sin restricción de rol
   </ul>
@@ -505,7 +505,7 @@ Parámetros GET: requestedUser
 <p>Postcondicion: Se elimina el usuario de la sesión.</p>
       <p>resultado:</p>
       <ul>
-       <li>label:'/VLoginUser',</li>
+       <li>label:'/VIniciarSesion',</li>
        <li> msg:"Sesión exitosamente cerrada".</li>
       </ul>
 <p>Se continúa sin rol específico.</p>
