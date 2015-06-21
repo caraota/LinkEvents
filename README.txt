@@ -21,14 +21,14 @@ wget https://bootstrap.pypa.io/ez_setup.py -O - | python - --user
 
 easy_install virtualenv
 
-#Crear en aplicaciones la carpeta EventPlannerFL y moverse a la nueva carpeta.
+#Crear en aplicaciones la carpeta EventosFL y moverse a la nueva carpeta.
 
-mkdir EventPlanner
-cd EventPlanner
+mkdir Eventos
+cd Eventos
 
 Copiar allí el archivo comprimido generado por cohesión y  descomprimirlo.
 
-unzip EventPlannerFL.zip
+unzip EventosFL.zip
 
 #Crear un ambiente virtual
 
@@ -61,7 +61,7 @@ python base.py runserver
 #cohesión una nueva versión puede hacerlo con los pasos siguientes.
 #Respaldar la versión anterior
 
-tar czvf ../DiseñoAplicaciónEventosFl`date +%y%m%d%H%M%S`.tgz {static,base.py,app,README.txt}
+tar czvf ../AplicacionFl`date +%y%m%d%H%M%S`.tgz {static,base.py,app,README.txt}
 
 #borrar la versión ya respaldada
 
@@ -70,8 +70,22 @@ rm -rf {static,base.py,app,README.txt}
 #Descargar una nueva versión desde cohesión y 
 #desempaquetarla en la carpeta de la aplicación
 
-unzip EventPlannerFL.zip
+unzip EventosFL.zip
 
 #Ejecutar la aplicación
 
 python base.py runserver
+
+
+
+Si va a utilizar SQLAlchemy verifique que este paquete está instalado. Si no
+es el caso pruebe ejecutando los siguientes comandos de instalación:
+
+sudo pip install SQLAlchemy
+sudo pip install Flask-SQLAlchemy
+
+Para verificar is ya están instalados ejecute python una consola de terminal e importe 
+los archivos pertinentes:
+
+from flask import Flask
+from flask.ext.sqlalchemy import SQLAlchemy

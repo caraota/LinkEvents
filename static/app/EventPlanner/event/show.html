@@ -44,7 +44,7 @@
         <br>
         <div class="thumbnail">
             <span ng-if="event.poster_path == 'None'">
-                <img ng-src="./uploads/posters/noposter.png" width="300px"/>
+                <img ng-src="./cargar_pdf/noposter.png" width="300px"/>
             </span>
             <span ng-if="event.poster_path.split('.').pop().match('png|jpg|jpeg|gif')">
                 <img ng-src="{{event.poster_path}}" width="300px"/>

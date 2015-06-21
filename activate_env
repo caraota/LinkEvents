@@ -1,3 +1,0 @@
-#!/bin/bash
-test -f ./venv/bin/activate || (echo "No existe ambiente de desarrollo" && exit 1)
-source ./venv/bin/activate

@@ -6,7 +6,7 @@ import random
 
 TABLA = "EVENTO"
 
-SUBIDAS = './uploads/afiches/'
+SUBIDAS = './cargar_pdf/'
 EXTENSIONES = set(['pdf'])
 
 def subidas():
@@ -17,7 +17,7 @@ def archivo_permitido(archivo):
 
 def crear_pdf(datos):
 	random.seed()
-	nombre = './uploads/afiches/afc' + str(random.randint(0,1000)) + '.pdf'
+	nombre = './cargar_pdf/' + str(random.randint(0,1000)) + '.pdf'
 	n = open(nombre, 'wb')
 	try:
 		pisa.CreatePDF(StringIO(datos.encode('utf-8')), n)
