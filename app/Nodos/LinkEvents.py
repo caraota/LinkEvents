@@ -219,14 +219,20 @@ def VEvento():
         res['evento'] = Evento.get(eventoid).__dict__
 
     if "actor" in session:
-        res['actor'] = session['actor']
-        asiste   = Asiste.get(res['actor'], eventoid)
+        res['actor'] = session.get('actor')
+        asiste = Asiste.get(res['actor'], eventoid)
+        asistio = Asiste.asistio(res['actor'], eventoid)
         if asiste is None:
             res['reservado'] = 1
         else:
             res['reservado'] = 0
+        if asistio is None:
+            res['asistio'] = 1
+        else:
+            res['asistio'] = 0
 
     return json.dumps(res)
+
 
 @LinkEvents.route('/linkevents/VListarUsuarios')
 def VListarUsuarios():
@@ -406,43 +412,6 @@ def AVerifyAssitance():
             session['actor'] = res['actor']
     return json.dumps(res)
 
-@LinkEvents.route('/linkevents/VCrearEvento')
-def VCrearEvento():
-    res = {}
-    if "actor" in session:
-        res['actor']=session['actor']
-    #Action code goes here, res should be a JSON structure
 
 
-    #Action code ends here
-    return json.dumps(res)
-
-@LinkEvents.route('/linkevents/VEvento')
-def VEvento():
-
-    print session.get('actor')
-    eventoid = request.args.get('eventoid')
-
-    res = {}
-    if eventoid is not None:
-        res['evento'] = Evento.get(eventoid).__dict__
-
-    if "actor" in session:
-        res['actor'] = session.get('actor')
-        asiste = Asiste.get(res['actor'], eventoid)
-        asistio = Asiste.asistio(res['actor'], eventoid)
-        if asiste is None:
-            res['reservado'] = 1
-        else:
-            res['reservado'] = 0
-        if asistio is None:
-            res['asistio'] = 1
-        else:
-            res['asistio'] = 0
-
-    #Action code goes here, res should be a JSON structure
-
-
-    #Action code ends here
-    return json.dumps(res)
 
