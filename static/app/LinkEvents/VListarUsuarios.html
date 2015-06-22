@@ -20,7 +20,7 @@
         </div>
     </div>
 </nav>
-
+{{user.asistio}}
 
 <table class="table table-striped">
     <thead>
@@ -36,13 +36,16 @@
         <td align="center"> {{user.usuario}} </a></td>
         <td align="center"> {{user.nombre}} </td>
         <td align="center"> {{user.apellido}} </td>
-        <td> 
-            <!-- <div ng-show="reservado"> -->
-                <button ng-click="ConfirmarAsist()" class="btn btn-md">
+        <td align="center"> 
+            <div ng-show="user.asistio == 0">
+                <button ng-click="ConfirmarAsist(user.usuario)" class="btn btn-md">
                     <span class="glyphicon glyphicon-check"></span>
                     &nbsp;Confirmar Asistencia
                 </button>
-            <!-- </div>  -->
+            </div>
+            <div ng-show="user.asistio == 1">
+                Asistió
+            </div>
          </td>
     </tr>
 

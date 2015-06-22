@@ -115,16 +115,18 @@ LinkEventsModule.controller('VListarUsuariosController',
         $location.path('/VPrincipal');
       };
 
-      $scope.ConfirmarAsist = function(eventid, user) {
-        LinkEventsService.AConfirmarAsist({"eventid":eventid, "usuario":user.usuario}).then(function (object) {
-          var msg = object.data["msg"];
-          if (msg) flash(msg);
-          var label = object.data["label"];
-          if (label == '/ListarUsuarios') {
-              $route.reload();
-          } else {
-              $location.path(label);
-          }
-        })};        
+      $scope.ConfirmarAsist = function(usuario) {
+         
+          LinkEventsService.AConfirmarAsist({"eventId" : $routeParams['eventoid']}, {"user" : usuario}).then(function (object) {
+            var msg = object.data["msg"];
+            if (msg) flash(msg);
+            var label = object.data["label"];
+            if (label == '/ListarUsuarios/'+$routeParams['eventoid']) {
+                $route.reload();
+            } else {
+                $location.path(label);
+                $route.reload();
+            }
+          });};      
 
     }]);
