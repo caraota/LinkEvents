@@ -15,6 +15,10 @@ class Asiste:
 		self.apellido = data.get('apellido')
 		self.admin = data.get('admin')
 
+	def nuevo(self, usuario,evento):
+		self.usuario = usuario
+		self.evento = evento
+
 	def save(self):
 		db = get_database()
 		cursor = db.cursor()
@@ -51,7 +55,7 @@ class Asiste:
 		if fila is None:
 			return None
 		else:
-			asiste = Asiste(fila[0], int(fila[1]))
+			asiste = Asiste.nuevo(fila[0], int(fila[1]))
 			return asiste
 
 	@staticmethod
@@ -79,7 +83,7 @@ class Asiste:
 		if fila is None:
 			return None
 		else:
-			asiste = Asiste(fila[0], int(fila[1]))
+			asiste = Asiste.nuevo(fila[0], int(fila[1]))
 			return asiste			
 
 	@staticmethod
