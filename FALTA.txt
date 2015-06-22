@@ -3,19 +3,15 @@
 - EVENTO
 
 	Mostrar
-		Condiciones (cuando mostrar cada boton)
-		ObtenerCredencial (falta diseno del pdf)
-        ObtenerCertificado (falta diseno del pdf)
-	
-	Listar Participante
-
-    Cancelar reserva
-
-    Poster opcional
-
-- PARTICIPANTE
-	Editar (opcional)
-	Mostrar perfil (opcional)
+		Marcar asistencia (1 en asistio) + condiciones
 
 - PRIVILEGIOS
-	Admin -> crear, modificar, eliminar
+	Admin -> crear, modificar, eliminar, marcar asistencia, listar participantes
+
+
+- Revision de Interfaz
+
+- Revision de codigo
+
+- Documentacion
+

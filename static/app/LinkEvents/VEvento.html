@@ -37,19 +37,27 @@
                 <span class="glyphicon glyphicon-pushpin"></span>
                 &nbsp;Reservar
             </button>
-            <!-- <button ng-click="CancelReservation()" class="btn btn-md">
-                <span class="glyphicon glyphicon-remove"></span>
-                &nbsp;Cancelar Reservación
-            </button> -->
-            <button ng-click="GenerarCredencial()" class="btn btn-md">
-                <span class="glyphicon glyphicon-expand"></span>
-                &nbsp;Generar Credencial
-            </button>             
-            <button ng-click="GenerarCertificado()" class="btn btn-md">
-                <span class="glyphicon glyphicon-certificate"></span>
-                &nbsp;Generar Certificado
-            </button>                     
+              
             <button ng-click="AListarUsuarios2(evento.eventoid)" class="btn btn-md">
+
+            <div ng-show="asistio==1 && reservado==0">
+                    <button ng-click="EliminarReserva()" class="btn btn-md">
+                        <span class="glyphicon glyphicon-remove"></span>
+                        &nbsp;Eliminar Reserva
+                    </button> 
+                    <button ng-click="GenerarCredencial()" class="btn btn-md">
+                        <span class="glyphicon glyphicon-expand"></span>
+                        &nbsp;Generar Credencial
+                    </button>                 
+            </div>                
+            <div ng-hide="asistio">            
+                <button ng-click="GenerarCertificado()" class="btn btn-md">
+                    <span class="glyphicon glyphicon-certificate"></span>
+                    &nbsp;Generar Certificado
+                </button>         
+            </div>         
+
+            <button ng-click="AUsers2(event.eventid)" class="btn btn-md">
                 <span class="glyphicon glyphicon-user"></span>
                 &nbsp;Listar participantes
             </button>
