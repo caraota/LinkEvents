@@ -157,15 +157,18 @@ def AEliminarEvento():
 @LinkEvents.route('/linkevents/AConfirmarAsist')
 def AConfirmarAsist():
     res = {}
-    eventoid = request.args.get('eventoid')
-    usuario = request.args.get('username')
+    eventoid = request.args.get('eventid')
+    usuario = request.args.get('usuario')
+
+    print eventoid
+    print usuario
 
     if eventoid is None:
         res = {'label':'/VListarUsuarios', 'msg':[ur'Error']}
     else:
         asiste = Asiste(usuario,eventoid)
 
-        if evento.confirmarAsist():
+        if asiste.confirmarAsist():
             res = {'label':'/VListarUsuarios', 'msg':[ur'Asistencia confirmada.']}
         else:
             res = {'label':'/VListarUsuarios', 'msg':[ur'Error.']}
