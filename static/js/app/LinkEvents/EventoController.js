@@ -11,9 +11,7 @@ LinkEventsModule.config(function ($routeProvider) {
             }).when('/VCrearEvento', {
                 controller: 'VCrearEventoController',
                 templateUrl: 'app/LinkEvents/VCrearEvento.html'
-            });       
-
-
+            });
 }); 
 
 LinkEventsModule.controller('VCrearEventoController', 
@@ -102,8 +100,8 @@ LinkEventsModule.controller('VEventoController',
         }
       });
 
-      $scope.VListEvents0 = function() {
-        $location.path('/events');
+      $scope.VPrincipal = function() {
+        $location.path('/VPrincipal');
       };
 
       // Reserve the event
