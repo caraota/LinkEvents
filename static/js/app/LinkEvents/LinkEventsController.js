@@ -54,4 +54,8 @@ LinkEventsModule.controller('VPrincipalController',
         $scope.VEvento = function(eventid) {
           $location.path('/VEvento/'+eventid);
         };
+
+        $scope.ACerrarSesion = function() {
+          $location.path('/');
+        };
     }]);

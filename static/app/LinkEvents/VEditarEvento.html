@@ -66,11 +66,10 @@
                    placeholder="{{evento.capacidad}}"/>
         </div>
         <div class="form-group" 
-            ng-class="{ 'has-error' : fEventoForm.afiche.$invalid 
-                                      && fEventoForm.afiche.$pristine}">
+            ng-class="{ 'has-error' : fEventoForm.afiche.$invalid && fEventoForm.afiche.$pristine}">
             <label for="fEvento_afiche">Afiche</label>
             <input type="file" id="fEvento_afiche" name="afiche" 
-                    file="fEvento.afiche" placeholder="Afiche" />
+                    file="fEvento.afiche" ng-model="fEvento.afiche" placeholder="Afiche" />
         </div>
 
         <button type="submit" class="btn btn-md">

@@ -19,7 +19,7 @@ manager.add_command("runserver", Server(
 @app.before_request
 def make_session_permanent():
     session.permanent = True
-    app.permanent_session_lifetime = timedelta(minutes=45)
+    app.permanent_session_lifetime = timedelta(minutes=5)
     session.modified = True
 
 @app.route('/')
