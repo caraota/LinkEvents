@@ -16,12 +16,6 @@
                 <!--li><a ng-click="ACerrarSesion1()">Cerrar sesión</a></li-->
             </ul>
 
-            <!--ul class="nav navbar-nav navbar-right">
-                <li class="navbar-text" ng-show="usuario.nombre" ng-bind="usuario.nombre"></li>
-
-                <li><a ng-click="AUsers2()">   Usuarios</a></li>
-
-            </ul-->
             <ul class="nav navbar-nav navbar-right">
                 <li class="navbar-text" ng-show="usuario.nombre" ng-bind="usuario.nombre"></li>
             </ul>
@@ -33,7 +27,7 @@
 
     <button ng-click="AEvents()" class="btn btn-md">
         <span class="glyphicon glyphicon-pushpin"></span>
-        &nbsp; Mis Eventos
+        &nbsp; Eventos Reservados
     </button>
 
     <button ng-click="VCrearEvento()" class="btn btn-md">
@@ -52,18 +46,17 @@
         <th class="text-center">Capacidad</th>
         <th> </th>
     </thead>
-    <tbody ng-repeat="event in events">
+    <tbody ng-repeat="events in evento">
     <tr>
-        <td>{{evento.id}}</td>
-        <td>{{evento.nombre}}</td>
-        <td>{{evento.fecha}}</td>
-        <td>{{evento.lugar}}</td>
-        <td><span class="badge">{{evento.capacidad}}</span></td>
+        <td align="center"> {{events.eventoid}} </td>
+        <td align="center"> {{events.nombre}} </td>
+        <td align="center"> {{events.fecha}} </td>
+        <td align="center"> {{events.lugar}} </td>
+        <td align="center"> {{events.capacidad}} </td>
         <td class="btn-group" role="group">
-            <a class="btn btn-default" ng-click="show(event.eventid)"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+            <a class="btn btn-default"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
             <a class="btn btn-primary"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></a>
-            <span ng-if="event.owner == actor">
-            <a class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+            <a class="btn btn-danger" ng-click="AEliminarEvento2(events.eventoid)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
             </span>
         </td>
     </tr>

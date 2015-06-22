@@ -71,8 +71,6 @@ def VIniciarSesion():
         res['actor']=session['actor']
     return json.dumps(res)
 
-
-
 @LinkEvents.route('/linkevents/ACrearEvento', methods=['POST'])
 def ACrearEvento():
     #Access to POST/PUT fields using request.form['name']
@@ -103,12 +101,64 @@ def ACrearEvento():
             session['actor'] = res['actor']
     return json.dumps(res)
 
+@LinkEvents.route('/linkevents/VPrincipal')
+def VPrincipal():
+    res = {}
+    if "actor" in session:
+        res['actor']=session['actor']
+        #events = map(lambda x: x.__dict__, Event.all_owned_by(session['actor']))
+        events = map(lambda x: x.__dict__, Evento.all())
+    else:
+        events = map(lambda x: x.__dict__, Evento.all())
+
+    res['evento'] = events
+
+    return json.dumps(res)
+
+
+@LinkEvents.route('/linkevents/AEliminarEvento')
+def AEliminarEvento():
+    res = {}
+    eventid = request.args.get('eventId')
+
+    if eventid is None:
+        res = {'label':'/VPrincipal', 'msg':[ur'Error al eliminar evento seleccionado.']}
+    else:
+        evento = Evento.get(eventid)
+
+        if evento.eliminar():
+            res = {'label':'/VPrincipal', 'msg':[ur'El evento fue eliminado exitosamente.']}
+        else:
+            res = {'label':'/VPrincipal', 'msg':[ur'Error al eliminar evento seleccionado.']}
+
+    #Action code ends here
+    if "actor" in res:
+        if res['actor'] is None:
+            session.pop("actor", None)
+        else:
+            session['actor'] = res['actor']
+    return json.dumps(res)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # -----------------------------------------------------------------------
-
-
-
 @LinkEvents.route('/linkevents/ALogOutUser')
 def ALogOutUser():
     #POST/PUT parameters
@@ -158,23 +208,6 @@ def ACancelReservation():
 def get_file(filename):
     return send_from_directory(subidas(), filename)
 
-@LinkEvents.route('/linkevents/ADeleteEvent')
-def ADeleteEvent():
-    #POST/PUT parameters
-    params = request.get_json()
-    results = [{'label':'/VListEvents', 'msg':[ur'Evento eliminado exitosamente']}, {'label':'/VListEvents', 'msg':[ur'Error al eliminar evento']}, ]
-    res = results[0]
-    #Action code goes here, res should be a list with a label and a message
-
-
-    #Action code ends here
-    if "actor" in res:
-        if res['actor'] is None:
-            session.pop("actor", None)
-        else:
-            session['actor'] = res['actor']
-    return json.dumps(res)
-
 @LinkEvents.route('/linkevents/ADeleteUser')
 def ADeleteUser():
     #POST/PUT parameters
@@ -212,7 +245,7 @@ def AEditEvent():
 @LinkEvents.route('/linkevents/AEvents')
 def AEvents():
     #GET parameter
-    results = [{'label':'/events', 'msg':[ur'Se listan los eventos']}, ]
+    results = [{'label':'/VPrincipal', 'msg':''}, ]
     res = results[0]
     #Action code goes here, res should be a list with a label and a message
 
@@ -356,15 +389,6 @@ def VEditEvent():
     #Action code ends here
     return json.dumps(res)
 
-@LinkEvents.route('/linkevents/VPrincipal')
-def VPrincipal():
-    res = {}
-    if "actor" in session:
-        res['actor']=session['actor']
-    #Action code goes here, res should be a JSON structure
-
-    #Action code ends here
-    return json.dumps(res)
 
 @LinkEvents.route('/linkevents/VListEvents')
 def VListEvents():
@@ -372,9 +396,9 @@ def VListEvents():
     if "actor" in session:
         res['actor']=session['actor']
         #events = map(lambda x: x.__dict__, Event.all_owned_by(session['actor']))
-        events = map(lambda x: x.__dict__, Event.all())
+        events = map(lambda x: x.__dict__, Evento.all())
     else:
-        events = map(lambda x: x.__dict__, Event.all())
+        events = map(lambda x: x.__dict__, Evento.all())
 
     res['events'] = events
  

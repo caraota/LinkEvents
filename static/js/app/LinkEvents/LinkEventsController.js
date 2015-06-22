@@ -2,9 +2,9 @@ LinkEventsModule.config(function ($routeProvider) {
     $routeProvider.when('/VPrincipal', {
                 controller: 'VPrincipalController',
                 templateUrl: 'app/LinkEvents/VPrincipal.html'
-            }).when('/VListEvents', {
-                controller: 'VListEventsController',
-                templateUrl: 'app/LinkEvents/VListEvents.html'
+            }).when('/VShowEvent/:eventId', {
+                controller: 'VShowEventController',
+                templateUrl: 'app/LinkEvents/VShowEvent.html'
             }).when('/VEditEvent', {
                 controller: 'VEditEventController',
                 templateUrl: 'app/LinkEvents/VEditEvent.html'
@@ -31,47 +31,37 @@ LinkEventsModule.controller('VPrincipalController',
         }  
       });
 
-      $scope.AEvents = function() {
-        LinkEventsService.AEvents().then(function (object) {
-          var msg = object.data["msg"];
-          if (msg) flash(msg);
-          var label = object.data["label"];
-          if (label == '/VPrincipal') {
-              $route.reload();
-          } else {
-              $location.path(label);
-          }
+        $scope.AEvents = function() {
+          LinkEventsService.AEvents().then(function (object) {
+            var msg = object.data["msg"];
+            if (msg) flash(msg);
+            var label = object.data["label"];
+            if (label == '/VPrincipal') {
+                $route.reload();
+            } else {
+                $location.path(label);
+            }
         });};
-      $scope.AEvents1 = function(requestedEvent) {
-        LinkEventsService.AEvents({"requestedEvent":((typeof requestedEvent === 'object')?JSON.stringify(requestedEvent):requestedEvent)}).then(function (object) {
-          var msg = object.data["msg"];
-          if (msg) flash(msg);
-          var label = object.data["label"];
-          if (label == '/VPrincipal') {
-              $route.reload();
-          } else {
-              $location.path(label);
-          }
-        });};
-
-        $scope.AUsers2 = function() {
-        LinkEventsService.AUsers().then(function (object) {
-          var msg = object.data["msg"];
-          var users = object.data["users"];
-          if (users) flash(users)
-          if (msg) flash(msg);
-          var label = object.data["label"];
-          if (label == '/VPrincipal') {
-              $route.reload();
-          } else {
-              $location.path(label);
-          }
-        });};
+        
         $scope.VCrearEvento = function() {
             $location.path('/VCrearEvento');
           };
 
+        $scope.AEliminarEvento2 = function(eventid) {
+          LinkEventsService.AEliminarEvento({"eventId" : eventid}).then(function (object) {
+            console.log('Hola')
+            var msg = object.data["msg"];
+            if (msg) flash(msg);
+            var label = object.data["label"];
+            if (label == '/VPrincipal') {
+                $route.reload();
+            } else {
+                $location.path(label);
+                $route.reload();
+            }
+          });};
     }]);
+
 LinkEventsModule.controller('VListEventsController', 
         ['$scope', '$location', '$route', 'flash', 'LinkEventsService',
     function ($scope, $location, $route, flash, LinkEventsService) {
@@ -96,18 +86,6 @@ LinkEventsModule.controller('VListEventsController',
       $scope.VShowEvent2 = function(eventId) {
         $location.path('/VShowEvent/'+eventId);
       };
-      $scope.ADeleteEvent3 = function() {
-        LinkEventsService.ADeleteEvent().then(function (object) {
-          var msg = object.data["msg"];
-          if (msg) flash(msg);
-          var label = object.data["label"];
-          if (label == '/VListEvents') {
-              $route.reload();
-          } else {
-              $location.path(label);
-          }
-        });};
-
     }]);
 LinkEventsModule.controller('VEditEventController', 
         ['$scope', '$location', '$route', 'flash', 'LinkEventsService',

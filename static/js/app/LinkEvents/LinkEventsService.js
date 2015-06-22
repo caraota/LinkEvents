@@ -114,13 +114,14 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
         //    return deferred.promise;
     };
 
-    this.ADeleteEvent = function(args) {
+    this.AEliminarEvento = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'linkevents/ADeleteEvent',
+            url: 'linkevents/AEliminarEvento',
             method: 'GET',
             params: args
         });
+
         //    var labels = ["/VListEvents", "/VListEvents", ];
         //    var res = labels[0];
         //    var deferred = $q.defer();
@@ -142,11 +143,10 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
 
     this.VShowUser = function(args) {
         if(typeof args == 'undefined') args={};
-        console.log(args); 
         return $http({
             url: 'linkevents/VShowUser',
             method: 'GET',
-            params: args
+            data: args
         });
         //    var res = {};
         //    var deferred = $q.defer();
@@ -159,7 +159,7 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
         return $http({
             url: 'linkevents/ADeleteUser',
             method: 'GET',
-            params: args
+            data: args
         });
         //    var labels = ["/VListUsers", "/VListUsers", ];
         //    var res = labels[0];

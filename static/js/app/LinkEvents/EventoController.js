@@ -84,17 +84,6 @@ LinkEventsModule.controller('ListEventsController',
         $location.path('/event/'+eventId);
       };
 
-      $scope.ADeleteEvent3 = function() {
-        LinkEventsService.ADeleteEvent().then(function (object) {
-          var msg = object.data["msg"];
-          if (msg) flash(msg);
-          var label = object.data["label"];
-          if (label == '/VListEvents') {
-              $route.reload();
-          } else {
-              $location.path(label);
-          }
-        });};
 }]);
 
 LinkEventsModule.controller('VEventoController', 
