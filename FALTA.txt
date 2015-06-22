@@ -1,5 +1,3 @@
-- Cerrar sesion
-
 - EVENTO
 
 	Mostrar
@@ -8,10 +6,8 @@
 - PRIVILEGIOS
 	Admin -> crear, modificar, eliminar, marcar asistencia, listar participantes
 
-
 - Revision de Interfaz
 
-- Revision de codigo
+- Revision de Codigo
 
 - Documentacion
-

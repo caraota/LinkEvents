@@ -56,7 +56,7 @@ def AIniciarSesion():
                 {'label':'/usuario/iniciar_sesion', 'msg':[ur'Error al iniciar sesión. Verifique los datos ingresados.']}, ]
 
     if user.autenticar():
-        res = results[0]        
+        res = results[0]
     else:
         res = results[1]
 
@@ -66,6 +66,7 @@ def AIniciarSesion():
         else:
             session['actor'] = res['actor']
     return json.dumps(res)
+
 
 @LinkEvents.route('/linkevents/VIniciarSesion')
 def VIniciarSesion():
@@ -281,21 +282,15 @@ def VListarUsuarios():
     return json.dumps(res)
 
 
-
-
-
-# -----------------------------------------------------------------------
-# -----------------------------------------------------------------------
-# -----------------------------------------------------------------------
-# -----------------------------------------------------------------------
-@LinkEvents.route('/linkevents/ALogOutUser')
-def ALogOutUser():
+@LinkEvents.route('/linkevents/ACerrarSesion')
+def ACerrarSesion():
     #POST/PUT parameters
     params = request.get_json()
-    results = [{'label':'/VIniciarSesion', 'msg':[ur'Sesión exitosamente cerrada'], "actor":None}, {'label':'/VPrincipal', 'msg':[ur'Error al cerrar sesión']}, ]
+    results = [{'label':'/VIniciarSesion', 'msg':[ur'Sesión exitosamente cerrada'], "actor":None}, 
+               {'label':'/VPrincipal', 'msg':[ur'Error al cerrar sesión']}, ]
+
     res = results[0]
     #Action code goes here, res should be a list with a label and a message
-
 
     #Action code ends here
     if "actor" in res:
@@ -304,6 +299,15 @@ def ALogOutUser():
         else:
             session['actor'] = res['actor']
     return json.dumps(res)
+
+
+# -----------------------------------------------------------------------
+# -----------------------------------------------------------------------
+# -----------------------------------------------------------------------
+# -----------------------------------------------------------------------
+
+
+
 
 @LinkEvents.route('/linkevents/AEliminarReserva')
 def AEliminarReserva():

@@ -297,10 +297,10 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
         //    deferred.resolve(res);
         //    return deferred.promise;
     };
-    this.ALogOutUser = function(args) {
+    this.ACerrarSesion = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'linkevents/ALogOutUser',
+            url: 'linkevents/ACerrarSesion',
             method: 'GET',
             params: args
         });
