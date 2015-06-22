@@ -4,7 +4,10 @@
 		Marcar asistencia (1 en asistio) + condiciones
 
 - PRIVILEGIOS
+
 	Admin -> crear, modificar, eliminar, marcar asistencia, listar participantes
+
+- Si no has iniciado sesion, no mostrar pagina principal
 
 - Revision de Interfaz
 
