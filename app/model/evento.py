@@ -10,7 +10,7 @@ SUBIDAS = './cargar_pdf/'
 EXTENSIONES = set(['pdf'])
 
 def subidas():
-	return SUBIDAS;
+	return SUBIDAS
 
 def archivo_permitido(archivo):
 	return '.' in archivo and archivo.rsplit('.', 1)[1] in EXTENSIONES
@@ -21,6 +21,7 @@ def crear_pdf(datos):
 	n = open(nombre, 'wb')
 	try:
 		pisa.CreatePDF(StringIO(datos.encode('utf-8')), n)
+		print nombre
 		return nombre
 	except Exception as e:
 		print 'Error'

@@ -128,10 +128,10 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
         //    deferred.resolve(res);
         //    return deferred.promise;
     };
-    this.VShowEvent = function(args) {
+    this.VEvento = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'linkevents/VShowEvent',
+            url: 'linkevents/VEvento',
             method: 'GET',
             params: args
         });
@@ -256,10 +256,10 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
         //    return deferred.promise;
     };
 
-    this.AGenerateCredentials = function(args) {
+    this.AGenerarCredencial = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'linkevents/AGenerateCredentials',
+            url: 'linkevents/AGenerarCredencial',
             method: 'GET',
             params: args
         });
@@ -269,10 +269,10 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
         //    deferred.resolve(res);
         //    return deferred.promise;
     };
-    this.VCredential = function(args) {
+    this.VCredencial = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'linkevents/VCredential',
+            url: 'linkevents/VCredencial',
             method: 'GET',
             params: args
         });
@@ -282,10 +282,10 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
         //    return deferred.promise;
     };
 
-    this.AGenerateCertificate = function(args) {
+    this.AGenerarCertificado = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'linkevents/AGenerateCertificate',
+            url: 'linkevents/AGenerarCertificado',
             method: 'GET',
             params: args
         });
@@ -295,10 +295,10 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
         //    deferred.resolve(res);
         //    return deferred.promise;
     };
-    this.VCertificate = function(args) {
+    this.VCertificado = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'linkevents/VCertificate',
+            url: 'linkevents/VCertificado',
             method: 'GET',
             params: args
         });

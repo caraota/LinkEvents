@@ -9,9 +9,9 @@ COSAS QUE FALTAN:
 	Listar
 	Mostrar
 		Disponibilidad
-		Certificado
 		ReservarEvento
-		ObtenerCredencial
+		ObtenerCredencial (falta diseno del pdf y usuario)
+        ObtenerCertificado (falta diseno del pdf y usuario)
 	Listar Participante
 
 - PARTICIPANTE

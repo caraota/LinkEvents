@@ -206,7 +206,7 @@ def ACancelReservation():
 
 @LinkEvents.route('/cargar_pdf/<filename>')
 def get_file(filename):
-    return send_from_directory(upload_folder(), filename)
+    return send_from_directory(subidas(), filename)
 
 @LinkEvents.route('/linkevents/ADeleteUser')
 def ADeleteUser():
@@ -259,26 +259,25 @@ def AEvents():
 
     return json.dumps(res)
 
-@LinkEvents.route('/linkevents/AGenerateCertificate')
-def AGenerateCertificate():
-    results = [{'label':'/VShowEvent', 'msg':[ur'Certificado exitosamente generado']}, {'label':'/VShowEvent', 'msg':[ur'Error al generar certificado']}, ]
-    eventid = request.args.get('eventId')
+@LinkEvents.route('/linkevents/AGenerarCertificado')
+def AGenerarCertificado():
+    results = [{'label':'/VEvento', 'msg':[ur'Certificado generado']}, {'label':'/VEvento', 'msg':[ur'Error']}, ]
+    eventoid = request.args.get('eventoid')
 
-    if eventid is None:
+    if eventoid is None:
         res = results[1]
     else:
-
-        event = Event.get(eventid)
-        user  = session.get('actor')
-        if user is None:
-            user = "Default"
-        pdf = create_pdf(render_template('certificate.html', event=event, user=user))
+        evento = Evento.get(eventoid)
+        usuario  = session.get('actor')
+        if usuario is None:
+            usuario = "Default"
+        pdf = crear_pdf(render_template('certificado.html', evento=evento, usuario=usuario))
         
         if pdf is None:
             res = results[1]
         else:
             res = results[0]
-            res['certificate'] = pdf
+            res['certificado'] = pdf
 
     if "actor" in res:
         if res['actor'] is None:
@@ -287,25 +286,25 @@ def AGenerateCertificate():
             session['actor'] = res['actor']
     return json.dumps(res)
 
-@LinkEvents.route('/linkevents/AGenerateCredentials')
-def AGenerateCredentials():
-    results = [{'label':'/VShowEvent', 'msg':[ur'Credenciales exitosamente generadas']}, {'label':'/VShowEvent', 'msg':[ur'Error al generar credenciales']}, ]
-    eventid = request.args.get('eventId')
+@LinkEvents.route('/linkevents/AGenerarCredencial')
+def AGenerarCredencial():
+    results = [{'label':'/VEvento', 'msg':[ur'Credencial generada']}, {'label':'/VEvento', 'msg':[ur'Error']}, ]
+    eventoid = request.args.get('eventoid')
 
-    if eventid is None:
+    if eventoid is None:
         res = results[1]
     else:
-        event = Event.get(eventid)
-        user  = session.get('actor')
-        if user is None:
-            user = "Default"
-        pdf = create_pdf(render_template('credentials.html', event=event, user=user))
+        evento = Evento.get(eventoid)
+        usuario  = session.get('actor')
+        if usuario is None:
+            usuario = "Default"
+        pdf = crear_pdf(render_template('credencial.html', evento=evento, usuario=usuario))
         
         if pdf is None:
             res = results[1]
         else:
             res = results[0]
-            res['credentials'] = pdf
+            res['credencial'] = pdf
 
     if "actor" in res:
         if res['actor'] is None:
@@ -379,29 +378,6 @@ def AVerifyAssitance():
             session['actor'] = res['actor']
     return json.dumps(res)
 
-@LinkEvents.route('/linkevents/VCertificate')
-def VCertificate():
-
-    res = {}
-    if "actor" in session:
-        res['actor']=session['actor']
-    #Action code goes here, res should be a JSON structure
-
-
-    #Action code ends here
-    return json.dumps(res)
-
-@LinkEvents.route('/linkevents/VCredential')
-def VCredential():
-    res = {}
-    if "actor" in session:
-        res['actor']=session['actor']
-    #Action code goes here, res should be a JSON structure
-
-
-    #Action code ends here
-    return json.dumps(res)
-
 @LinkEvents.route('/linkevents/VEditEvent')
 def VEditEvent():
     res = {}
@@ -453,8 +429,8 @@ def VListUsers():
     #Action code ends here
     return json.dumps(res)
 
-@LinkEvents.route('/linkevents/VRegisterEvent')
-def VRegisterEvent():
+@LinkEvents.route('/linkevents/VCrearEvento')
+def VCrearEvento():
     res = {}
     if "actor" in session:
         res['actor']=session['actor']
@@ -464,22 +440,22 @@ def VRegisterEvent():
     #Action code ends here
     return json.dumps(res)
 
-@LinkEvents.route('/linkevents/VShowEvent')
-def VShowEvent():
+@LinkEvents.route('/linkevents/VEvento')
+def VEvento():
 
-    eventid = request.args.get('eventId')
+    eventoid = request.args.get('eventoid')
 
     res = {}
-    if eventid is not None:
-        res['event'] = Event.get(eventid).__dict__
+    if eventoid is not None:
+        res['evento'] = Evento.get(eventoid).__dict__
 
     if "actor" in session:
         res['actor'] = session['actor']
-        assistance   = Assistance.get(res['actor'], eventid)
-        if assistance is None:
-            res['reserved'] = 1
+        asiste   = Asiste.get(res['actor'], eventoid)
+        if asiste is None:
+            res['reservado'] = 1
         else:
-            res['reserved'] = 0
+            res['reservado'] = 0
     #Action code goes here, res should be a JSON structure
 
     print res

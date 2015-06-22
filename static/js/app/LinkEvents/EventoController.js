@@ -2,9 +2,9 @@ LinkEventsModule.config(function ($routeProvider) {
     $routeProvider.when('/eventos', {
                 controller: 'ListarEventosController',
                 templateUrl: 'app/LinkEvents/evento/listar.html'
-            }).when('/evento/:id', {
-                controller: 'EventoController',
-                templateUrl: 'app/LinkEvents/event/show.html'
+            }).when('/VEvento/:id', {
+                controller: 'VEventoController',
+                templateUrl: 'app/LinkEvents/VEvento.html'
             }).when('/events/edit/:id', {
                 controller: 'VEditarEventoController',
                 templateUrl: 'app/LinkEvents/VEditEvent.html'
@@ -86,13 +86,13 @@ LinkEventsModule.controller('ListEventsController',
 
 }]);
 
-LinkEventsModule.controller('ShowEventController', 
+LinkEventsModule.controller('VEventoController', 
                               ['$scope', '$location', '$route', 
                                'flash', '$routeParams', 'LinkEventsService', 
                                function ($scope, $location, $route, flash, 
                                          $routeParams, LinkEventsService) {
       $scope.msg = '';
-      LinkEventsService.VShowEvent({"eventId":$routeParams.id}).then(function (object) {
+      LinkEventsService.VEvento({"eventoid":$routeParams.id}).then(function (object) {
         $scope.res = object.data;
         for (var key in object.data) {
             $scope[key] = object.data[key];
@@ -148,35 +148,34 @@ LinkEventsModule.controller('ShowEventController',
         });};
 
       // Generate the credentials 
-      $scope.GenerateCredentials = function() {
-        LinkEventsService.AGenerateCredentials({"eventId" : $routeParams.id}).then(function (object) {
+      $scope.GenerarCredencial = function() {
+        LinkEventsService.AGenerarCredencial({"eventoid" : $routeParams.id}).then(function (object) {
           var msg = object.data["msg"];
           if (msg) flash(msg);
-          var credentials_link = object.data["credentials"]
-          var download_link    = document.createElement('a');
-          download_link.name   = 'credenciales.pdf';
-          download_link.href   = credentials_link;
-          download_link.target = "_blank";
-          download_link.click();
+          var credencial_link = object.data["credencial"]
+          var link_descarga = document.createElement('a');
+          link_descarga.name = 'generarcredencial.pdf';
+          link_descarga.href = credencial_link;
+          link_descarga.target = "_blank";
+          link_descarga.click();
         });};
         
       // Generate the certificate 
-      $scope.GenerateCertificate = function() {
-        LinkEventsService.AGenerateCertificate({"eventId" : $routeParams.id}).then(function (object) {
+      $scope.GenerarCertificado = function() {
+        LinkEventsService.AGenerarCertificado({"eventoid" : $routeParams.id}).then(function (object) {
           var msg = object.data["msg"];
           if (msg) flash(msg);
           var label = object.data["label"];
-          var certificate_link = object.data["certificate"]
-
-          var download_link    = document.createElement('a');
-          download_link.name   = 'certificado.pdf';
-          download_link.href   = certificate_link;
-          download_link.target = "_blank";
-          download_link.click();
+          var certificado_ruta = object.data["certificado"]
+          var link    = document.createElement('a');
+          link.name   = 'certificado.pdf';
+          link.href   = certificado_ruta;
+          link.target = "_blank";
+          link.click();
       });};
 
-      $scope.VShowEvent5 = function(eventId) {
-        $location.path('/VShowEvent/'+eventId);
+      $scope.VEvento5 = function(eventId) {
+        $location.path('/VEvento/'+eventoid);
       };
 
     }]);
