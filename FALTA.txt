@@ -1,12 +1,3 @@
-- EVENTO
-
-	Mostrar
-		Marcar asistencia (1 en asistio) + condiciones
-
-- PRIVILEGIOS
-
-	Admin -> marcar asistencia
-
 - Si no has iniciado sesion, no mostrar pagina principal
 
 - Revision de Interfaz
