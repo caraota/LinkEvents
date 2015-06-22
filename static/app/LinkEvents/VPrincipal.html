@@ -11,10 +11,15 @@
             <span class="navbar-brand" ></span>
         </div>
         <div class="collapse navbar-collapse" id="contenido-plegable">
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-left">
                 <li class="navbar-text">Usuario: {{user}}</li>
-                <!--li><a ng-click="ACerrarSesion1()">Cerrar sesión</a></li-->
             </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="navbar-text">Cerrar sesión</li>
+                
+            </ul>
+<!--li><a ng-click="ACerrarSesion1()">Cerrar sesión</a></li-->
 
             <ul class="nav navbar-nav navbar-right">
                 <li class="navbar-text" ng-show="usuario.nombre" ng-bind="usuario.nombre"></li>
@@ -55,8 +60,7 @@
         <td align="center"> {{events.capacidad}} </td>
         <td class="btn-group" role="group">
             <a class="btn btn-default"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-            <a class="btn btn-primary"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></a>
-            <a class="btn btn-danger" ng-click="AEliminarEvento2(events.eventoid)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+            <a class="btn btn-default" ng-click="AEliminarEvento2(events.eventoid)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
             </span>
         </td>
     </tr>

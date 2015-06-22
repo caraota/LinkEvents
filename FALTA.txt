@@ -1,9 +1,6 @@
-COSAS QUE FALTAN:
-
 - Cerrar sesion
 
 - EVENTO
-	Crear
 
 	Modificar
 
@@ -12,14 +9,12 @@ COSAS QUE FALTAN:
 		ReservarEvento
 		ObtenerCredencial (falta diseno del pdf y usuario)
         ObtenerCertificado (falta diseno del pdf y usuario)
-
-	Listar Participante
+		Listar Participante
 
 - PARTICIPANTE
-	Editar
+	Editar (opcional)
 	Mostrar perfil (opcional)
 
 
 - PRIVILEGIOS
 	Admin -> crear, modificar, eliminar
-
