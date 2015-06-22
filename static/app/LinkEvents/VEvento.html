@@ -12,42 +12,28 @@
         </div>
         <div class="collapse navbar-collapse" id="contenido-plegable">
             <ul class="nav navbar-nav navbar-right">
-<li class="navbar-text" ng-show="usuario.nombre" ng-bind="usuario.nombre"></li>
-<li><a ng-click="VListEvents0()">
-    Regresar</a></li>
-
+                <li class="navbar-text" ng-show="usuario.nombre" ng-bind="usuario.nombre"></li>
+                <li><a ng-click="VPrincipal()">Regresar</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<div class="row">
-    <div class="col-md-4">
-        <br>
-        <br>
-        <div class="thumbnail">
-            <span ng-if="evento.afiche == 'None'">
-                <img ng-src="./cargar_pdf/noposter.png" width="300px"/>
-            </span>
-            <span ng-if="evento.afiche.split('.').pop().match('png|jpg|jpeg|gif')">
-                <img ng-src="{{evento.afiche}}" width="300px"/>
-            </span>
-            <span ng-if="evento.afiche.split('.').pop() == 'pdf'">
-                <object width="200" type="application/pdf" data="{{evento.afiche}}">
-                   Error con navegador
-                </object>
-            </span>
-        </div>
+    <h2 align="center">{{evento.nombre}}</h2>
 
-    </div>
+    <div align="center">
+        <hr>
+        <strong>Cupos disponibles: </strong>{{evento.capacidad}} &nbsp; &nbsp; &nbsp;
+        <strong>Fecha: </strong>{{evento.fecha}} &nbsp; &nbsp; &nbsp;
+        <strong>Lugar: </strong>{{evento.lugar}}     
 
-    <div class="col-md-6">
-            <h2 align="center">{{evento.nombre}}</h2>
-            <p>{{evento.descripcion}}</p>
+        <hr>
+
+        <strong>Descripción: </strong>{{evento.descripcion}}
+        <hr>
     </div>
-</div>
-        <div align="right">
-            <button ng-click="ReserveEvent()" class="btn btn-md">
+    <div align="center">
+            <button ng-click="ReservarEvento()" class="btn btn-md">
                 <span class="glyphicon glyphicon-pushpin"></span>
                 &nbsp;Reservar
             </button>
@@ -63,19 +49,12 @@
                 <span class="glyphicon glyphicon-certificate"></span>
                 &nbsp;Generar Certificado
             </button>                     
-        </div>
-<div>
-        <div align="center">
-            <hr>
-            <strong>Cupos disponibles: </strong>{{evento.capacidad}} &nbsp; &nbsp; &nbsp;
-            <strong>Fecha: </strong>{{evento.fecha}} &nbsp; &nbsp; &nbsp;
-            <strong>Lugar: </strong>{{evento.lugar}}
-        </div>
-        <hr>
-        <div align="right">
             <button ng-click="AUsers2(event.eventid)" class="btn btn-md">
                 <span class="glyphicon glyphicon-user"></span>
                 &nbsp;Listar participantes
             </button>    
-        </div>        
-</div>
+        </div>
+        </br>
+        <div align="center">
+            <iframe src="{{evento.afiche}}" style="width:500px; height:500px;" frameborder="0"></iframe>
+        </div>

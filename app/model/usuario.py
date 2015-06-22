@@ -58,9 +58,8 @@ class Usuario:
 		if fila is None:
 			return None
 		else:
-			data = {'username':fila[0],'password':fila[1],'nombre':fila[2],'apellido':fila[3],'admin':fila[4] }
-			usuarioid = Usuario(data).__dict__
-			return usuarioid
+			data = {'nombre':fila[2],'apellido':fila[3]}
+			return data
 
 	@staticmethod
 	def all():

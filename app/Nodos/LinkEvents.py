@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import request, session, Blueprint, json, g
 from werkzeug import secure_filename
+from datetime import timedelta
 
 LinkEvents = Blueprint('LinkEvents', __name__)
 
@@ -48,12 +49,14 @@ def VRegistrarUsuario():
 def AIniciarSesion():
     params = request.get_json()
     user = Usuario(params['username'],params['password'],"","","")
+    session.permanent = True
+    LinkEvents.permanent_session_lifetime = timedelta(minutes=30)
 
     results = [ {'label':'/VPrincipal', 'msg':[], "actor": user.username }, 
                 {'label':'/usuario/iniciar_sesion', 'msg':[ur'Error al iniciar sesión. Verifique los datos ingresados.']}, ]
 
     if user.autenticar():
-        res = results[0]
+        res = results[0]        
     else:
         res = results[1]
 
@@ -104,6 +107,9 @@ def ACrearEvento():
 @LinkEvents.route('/linkevents/VPrincipal')
 def VPrincipal():
     res = {}
+    #session.permanent = True
+    #LinkEvents.permanent_session_lifetime = timedelta(minutes=30)
+    print session.get('actor')
     if "actor" in session:
         res['actor']=session['actor']
         #events = map(lambda x: x.__dict__, Event.all_owned_by(session['actor']))
@@ -264,11 +270,13 @@ def AGenerarCertificado():
     results = [{'label':'/VEvento', 'msg':[ur'Certificado generado']}, {'label':'/VEvento', 'msg':[ur'Error']}, ]
     eventoid = request.args.get('eventoid')
 
+    print session.get('actor')
     if eventoid is None:
         res = results[1]
     else:
         evento = Evento.get(eventoid)
-        usuario  = session.get('actor')
+        usuario = session.get('actor')
+        usuario = Usuario.get(usuario)
         if usuario is None:
             usuario = "Default"
         pdf = crear_pdf(render_template('certificado.html', evento=evento, usuario=usuario))
@@ -295,7 +303,8 @@ def AGenerarCredencial():
         res = results[1]
     else:
         evento = Evento.get(eventoid)
-        usuario  = session.get('actor')
+        usuario = session.get('actor')
+        usuario = Usuario.get(usuario)
         if usuario is None:
             usuario = "Default"
         pdf = crear_pdf(render_template('credencial.html', evento=evento, usuario=usuario))
@@ -313,36 +322,35 @@ def AGenerarCredencial():
             session['actor'] = res['actor']
     return json.dumps(res)
 
-@LinkEvents.route('/linkevents/AReserveEvent')
-def AReserveEvent():
+@LinkEvents.route('/linkevents/AReservarEvento')
+def AReservarEvento():
 
-    eventid = request.args.get('eventId')
-    if eventid is None:
-        res = {'label':'/VShowEvent', 'msg':[ur'Error al reservar evento']}
+    eventoid = request.args.get('eventoid')
+    if eventoid is None:
+        res = {'label':'/VEvento', 'msg':[ur'Error al reservar evento']}
     else:
         user = session.get('actor')
+
         if user is None:
             user = "Default"
 
-        event      = Event.get(eventid)
-        assistance = Assistance.get(user, event.eventid)
+        evento = Evento.get(eventoid)
+        asiste = Asiste.get(user, evento.eventoid)
         
-        if assistance is None and event.update({ 'n_participants' : event.n_participants - 1 }):
-            assistance = Assistance(user, event.eventid)
-            if assistance.save():
-                res = {'label':'/VShowEvent', 'msg':[ur'Evento reservado exitosamente']}
+        if asiste is None and evento.update({ 'capacidad' : evento.capacidad-1 }):
+            asiste = Asiste(user, evento.eventoid)
+            if asiste.save():
+                res = {'label':'/VEvento', 'msg':[ur'Evento reservado']}
             else:
-                res = {'label':'/VShowEvent', 'msg':[ur'Error al reservar evento']}
+                res = {'label':'/VEvento', 'msg':[ur'Error']}
         else:
-            res = {'label':'/VShowEvent', 'msg':[ur'Error al reservar evento']}
+            res = {'label':'/VEvento', 'msg':[ur'Error']}
 
     if "actor" in res:
         if res['actor'] is None:
             session.pop("actor", None)
         else:
             session['actor'] = res['actor']
-
-    print "AQUI", res
     return json.dumps(res)
 
 
@@ -443,6 +451,7 @@ def VCrearEvento():
 @LinkEvents.route('/linkevents/VEvento')
 def VEvento():
 
+    print session.get('actor')
     eventoid = request.args.get('eventoid')
 
     res = {}

@@ -6,12 +6,10 @@
 
 	Mostrar
 		Condiciones (cuando mostrar cada boton)
-		ObtenerCredencial (falta diseno del pdf y usuario)
-        ObtenerCertificado (falta diseno del pdf y usuario)
+		ObtenerCredencial (falta diseno del pdf)
+        ObtenerCertificado (falta diseno del pdf)
 	
 	Listar Participante
-
-    Reservar
 
     Cancelar reserva
 

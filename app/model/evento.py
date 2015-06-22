@@ -59,10 +59,10 @@ class Evento:
 		sql = 'UPDATE %s SET ' % TABLA
 		last = len(att.keys())
 		for idx, attr in enumerate(att.keys()):
-			sql += str(sttr) + ' = "' + str(attrs[attr]) + '"'
+			sql += str(attr) + ' = "' + str(att[attr]) + '"'
 			if idx != last-1:
 				sql += ', '
-		sql += 'WHERE eventoid="' + str(self.eventid) + '"'
+		sql += 'WHERE eventoid="' + str(self.eventoid) + '"'
 		print "\n" + sql + "\n"
 		db = get_database()
 		cursor = db.cursor()

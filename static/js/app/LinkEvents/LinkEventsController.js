@@ -60,6 +60,10 @@ LinkEventsModule.controller('VPrincipalController',
                 $route.reload();
             }
           });};
+
+        $scope.VEvento = function(eventid) {
+          $location.path('/VEvento/'+eventid);
+        };          
     }]);
 
 LinkEventsModule.controller('VListEventsController', 

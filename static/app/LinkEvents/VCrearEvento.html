@@ -16,7 +16,7 @@
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
-<li class="navbar-text" ng-show="usuario.nombre" ng-bind="usuario.nombre"></li>
+<li class="navbar-text" ng-show="session.get('actor')" ng-bind="session.get('actor')"></li>
             </ul>
         </div>
     </div>
@@ -84,7 +84,8 @@
             </p>
         </div>
 
-        <button type="submit" class="btn btn-md">Agregar Evento</button>
+        <button type="submit" class="btn btn-md">
+        <span class="glyphicon glyphicon-plus"></span>&nbsp; Agregar Evento</button>
     </form>
     <hr />
 
