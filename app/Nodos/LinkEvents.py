@@ -180,19 +180,23 @@ def AConfirmarAsist():
 
 @LinkEvents.route('/linkevents/AEditarEvento', methods=['POST'])
 def AEditarEvento():
-    #Access to POST/PUT fields using request.form['name']
-    #Access to file fields using request.files['name']
-    params = request.get_json()
+    params = request.form.copy()
+    poster = request.files.get('afiche')
 
-    eventoid = params['data']['eventoid']
-    fEvento =  params['data']['fEvento']
+    if poster != None and archivo_permitido(poster.filename):
+        filename = secure_filename(poster.filename)
+        poster_path = os.path.join(subidas(), filename)
+        poster.save(poster_path)
+        params['afiche'] = poster_path
 
+    eventoid = params.pop('eventoid')
+    
     results = [ {'label':'/VEvento/'+eventoid, 'msg':[ur'El evento fue editado exitosamente.']}, 
                 {'label':'/VEditarEvento/'+eventoid, 'msg':[ur'Error al editar el evento. Verifique los valores ingresados.']}, ]
         
     res = {}
 
-    if Evento.update(eventoid, fEvento):
+    if Evento.update(eventoid,params):
         res = results[0]
     else:
         res = results[1]
@@ -204,6 +208,7 @@ def AEditarEvento():
             session['actor'] = res['actor']
 
     return json.dumps(res)
+
 
 
 @LinkEvents.route('/linkevents/VEditarEvento')
