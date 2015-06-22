@@ -4,21 +4,22 @@ COSAS QUE FALTAN:
 
 - EVENTO
 	Crear
+
 	Modificar
-	Eliminar
-	Listar
+
 	Mostrar
 		Disponibilidad
 		ReservarEvento
 		ObtenerCredencial (falta diseno del pdf y usuario)
         ObtenerCertificado (falta diseno del pdf y usuario)
+
 	Listar Participante
 
 - PARTICIPANTE
 	Editar
 	Mostrar perfil (opcional)
 
+
 - PRIVILEGIOS
 	Admin -> crear, modificar, eliminar
 
-- Tengan boton que los lleve a la pagina principal
