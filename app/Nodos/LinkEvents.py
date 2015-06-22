@@ -139,7 +139,63 @@ def AEliminarEvento():
             session['actor'] = res['actor']
     return json.dumps(res)
 
+@LinkEvents.route('/linkevents/AEditarEvento', methods=['POST'])
+def AEditarEvento():
+    #Access to POST/PUT fields using request.form['name']
+    #Access to file fields using request.files['name']
+    params = request.get_json()
 
+    eventoid = params['data']['eventoid']
+    fEvento =  params['data']['fEvento']
+
+    results = [ {'label':'/VEvento/'+eventoid, 'msg':[ur'El evento fue editado exitosamente.']}, 
+                {'label':'/VEditarEvento/'+eventoid, 'msg':[ur'Error al editar el evento. Verifique los valores ingresados.']}, ]
+        
+    fEvento =  params['data']['fEvento']
+    res = {}
+
+    if Evento.update(eventoid, fEvento):
+        res = results[0]
+    else:
+        res = results[1]
+
+    if "actor" in res:
+        if res['actor'] is None:
+            session.pop("actor", None)
+        else:
+            session['actor'] = res['actor']
+
+    return json.dumps(res)
+
+
+@LinkEvents.route('/linkevents/VEditarEvento')
+def VEditarEvento():
+    eventoid = request.args.get('eventoid')
+
+    res = {}
+    if eventoid is not None:
+        res['evento'] = Evento.get(eventoid).__dict__
+
+    if "actor" in session:
+        res['actor'] = session['actor']
+
+    return json.dumps(res)
+
+
+@LinkEvents.route('/linkevents/AEvents')
+def AEvents():
+    #GET parameter
+    results = [{'label':'/VPrincipal', 'msg':''}, ]
+    res = results[0]
+
+    if "actor" in res:
+        if res['actor'] is None:
+            session.pop("actor", None)
+        else:
+            session['actor'] = res['actor']
+
+
+    return json.dumps(res)
 
 
 
@@ -225,40 +281,6 @@ def ADeleteUser():
             session['actor'] = res['actor']
     return json.dumps(res)
 
-@LinkEvents.route('/linkevents/AEditEvent', methods=['POST'])
-def AEditEvent():
-    #Access to POST/PUT fields using request.form['name']
-    #Access to file fields using request.files['name']
-    results = [{'label':'/VShowEvent', 'msg':[ur'El evento ha sido actualizado']}, ]
-    res = results[0]
-    #Action code goes here, res should be a list with a label and a message
-
-
-    #Action code ends here
-    if "actor" in res:
-        if res['actor'] is None:
-            session.pop("actor", None)
-        else:
-            session['actor'] = res['actor']
-    return json.dumps(res)
-
-@LinkEvents.route('/linkevents/AEvents')
-def AEvents():
-    #GET parameter
-    results = [{'label':'/VPrincipal', 'msg':''}, ]
-    res = results[0]
-    #Action code goes here, res should be a list with a label and a message
-
-    #Action code ends here
-    if "actor" in res:
-        if res['actor'] is None:
-            session.pop("actor", None)
-        else:
-            session['actor'] = res['actor']
-
-
-    return json.dumps(res)
-
 @LinkEvents.route('/linkevents/AGenerarCertificado')
 def AGenerarCertificado():
     results = [{'label':'/VEvento', 'msg':[ur'Certificado generado']}, {'label':'/VEvento', 'msg':[ur'Error']}, ]
@@ -342,7 +364,6 @@ def AReserveEvent():
         else:
             session['actor'] = res['actor']
 
-    print "AQUI", res
     return json.dumps(res)
 
 
@@ -378,17 +399,6 @@ def AVerifyAssitance():
             session['actor'] = res['actor']
     return json.dumps(res)
 
-@LinkEvents.route('/linkevents/VEditEvent')
-def VEditEvent():
-    res = {}
-    if "actor" in session:
-        res['actor']=session['actor']
-    #Action code goes here, res should be a JSON structure
-
-
-    #Action code ends here
-    return json.dumps(res)
-
 
 @LinkEvents.route('/linkevents/VListEvents')
 def VListEvents():
@@ -409,9 +419,9 @@ def VListEvents():
 def VListUsers():
 
     params = request.args
-    print request.args
+
     eventid = params.get('requestedUser')
-    print eventid
+
 
     if eventid is None:
         users = User.all()
@@ -458,7 +468,6 @@ def VEvento():
             res['reservado'] = 0
     #Action code goes here, res should be a JSON structure
 
-    print res
 
     #Action code ends here
     return json.dumps(res)
@@ -466,7 +475,6 @@ def VEvento():
 @LinkEvents.route('/linkevents/VShowUser')
 def VShowUser():
 
-    print request
     userId = request.args.get('user')
 
     res = {}

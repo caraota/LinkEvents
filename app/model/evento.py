@@ -21,7 +21,6 @@ def crear_pdf(datos):
 	n = open(nombre, 'wb')
 	try:
 		pisa.CreatePDF(StringIO(datos.encode('utf-8')), n)
-		print nombre
 		return nombre
 	except Exception as e:
 		print 'Error'
@@ -46,7 +45,6 @@ class Evento:
 		cursor = db.cursor()
 		try:
 			sql = 'INSERT INTO %s (eventoid, nombre, descripcion, fecha, lugar, capacidad, afiche) VALUES (NULL,"%s","%s","%s","%s","%s","%s")' % (TABLA, self.nombre, self. descripcion, self.fecha, self.lugar, self.capacidad, self.afiche)
-			print "\n" + sql + "\n"
 			cursor.execute(sql)			
 			db.commit()
 			return True
@@ -55,15 +53,20 @@ class Evento:
 			print e.message
 			return False
 
-	def update(self, att):
+	@staticmethod
+	def update(eventid, att):
 		sql = 'UPDATE %s SET ' % TABLA
+
 		last = len(att.keys())
 		for idx, attr in enumerate(att.keys()):
-			sql += str(sttr) + ' = "' + str(attrs[attr]) + '"'
+			sql += str(attr) + ' = "' + str(att[attr]) + '"'
 			if idx != last-1:
 				sql += ', '
-		sql += 'WHERE eventoid="' + str(self.eventid) + '"'
+
+		sql += 'WHERE eventoid = "' + str(eventid) + '"'
+
 		print "\n" + sql + "\n"
+
 		db = get_database()
 		cursor = db.cursor()
 		try:
@@ -78,7 +81,6 @@ class Evento:
 	@staticmethod
 	def get(eventoid):
 		sql = 'SELECT * FROM %s WHERE eventoid="%s"' % (TABLA,eventoid)
-		print "\n" + sql + "\n"		
 		db = get_database()
 		cursor = db.cursor()
 		cursor.execute(sql)
@@ -106,7 +108,6 @@ class Evento:
 	@staticmethod
 	def ultimo():
 		sql = 'SELECT eventoid FROM %s ORDER BY eventoid DESC LIMIT 1' % (TABLA)
-		print "\n" + sql + "\n"
 		db = get_database()
 		cursor = db.cursor()
 		cursor.execute(sql)

@@ -167,42 +167,25 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
         //    deferred.resolve(res);
         //    return deferred.promise;
     };
-    this.AEditEvent = function(fEvent) {
-        return  $http({
-            url: "linkevents/AEditEvent",
-            data: fEvent,
-            method: 'POST',
-            headers: { 'Content-Type': 'multipart/form-data' },
-            transformRequest: function (data, headersGetter) {
-                var formData = new FormData();
-                angular.forEach(data, function (value, key) {
-                    formData.append(key, value);
-                });
 
-                var headers = headersGetter();
-                delete headers['Content-Type'];
-
-                return formData;
-            }    });
-            //    var labels = ["/VShowEvent", ];
-            //    var res = labels[0];
-            //    var deferred = $q.defer();
-            //    deferred.resolve(res);
-            //    return deferred.promise;
-    };
-
-    this.VEditEvent = function(args) {
+    this.VEditarEvento = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'linkevents/VEditEvent',
+            url: 'linkevents/VEditarEvento',
             method: 'GET',
             params: args
         });
-        //    var res = {};
-        //    var deferred = $q.defer();
-        //    deferred.resolve(res);
-        //    return deferred.promise;
     };
+
+    this.AEditarEvento = function(fEvento,eventoid) {
+        return  $http.post( 
+            "/linkevents/AEditarEvento",
+            { data: {fEvento,eventoid} }
+           );
+    };
+
+
+
 
     this.AReserveEvent = function(args) {
         if(typeof args == 'undefined') args={};

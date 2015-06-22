@@ -6,8 +6,8 @@ LinkEventsModule.config(function ($routeProvider) {
                 controller: 'ShowEventController',
                 templateUrl: 'app/LinkEvents/event/show.html'
             }).when('/events/edit/:id', {
-                controller: 'VEditEventController',
-                templateUrl: 'app/LinkEvents/VEditEvent.html'
+                controller: 'VEditarEventoController',
+                templateUrl: 'app/LinkEvents/VEditarEvento.html'
             }).when('/events/new', {
                 controller: 'RegisterEventController',
                 templateUrl: 'app/LinkEvents/event/new.html'

@@ -1,13 +1,10 @@
 LinkEventsModule.config(function ($routeProvider) {
-    $routeProvider.when('/eventos', {
-                controller: 'ListarEventosController',
-                templateUrl: 'app/LinkEvents/evento/listar.html'
-            }).when('/VEvento/:id', {
+    $routeProvider.when('/VEvento/:id', {
                 controller: 'VEventoController',
                 templateUrl: 'app/LinkEvents/VEvento.html'
-            }).when('/events/edit/:id', {
+            }).when('/VEditarEvento/:id', {
                 controller: 'VEditarEventoController',
-                templateUrl: 'app/LinkEvents/VEditEvent.html'
+                templateUrl: 'app/LinkEvents/VEditarEvento.html'
             }).when('/VCrearEvento', {
                 controller: 'VCrearEventoController',
                 templateUrl: 'app/LinkEvents/VCrearEvento.html'
@@ -19,7 +16,6 @@ LinkEventsModule.controller('VCrearEventoController',
                                'LinkEventsService', 
                                function ($scope, $location, $route, 
                                          flash, LinkEventsService) {
-
       $scope.msg = '';
       $scope.fEvento = {};
 
@@ -54,34 +50,6 @@ LinkEventsModule.controller('VCrearEventoController',
           });
         }
       };
-}]);
-
-LinkEventsModule.controller('ListEventsController', 
-        ['$scope', '$location', '$route', 'flash', 'LinkEventsService',
-    function ($scope, $location, $route, flash, LinkEventsService) {
-      $scope.msg = '';
-      LinkEventsService.VListEvents().then(function (object) {
-        $scope.res = object.data;
-        for (var key in object.data) {
-            $scope[key] = object.data[key];
-        }
-        if ($scope.logout) {
-            $location.path('/');
-        }
-      });
-
-      $scope.VRegisterEvent0 = function() {
-        $location.path('/events/new');
-      };
-
-      $scope.VPrincipal1 = function() {
-        $location.path('/VPrincipal');
-      };
-
-      $scope.show = function(eventId) {
-        $location.path('/event/'+eventId);
-      };
-
 }]);
 
 LinkEventsModule.controller('VEventoController', 
@@ -137,12 +105,6 @@ LinkEventsModule.controller('VEventoController',
           if (msg) flash(msg);
 
           $location.path('/users/'+eventId);
-          /*var label = object.data["label"];
-          if (label == '/VShowEvent') {
-              $route.reload();
-          } else {
-              $location.path(label);
-          }*/
         });};
 
       // Generate the credentials 
@@ -172,8 +134,47 @@ LinkEventsModule.controller('VEventoController',
           link.click();
       });};
 
-      $scope.VEvento5 = function(eventId) {
-        $location.path('/VEvento/'+eventoid);
+      $scope.VEditarEvento = function(eventid) {
+        $location.path('/VEditarEvento/'+eventid);
+      };
+    }]);
+
+
+
+LinkEventsModule.controller('VEditarEventoController', 
+                              ['$scope', '$location', '$route', 
+                               'flash', '$routeParams', 'LinkEventsService', 
+                               function ($scope, $location, $route, flash, 
+                                         $routeParams, LinkEventsService) {
+      $scope.msg = '';
+      $scope.fEvento = {};
+      LinkEventsService.VEditarEvento({"eventoid":$routeParams.id}).then(function (object) {
+        $scope.res = object.data;
+        for (var key in object.data) {
+            $scope[key] = object.data[key];
+        }
+        if ($scope.logout) {
+            $location.path('/');
+        }
+      });
+
+      $scope.AEditarEvento1 = function(isValid) {
+        if (isValid) {
+          LinkEventsService.AEditarEvento($scope.fEvento,$routeParams.id).then(function (object) {
+              var msg = object.data["msg"];
+              if (msg) flash(msg);
+              var label = object.data["label"];
+              if (label == '/VEditarEvento') {
+                  $route.reload();
+              } else {
+                  $location.path(label);
+              }
+          });
+        }
+      };
+
+      $scope.VPrincipal = function() {
+        $location.path('/VPrincipal');
       };
 
     }]);
