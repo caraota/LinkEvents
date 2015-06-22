@@ -5,11 +5,16 @@
 	Modificar
 
 	Mostrar
-		Disponibilidad
-		ReservarEvento
+		Condiciones (cuando mostrar cada boton)
 		ObtenerCredencial (falta diseno del pdf y usuario)
         ObtenerCertificado (falta diseno del pdf y usuario)
-		Listar Participante
+	
+	Listar Participante
+
+    Reservar
+
+    Cancelar reserva
+
 
 - PARTICIPANTE
 	Editar (opcional)
