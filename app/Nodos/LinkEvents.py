@@ -159,15 +159,15 @@ def AConfirmarAsist():
     eventoid = request.args.get('eventoid')
     usuario = request.args.get('username')
 
-    if eventid is None:
-        res = {'label':'/VListarParticipantes', 'msg':[ur'Error']}
+    if eventoid is None:
+        res = {'label':'/VListarUsuarios', 'msg':[ur'Error']}
     else:
         asiste = Asiste(usuario,eventoid)
 
         if evento.confirmarAsist():
-            res = {'label':'/VListarParticipantes', 'msg':[ur'Asistencia confirmada.']}
+            res = {'label':'/VListarUsuarios', 'msg':[ur'Asistencia confirmada.']}
         else:
-            res = {'label':'/VListarParticipantes', 'msg':[ur'Error.']}
+            res = {'label':'/VListarUsuarios', 'msg':[ur'Error.']}
 
     #Action code ends here
     if "actor" in res:
@@ -310,7 +310,7 @@ def AEliminarReserva():
         if user is None:
             user = "Default"
 
-        evento      = Evento.get(eventoid)
+        evento = Evento.get(eventoid)
         asiste = Asiste.get(user, evento.eventoid)
 
         if asiste is not None and evento.update(eventoid,{ 'capacidad' : evento.capacidad + 1 }):
@@ -418,23 +418,4 @@ def AReservarEvento():
         else:
             session['actor'] = res['actor']
 
-    return json.dumps(res)
-
-
-@LinkEvents.route('/linkevents/AVerifyAssitance')
-def AVerifyAssitance():
-    #POST/PUT parameters
-    params = request.get_json()
-    results = [{'label':'/VListarUsuarios', 'msg':[ur'Asistencia verificada']}, {'label':'/VListarUsuarios', 'msg':[ur'Error al verificar asistencia']}, ]
-    res = results[0]
-    #Action code goes here, res should be a list with a label and a message
-
-
-    #Action code ends here
-
-    if "actor" in res:
-        if res['actor'] is None:
-            session.pop("actor", None)
-        else:
-            session['actor'] = res['actor']
     return json.dumps(res)
