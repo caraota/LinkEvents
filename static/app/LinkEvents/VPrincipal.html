@@ -53,14 +53,13 @@
     </thead>
     <tbody ng-repeat="events in evento">
     <tr>
-        <td align="center"> {{events.eventoid}} </td>
-        <td align="center"> {{events.nombre}} </td>
+        <td align="center"> {{events.eventoid}} </a></td>
+        <td align="center"> <a class="btn btn-default" ng-click="VEvento(events.eventoid)">{{events.nombre}}</a></td>
         <td align="center"> {{events.fecha}} </td>
         <td align="center"> {{events.lugar}} </td>
         <td align="center"> {{events.capacidad}} </td>
         <td class="btn-group" role="group">
-            <a class="btn btn-default"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-            <a class="btn btn-default" ng-click="AEliminarEvento2(events.eventoid)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+            <a class="btn btn-danger" ng-click="AEliminarEvento2(events.eventoid)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
             </span>
         </td>
     </tr>
