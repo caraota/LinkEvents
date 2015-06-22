@@ -403,8 +403,8 @@ def AReservarEvento():
         evento = Evento.get(eventoid)
         asiste = Asiste.get(user, evento.eventoid)
         
-        if asiste is None and evento.update({ 'capacidad' : evento.capacidad-1 }):
-            asiste = Asiste(user, evento.eventoid)
+        if asiste is None and Evento.update(eventoid,{ 'capacidad' : evento.capacidad-1 }):
+            asiste = Asiste(evento.eventoid, user)
             if asiste.save():
                 res = {'label':'/VEvento', 'msg':[ur'Evento reservado']}
             else:

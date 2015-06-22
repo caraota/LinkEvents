@@ -7,13 +7,17 @@ TABLA = "ASISTE"
 
 class Asiste:
 
-	def __init__(self, data):
-		self.usuario = data.get('username')
+	#def __init__(self, data):
+		#self.usuario = data.get('username')
 		#self.evento = evento
-		self.password = data.get('password')
-		self.nombre = data.get('nombre')
-		self.apellido = data.get('apellido')
-		self.admin = data.get('admin')
+		#self.password = data.get('password')
+		#self.nombre = data.get('nombre')
+		#self.apellido = data.get('apellido')
+		#self.admin = data.get('admin')
+
+	def __init__(self, evento, usuario):
+		self.evento = evento
+		self.usuario = usuario
 
 	def save(self):
 		db = get_database()
