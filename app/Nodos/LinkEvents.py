@@ -145,6 +145,32 @@ def AEliminarEvento():
             session['actor'] = res['actor']
     return json.dumps(res)
 
+
+@LinkEvents.route('/linkevents/AConfirmarAsist')
+def AConfirmarAsist():
+    res = {}
+    eventoid = request.args.get('eventoid')
+    usuario = request.args.get('username')
+
+    if eventid is None:
+        res = {'label':'/VListarParticipantes', 'msg':[ur'Error']}
+    else:
+        asiste = Asiste(usuario,eventoid)
+
+        if evento.confirmarAsist():
+            res = {'label':'/VListarParticipantes', 'msg':[ur'Asistencia confirmada.']}
+        else:
+            res = {'label':'/VListarParticipantes', 'msg':[ur'Error.']}
+
+    #Action code ends here
+    if "actor" in res:
+        if res['actor'] is None:
+            session.pop("actor", None)
+        else:
+            session['actor'] = res['actor']
+    return json.dumps(res)
+
+
 @LinkEvents.route('/linkevents/AEditarEvento', methods=['POST'])
 def AEditarEvento():
     #Access to POST/PUT fields using request.form['name']
@@ -391,24 +417,6 @@ def AUsers():
         else:
             session['actor'] = res['actor']
     return json.dumps(res)
-
-@LinkEvents.route('/linkevents/AVerifyAssitance')
-def AVerifyAssitance():
-    #POST/PUT parameters
-    params = request.get_json()
-    results = [{'label':'/VListUsers', 'msg':[ur'Asistencia verificada']}, {'label':'/VListUsers', 'msg':[ur'Error al verificar asistencia']}, ]
-    res = results[0]
-    #Action code goes here, res should be a list with a label and a message
-
-
-    #Action code ends here
-    if "actor" in res:
-        if res['actor'] is None:
-            session.pop("actor", None)
-        else:
-            session['actor'] = res['actor']
-    return json.dumps(res)
-
 
 @LinkEvents.route('/linkevents/VListEvents')
 def VListEvents():

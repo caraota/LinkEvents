@@ -61,3 +61,18 @@ class Asiste:
 		else:
 			asiste = Asiste(fila[0], int(fila[1]))
 			return asiste			
+
+	@staticmethod
+	def confirmarAsist(usuario, evento):
+		sql = 'UPDATE %s SET asistio=1 WHERE participante="%s" AND evento="%s"' % (TABLA, usuario, evento)
+		print "\n" + sql + "\n"
+		db = get_database()
+		cursor = db.cursor()
+		try:
+			cursor.execute(sql)
+			db.commit()
+			return True
+		except Exception as e:
+			db.rollback()
+			print e.message
+			return False

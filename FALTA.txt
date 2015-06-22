@@ -10,6 +10,8 @@
 - PRIVILEGIOS
 	Admin -> crear, modificar, eliminar, marcar asistencia, listar participantes
 
+- Eventos del usuario
+
 - Arreglar widget cuando no hay PDF
 
 - Revision de Interfaz
