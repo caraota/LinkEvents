@@ -49,8 +49,17 @@ class Usuario:
 		return usuario and len(usuario)>0
 
 	@staticmethod
+	def esAdmin(username):
+		sql = 'SELECT username FROM %s WHERE username="%s" AND admin="True"' % (TABLA, username)
+		db = get_database()
+		cursor = db.cursor()
+		cursor.execute(sql)
+		usuario = cursor.fetchone()
+		return usuario and len(usuario)>0
+
+	@staticmethod
 	def get(username):
-		sql = 'SELECT * FROM %s WHERE username="%s"' % (TABLA,username)
+		sql = 'SELECT * FROM %s WHERE username="%s"' % (TABLA, username)
 		db = get_database()		
 		cursor = db.cursor()
 		cursor.execute(sql)

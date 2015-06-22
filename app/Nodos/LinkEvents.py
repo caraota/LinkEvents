@@ -21,10 +21,10 @@ def ACrearUsuario():
     results = [ {'label':'/usuario/iniciar_sesion', 'msg':[ur'El usuario fue registrado exitosamente.']}, 
                 {'label':'/usuario/nuevo', 'msg':[ur'Error al crear el usuario. Verifique los valores ingresados.']}, ]
 
-    if not('admin' in params.keys()):
-        params['admin'] = False
+    if not(('admin' in params.get('data'))):
+        params['data']['admin'] = False
 
-    user = Usuario(params['data']['username'],params['data']['password'],params['data']['nombre'],params['data']['apellido'],params['admin'])
+    user = Usuario(params['data']['username'],params['data']['password'],params['data']['nombre'],params['data']['apellido'],params['data']['admin'])
 
     if user.save():
         res = results[0]
@@ -121,6 +121,11 @@ def VPrincipal():
     print session.get('actor')
     if "actor" in session:
         res['actor']=session['actor']
+        admin = Usuario.esAdmin(res['actor'])
+        if admin is True:
+            res['admin'] = 0
+        else:
+            res['admin'] = 1        
         #events = map(lambda x: x.__dict__, Event.all_owned_by(session['actor']))
         events = map(lambda x: x.__dict__, Evento.all())
     else:
@@ -257,6 +262,11 @@ def VEvento():
         res['actor'] = session.get('actor')
         asiste = Asiste.get(res['actor'], eventoid)
         asistio = Asiste.asistio(res['actor'], eventoid)
+        admin = Usuario.esAdmin(res['actor'])
+        if admin is True:
+            res['admin'] = 0
+        else:
+            res['admin'] = 1
         if asiste is None:
             res['reservado'] = 1
         else:

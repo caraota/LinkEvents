@@ -56,14 +56,16 @@
                 </button>         
             </div>         
             </br> 
-            <button ng-click="VListarUsuarios2(evento.eventoid)" class="btn btn-md">
-                <span class="glyphicon glyphicon-user"></span>
-                &nbsp;Listar participantes
-            </button>
-            <button ng-click="VEditarEvento(evento.eventoid)" class="btn btn-md">
-                <span class="glyphicon glyphicon-edit"></span>
-                &nbsp;Editar Evento
-            </button>   
+            <div ng-hide="admin">            
+                <button ng-click="VListarUsuarios2(evento.eventoid)" class="btn btn-md">
+                    <span class="glyphicon glyphicon-user"></span>
+                    &nbsp;Listar participantes
+                </button>
+                <button ng-click="VEditarEvento(evento.eventoid)" class="btn btn-md">
+                    <span class="glyphicon glyphicon-edit"></span>
+                    &nbsp;Editar Evento
+                </button>   
+            </div>
         </div>
         </br>
         <div align="center" ng-hide="evento.afiche == 'None'">
