@@ -8,7 +8,6 @@
 - PRIVILEGIOS
 	Admin -> crear, modificar, eliminar, marcar asistencia, listar participantes
 
-
 - Revision de Interfaz
 
 - Revision de codigo

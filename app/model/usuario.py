@@ -92,7 +92,7 @@ class Usuario:
 
 	@staticmethod
 	def reservas(evento):
-		sql = 'SELECT participante FROM %s WHERE event="%s"' % (TABLA_ASISTE, evento)
+		sql = 'SELECT participante FROM %s WHERE evento="%s"' % (TABLA_ASISTE, evento)
 		db = get_database()		
 		cursor = db.cursor()
 		cursor.execute(sql)

@@ -127,6 +127,19 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
         //    deferred.resolve(res);
         //    return deferred.promise;
     };
+    this.AConfirmarAsist = function(args) {
+        if(typeof args == 'undefined') args={};
+        return $http({
+            url: 'linkevents/AConfirmarAsist',
+            method: 'GET',
+            params: args
+        });
+        //    var labels = ["/VListEvents", "/VListEvents", ];
+        //    var res = labels[0];
+        //    var deferred = $q.defer();
+        //    deferred.resolve(res);
+        //    return deferred.promise;
+    };    
     this.VEvento = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
