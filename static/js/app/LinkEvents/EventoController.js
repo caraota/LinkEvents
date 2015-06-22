@@ -159,31 +159,30 @@ LinkEventsModule.controller('VEventoController',
         });};
 
       // Generate the credentials 
-      $scope.GenerateCredentials = function() {
-        LinkEventsService.AGenerateCredentials({"eventId" : $routeParams.id}).then(function (object) {
+      $scope.GenerarCredencial = function() {
+        LinkEventsService.AGenerarCredencial({"eventoid" : $routeParams.id}).then(function (object) {
           var msg = object.data["msg"];
           if (msg) flash(msg);
-          var credentials_link = object.data["credentials"]
-          var download_link    = document.createElement('a');
-          download_link.name   = 'credenciales.pdf';
-          download_link.href   = credentials_link;
-          download_link.target = "_blank";
-          download_link.click();
+          var credencial_link = object.data["credencial"]
+          var link_descarga = document.createElement('a');
+          link_descarga.name = 'generarcredencial.pdf';
+          link_descarga.href = credencial_link;
+          link_descarga.target = "_blank";
+          link_descarga.click();
         });};
         
       // Generate the certificate 
-      $scope.GenerateCertificate = function() {
-        LinkEventsService.AGenerateCertificate({"eventId" : $routeParams.id}).then(function (object) {
+      $scope.GenerarCertificado = function() {
+        LinkEventsService.AGenerarCertificado({"eventoid" : $routeParams.id}).then(function (object) {
           var msg = object.data["msg"];
           if (msg) flash(msg);
           var label = object.data["label"];
-          var certificate_link = object.data["certificate"]
-
-          var download_link    = document.createElement('a');
-          download_link.name   = 'certificado.pdf';
-          download_link.href   = certificate_link;
-          download_link.target = "_blank";
-          download_link.click();
+          var certificado_ruta = object.data["certificado"]
+          var link    = document.createElement('a');
+          link.name   = 'certificado.pdf';
+          link.href   = certificado_ruta;
+          link.target = "_blank";
+          link.click();
       });};
 
       $scope.VEvento5 = function(eventId) {

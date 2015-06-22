@@ -11,12 +11,6 @@ LinkEventsModule.config(function ($routeProvider) {
             }).when('/VListUsers/:requestedUser', {
                 controller: 'VListUsersController',
                 templateUrl: 'app/LinkEvents/VListUsers.html'
-            }).when('/VCredential', {
-                controller: 'VCredentialController',
-                templateUrl: 'app/LinkEvents/VCredential.html'
-            }).when('/VCertificate', {
-                controller: 'VCertificateController',
-                templateUrl: 'app/LinkEvents/VCertificate.html'
             });
 });
 
@@ -149,42 +143,6 @@ LinkEventsModule.controller('VEditEventController',
               }
           });
         }
-      };
-
-    }]);
-LinkEventsModule.controller('VCredentialController', 
-        ['$scope', '$location', '$route', 'flash', 'LinkEventsService',
-    function ($scope, $location, $route, flash, LinkEventsService) {
-      $scope.msg = '';
-      LinkEventsService.VCredential().then(function (object) {
-        $scope.res = object.data;
-        for (var key in object.data) {
-            $scope[key] = object.data[key];
-        }
-        if ($scope.logout) {
-            $location.path('/');
-        }
-      });
-      $scope.VShowEvent0 = function(eventId) {
-        $location.path('/VShowEvent/'+eventId);
-      };
-
-    }]);
-LinkEventsModule.controller('VCertificateController', 
-        ['$scope', '$location', '$route', 'flash', 'LinkEventsService',
-    function ($scope, $location, $route, flash, LinkEventsService) {
-      $scope.msg = '';
-      LinkEventsService.VCertificate().then(function (object) {
-        $scope.res = object.data;
-        for (var key in object.data) {
-            $scope[key] = object.data[key];
-        }
-        if ($scope.logout) {
-            $location.path('/');
-        }
-      });
-      $scope.VShowEvent0 = function(eventId) {
-        $location.path('/VShowEvent/'+eventId);
       };
 
     }]);
