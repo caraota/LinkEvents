@@ -7,19 +7,7 @@ TABLA = "ASISTE"
 
 class Asiste:
 
-	#def __init__(self, data):
-		#self.usuario = data.get('username')
-		#self.evento = evento
-		#self.password = data.get('password')
-		#self.nombre = data.get('nombre')
-		#self.apellido = data.get('apellido')
-		#self.admin = data.get('admin')
-
-	def __init__(self, evento, usuario):
-		self.evento = evento
-		self.usuario = usuario
-
-	def nuevo(self, usuario,evento):
+	def __init__(self, usuario, evento):
 		self.usuario = usuario
 		self.evento = evento
 
@@ -59,7 +47,7 @@ class Asiste:
 		if fila is None:
 			return None
 		else:
-			asiste = Asiste.nuevo(fila[0], int(fila[1]))
+			asiste = Asiste(fila[0], int(fila[1]))
 			return asiste
 
 	@staticmethod
@@ -87,7 +75,7 @@ class Asiste:
 		if fila is None:
 			return None
 		else:
-			asiste = Asiste.nuevo(fila[0], int(fila[1]))
+			asiste = Asiste(fila[0], int(fila[1]))
 			return asiste			
 
 	@staticmethod
