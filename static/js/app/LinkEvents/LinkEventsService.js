@@ -185,7 +185,6 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
            );
     };
 
-
     this.AReservarEvento = function(args) {
 
         if(typeof args == 'undefined') args={};
@@ -289,5 +288,14 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
         //    var deferred = $q.defer();
         //    deferred.resolve(res);
         //    return deferred.promise;
+    };
+
+        this.AEliminarEvento = function(args) {
+        if(typeof args == 'undefined') args={};
+        return $http({
+            url: 'linkevents/AEliminarEvento',
+            method: 'GET',
+            params: args
+        });
     };
 }]);
