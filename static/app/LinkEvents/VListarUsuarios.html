@@ -27,6 +27,7 @@
         <th class="text-center">Usuario</th>
         <th class="text-center">Nombre</th>
         <th class="text-center">Apellido</th>
+        <th class="text-center"> </th>
     </thead>
 
     <tbody ng-repeat="user in usuarios">
@@ -35,6 +36,14 @@
         <td align="center"> {{user.usuario}} </a></td>
         <td align="center"> {{user.nombre}} </td>
         <td align="center"> {{user.apellido}} </td>
+        <td> 
+            <!-- <div ng-show="reservado"> -->
+                <button ng-click="ConfirmarAsist()" class="btn btn-md">
+                    <span class="glyphicon glyphicon-check"></span>
+                    &nbsp;Confirmar Asistencia
+                </button>
+            <!-- </div>  -->
+         </td>
     </tr>
 
     <tbody>
