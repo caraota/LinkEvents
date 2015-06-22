@@ -50,3 +50,17 @@ class Asiste:
 		else:
 			asiste = Asiste(fila[0], int(fila[1]))
 			return asiste
+
+	@staticmethod
+	def asistio(usuario, evento):
+		sql = 'SELECT * FROM %s WHERE participante="%s" AND evento="%s" AND asistio=1' % (TABLA, usuario, evento)
+		print "\n" + sql + "\n"
+		db = get_database()
+		cursor = db.cursor()
+		cursor.execute(sql)
+		fila = cursor.fetchone()
+		if fila is None:
+			return None
+		else:
+			asiste = Asiste(fila[0], int(fila[1]))
+			return asiste			

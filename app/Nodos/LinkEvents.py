@@ -182,24 +182,24 @@ def ALogOutUser():
             session['actor'] = res['actor']
     return json.dumps(res)
 
-@LinkEvents.route('/linkevents/ACancelReservation')
-def ACancelReservation():
-    eventid = request.args.get('eventId')
-    if eventid is None:
-        res = {'label':'/VShowEvent', 'msg':[ur'Error al cancelar la reserva del evento']}
+@LinkEvents.route('/linkevents/AEliminarReserva')
+def AEliminarReserva():
+    eventoid = request.args.get('eventoid')
+    if eventoid is None:
+        res = {'label':'/VEvento', 'msg':[ur'Error']}
     else:
         user = session.get('actor')
         if user is None:
             user = "Default"
 
-        event      = Event.get(eventid)
-        assistance = Assistance.get(user, event.eventid)
+        evento      = Evento.get(eventoid)
+        asiste = Asiste.get(user, evento.eventoid)
 
-        if assistance is not None and event.update({ 'n_participants' : event.n_participants + 1 }):
-            assistance.delete()
-            res = {'label':'/VShowEvent', 'msg':[ur'Reserva cancelada exitosamente']}
+        if asiste is not None and evento.update({ 'capacidad' : evento.capacidad + 1 }):
+            asiste.delete()
+            res = {'label':'/VEvento', 'msg':[ur'Reserva eliminada']}
         else:
-            res = {'label':'/VShowEvent', 'msg':[ur'Error al cancelar la reserva del evento']}
+            res = {'label':'/VEvento', 'msg':[ur'Error']}
 
 
     #Action code ends here
@@ -459,12 +459,18 @@ def VEvento():
         res['evento'] = Evento.get(eventoid).__dict__
 
     if "actor" in session:
-        res['actor'] = session['actor']
-        asiste   = Asiste.get(res['actor'], eventoid)
+        res['actor'] = session.get('actor')
+        asiste = Asiste.get(res['actor'], eventoid)
+        asistio = Asiste.asistio(res['actor'], eventoid)
         if asiste is None:
             res['reservado'] = 1
         else:
             res['reservado'] = 0
+        if asistio is None:
+            res['asistio'] = 1
+        else:
+            res['asistio'] = 0
+
     #Action code goes here, res should be a JSON structure
 
     print res

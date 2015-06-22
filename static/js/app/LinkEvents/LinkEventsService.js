@@ -284,10 +284,10 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
         //    return deferred.promise;
     };
 
-    this.ACancelReservation = function(args) {
+    this.AEliminarReserva = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'linkevents/ACancelReservation',
+            url: 'linkevents/AEliminarReserva',
             method: 'GET',
             params: args
         });

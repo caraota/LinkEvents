@@ -2,9 +2,6 @@ LinkEventsModule.config(function ($routeProvider) {
     $routeProvider.when('/VPrincipal', {
                 controller: 'VPrincipalController',
                 templateUrl: 'app/LinkEvents/VPrincipal.html'
-            }).when('/VShowEvent/:eventId', {
-                controller: 'VShowEventController',
-                templateUrl: 'app/LinkEvents/VShowEvent.html'
             }).when('/VEditEvent', {
                 controller: 'VEditEventController',
                 templateUrl: 'app/LinkEvents/VEditEvent.html'
