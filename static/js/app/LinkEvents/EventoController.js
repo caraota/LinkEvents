@@ -2,9 +2,9 @@ LinkEventsModule.config(function ($routeProvider) {
     $routeProvider.when('/eventos', {
                 controller: 'ListarEventosController',
                 templateUrl: 'app/LinkEvents/evento/listar.html'
-            }).when('/evento/:id', {
-                controller: 'EventoController',
-                templateUrl: 'app/LinkEvents/event/show.html'
+            }).when('/VEvento/:id', {
+                controller: 'VEventoController',
+                templateUrl: 'app/LinkEvents/VEvento.html'
             }).when('/events/edit/:id', {
                 controller: 'VEditarEventoController',
                 templateUrl: 'app/LinkEvents/VEditEvent.html'
@@ -97,13 +97,13 @@ LinkEventsModule.controller('ListEventsController',
         });};
 }]);
 
-LinkEventsModule.controller('ShowEventController', 
+LinkEventsModule.controller('VEventoController', 
                               ['$scope', '$location', '$route', 
                                'flash', '$routeParams', 'LinkEventsService', 
                                function ($scope, $location, $route, flash, 
                                          $routeParams, LinkEventsService) {
       $scope.msg = '';
-      LinkEventsService.VShowEvent({"eventId":$routeParams.id}).then(function (object) {
+      LinkEventsService.VEvento({"eventoid":$routeParams.id}).then(function (object) {
         $scope.res = object.data;
         for (var key in object.data) {
             $scope[key] = object.data[key];
@@ -186,8 +186,8 @@ LinkEventsModule.controller('ShowEventController',
           download_link.click();
       });};
 
-      $scope.VShowEvent5 = function(eventId) {
-        $location.path('/VShowEvent/'+eventId);
+      $scope.VEvento5 = function(eventId) {
+        $location.path('/VEvento/'+eventoid);
       };
 
     }]);

@@ -10,7 +10,7 @@ SUBIDAS = './cargar_pdf/'
 EXTENSIONES = set(['pdf'])
 
 def subidas():
-	return SUBIDAS;
+	return SUBIDAS
 
 def archivo_permitido(archivo):
 	return '.' in archivo and archivo.rsplit('.', 1)[1] in EXTENSIONES

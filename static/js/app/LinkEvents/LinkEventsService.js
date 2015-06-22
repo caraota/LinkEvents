@@ -127,10 +127,10 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
         //    deferred.resolve(res);
         //    return deferred.promise;
     };
-    this.VShowEvent = function(args) {
+    this.VEvento = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'linkevents/VShowEvent',
+            url: 'linkevents/VEvento',
             method: 'GET',
             params: args
         });

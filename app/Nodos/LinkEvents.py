@@ -440,22 +440,22 @@ def VRegisterEvent():
     #Action code ends here
     return json.dumps(res)
 
-@LinkEvents.route('/linkevents/VShowEvent')
-def VShowEvent():
+@LinkEvents.route('/linkevents/VEvento')
+def VEvento():
 
-    eventid = request.args.get('eventId')
+    eventoid = request.args.get('eventoid')
 
     res = {}
-    if eventid is not None:
-        res['event'] = Event.get(eventid).__dict__
+    if eventoid is not None:
+        res['evento'] = Evento.get(eventoid).__dict__
 
     if "actor" in session:
         res['actor'] = session['actor']
-        assistance   = Assistance.get(res['actor'], eventid)
-        if assistance is None:
-            res['reserved'] = 1
+        asiste   = Asiste.get(res['actor'], eventoid)
+        if asiste is None:
+            res['reservado'] = 1
         else:
-            res['reserved'] = 0
+            res['reservado'] = 0
     #Action code goes here, res should be a JSON structure
 
     print res
