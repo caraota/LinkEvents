@@ -92,13 +92,14 @@ class Evento:
 	@staticmethod
 	def all():
 		sql = 'SELECT * FROM %s' % (TABLA)
-		print "\n" + sql + "\n"
 		db = get_database()
 		cursor = db.cursor()
 		cursor.execute(sql)
 		filas = cursor.fetchall()
-		data = map(lambda x:{'eventoid':int(x[0]),'nombre':x[1],'descripcion':x[2],'fecha':x[3],'lugar':x[4],'capacidad':int(x[5]),'afiche':x[6]})
+		
+		data = map(lambda x:{'eventoid':int(x[0]),'nombre':x[1],'descripcion':x[2],'fecha':x[3],'lugar':x[4],'capacidad':int(x[5]),'afiche':x[6]},filas)
 		eventos = map(lambda x: Evento(x), data)
+		
 		return eventos
 
 	@staticmethod
@@ -110,3 +111,17 @@ class Evento:
 		cursor.execute(sql)
 		fila = cursor.fetchone()
 		return fila[0] or None
+
+	def eliminar(self):
+		sql = 'DELETE FROM %s WHERE eventoid = %d' % (TABLA, self.eventoid)
+		try:
+			db = get_database()
+			cursor = db.cursor()			
+			cursor.execute(sql)
+			db.commit()
+			return True
+		except Exception as e:
+			db.rollback()
+			print e.message
+			return False
+
