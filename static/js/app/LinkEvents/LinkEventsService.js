@@ -113,33 +113,6 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
         //    deferred.resolve(res);
         //    return deferred.promise;
     };
-
-    this.ADeleteEvent = function(args) {
-        if(typeof args == 'undefined') args={};
-        return $http({
-            url: 'linkevents/ADeleteEvent',
-            method: 'GET',
-            params: args
-        });
-        //    var labels = ["/VListEvents", "/VListEvents", ];
-        //    var res = labels[0];
-        //    var deferred = $q.defer();
-        //    deferred.resolve(res);
-        //    return deferred.promise;
-    };
-    this.AConfirmarAsist = function(args) {
-        if(typeof args == 'undefined') args={};
-        return $http({
-            url: 'linkevents/AConfirmarAsist',
-            method: 'GET',
-            params: args
-        });
-        //    var labels = ["/VListEvents", "/VListEvents", ];
-        //    var res = labels[0];
-        //    var deferred = $q.defer();
-        //    deferred.resolve(res);
-        //    return deferred.promise;
-    };    
     this.VEvento = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
@@ -289,21 +262,7 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
         //    deferred.resolve(res);
         //    return deferred.promise;
     };
-    this.AVerifyAssitance = function(args) {
-        if(typeof args == 'undefined') args={};
-        return $http({
-            url: 'linkevents/AVerifyAssitance',
-            method: 'GET',
-            params: args
-        });
-        //    var labels = ["/VListarUsuarios", "/VListarUsuarios", ];
-        //    var res = labels[0];
-        //    var deferred = $q.defer();
-        //    deferred.resolve(res);
-        //    return deferred.promise;
-    };
-
-        this.AEliminarEvento = function(args) {
+    this.AEliminarEvento = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
             url: 'linkevents/AEliminarEvento',
@@ -311,4 +270,17 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
             params: args
         });
     };
+    this.AConfirmarAsist = function(args) {
+        if(typeof args == 'undefined') args={};
+        return $http({
+            url: 'linkevents/AConfirmarAsist',
+            method: 'GET',
+            params: args
+        });
+        //    var labels = ["/VListEvents", "/VListEvents", ];
+        //    var res = labels[0];
+        //    var deferred = $q.defer();
+        //    deferred.resolve(res);
+        //    return deferred.promise;
+    };        
 }]);

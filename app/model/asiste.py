@@ -77,8 +77,8 @@ class Asiste:
 			return asiste			
 
 	@staticmethod
-	def confirmarAsist(usuario, evento):
-		sql = 'UPDATE %s SET asistio=1 WHERE participante="%s" AND evento="%s"' % (TABLA, usuario, evento)
+	def confirmarAsist(self):
+		sql = 'UPDATE %s SET asistio=1 WHERE participante="%s" AND evento="%s"' % (TABLA, self.usuario, self.evento)
 		print "\n" + sql + "\n"
 		db = get_database()
 		cursor = db.cursor()
