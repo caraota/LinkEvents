@@ -159,24 +159,35 @@ def AEliminarEvento():
     return json.dumps(res)
 
 
+
+
+
 @LinkEvents.route('/linkevents/AConfirmarAsist')
 def AConfirmarAsist():
     res = {}
-    eventoid = request.args.get('eventid')
+    evento = request.args.get('evento')
     usuario = request.args.get('usuario')
 
-    print eventoid
-    print usuario
+    # Obtener nombre del usuario
+    usuario1 = usuario.split(':',1);
+    usuario2 = usuario1[1].replace("{","")
+    usuario3 = usuario2.replace("}","")
+    user = usuario3.replace("\"","")
+
+    # Obtener numero del evento
+    evento1 = evento.split(':',1);
+    evento2 = evento1[1].replace("{","")
+    evento3 = evento2.replace("}","")
+    eventoid = evento3.replace("\"","")
+
 
     if eventoid is None:
-        res = {'label':'/VListarUsuarios', 'msg':[ur'Error']}
+        res = {'label':'/VListarUsuarios/'+eventoid, 'msg':[ur'Error al confirmar la asistencia.']}
     else:
-        asiste = Asiste(usuario,eventoid)
-
-        if asiste.confirmarAsist():
-            res = {'label':'/VListarUsuarios', 'msg':[ur'Asistencia confirmada.']}
+        if Asiste.confirmarAsistencia(user,eventoid):
+            res = {'label':'/VListarUsuarios/'+eventoid, 'msg':[ur'Asistencia confirmada.']}
         else:
-            res = {'label':'/VListarUsuarios', 'msg':[ur'Error.']}
+            res = {'label':'/VListarUsuarios/'+eventoid, 'msg':[ur'Error al confirmar la asistencia.']}
 
     #Action code ends here
     if "actor" in res:

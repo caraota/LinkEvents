@@ -77,8 +77,8 @@ class Asiste:
 			return asiste			
 
 	@staticmethod
-	def confirmarAsist(self):
-		sql = 'UPDATE %s SET asistio=1 WHERE participante="%s" AND evento="%s"' % (TABLA, self.usuario, self.evento)
+	def confirmarAsistencia(usuario,evento):
+		sql = 'UPDATE %s SET asistio=1 WHERE participante="%s" AND evento="%s"' % (TABLA,usuario,evento)
 		print "\n" + sql + "\n"
 		db = get_database()
 		cursor = db.cursor()
@@ -101,16 +101,17 @@ class Listar:
  		self.nombre = data.get('nombre')
  		self.apellido = data.get('apellido')
  		self.admin = data.get('admin')
+ 		self.asistio = data.get('asistio')
 
 	@staticmethod
 	def all(evento):
-		sql = 'SELECT U.username, U.password, U.nombre, U.apellido, U.admin FROM ASISTE A, USUARIO U WHERE evento = "%s" AND A.participante = U.username' % (evento)
+		sql = 'SELECT U.username, U.password, U.nombre, U.apellido, U.admin, A.asistio FROM ASISTE A, USUARIO U WHERE evento = "%s" AND A.participante = U.username' % (evento)
 		db = get_database()
 		cursor = db.cursor()
 		cursor.execute(sql)
 		filas = cursor.fetchall()
 
-		data = map(lambda x:{'username':x[0],'password':x[1],'nombre':x[2],'apellido':x[3],'admin':x[4]},filas)
+		data = map(lambda x:{'username':x[0],'password':x[1],'nombre':x[2],'apellido':x[3],'admin':x[4],'asistio':x[5]},filas)
 
 		usuarios = map(lambda x: Listar(x), data)
 

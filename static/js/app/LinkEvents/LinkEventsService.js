@@ -291,12 +291,12 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
             params: args
         });
     };
-    this.AConfirmarAsist = function(args) {
+    this.AConfirmarAsist = function(evento,usuario) {
         if(typeof args == 'undefined') args={};
         return $http({
             url: 'linkevents/AConfirmarAsist',
             method: 'GET',
-            params: args
+            params: {evento,usuario}
         });
         //    var labels = ["/VListEvents", "/VListEvents", ];
         //    var res = labels[0];
