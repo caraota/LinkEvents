@@ -156,7 +156,7 @@ def ACancelReservation():
 
 @LinkEvents.route('/cargar_pdf/<filename>')
 def get_file(filename):
-    return send_from_directory(upload_folder(), filename)
+    return send_from_directory(subidas(), filename)
 
 @LinkEvents.route('/linkevents/ADeleteEvent')
 def ADeleteEvent():
@@ -429,8 +429,8 @@ def VListUsers():
     #Action code ends here
     return json.dumps(res)
 
-@LinkEvents.route('/linkevents/VRegisterEvent')
-def VRegisterEvent():
+@LinkEvents.route('/linkevents/VCrearEvento')
+def VCrearEvento():
     res = {}
     if "actor" in session:
         res['actor']=session['actor']
