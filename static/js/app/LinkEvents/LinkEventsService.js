@@ -177,7 +177,7 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
         });
     };
 
-<<<<<<< HEAD
+
     this.AEditarEvento = function(fEvento,eventoid) {
         return  $http.post( 
             "/linkevents/AEditarEvento",
@@ -186,12 +186,8 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
     };
 
 
-
-
-    this.AReserveEvent = function(args) {
-=======
     this.AReservarEvento = function(args) {
->>>>>>> 4a62a138588b07b867f0c3180ac1631b5d78318a
+
         if(typeof args == 'undefined') args={};
         return $http({
             url: 'linkevents/AReservarEvento',

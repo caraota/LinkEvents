@@ -59,12 +59,7 @@ LinkEventsModule.controller('VPrincipalController',
 
         $scope.VEvento = function(eventid) {
           $location.path('/VEvento/'+eventid);
-<<<<<<< HEAD
         };
-
-=======
-        };          
->>>>>>> 4a62a138588b07b867f0c3180ac1631b5d78318a
     }]);
 
 LinkEventsModule.controller('VListEventsController', 
