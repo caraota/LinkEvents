@@ -297,9 +297,8 @@ def VListarUsuarios():
 
     if "actor" in session:
         res['actor']=session['actor']
-        usuarios = map(lambda x: x.__dict__, Listar.all(eventoid))
-    else:
-        usuarios = map(lambda x: x.__dict__, Listar.all(eventoid))
+
+    usuarios = map(lambda x: x.__dict__, Listar.all(eventoid))
 
     res['usuarios'] = usuarios
  
