@@ -39,7 +39,7 @@ class Asiste:
 
 	@staticmethod
 	def get(usuario, evento):
-		sql = 'SELECT * FROM %s WHERE participante="%s" AND evento="%s"' % (TABLA, self.usuario, self.evento)
+		sql = 'SELECT * FROM %s WHERE participante="%s" AND evento="%s"' % (TABLA, usuario, evento)
 		print "\n" + sql + "\n"
 		db = get_database()
 		cursor = db.cursor()
