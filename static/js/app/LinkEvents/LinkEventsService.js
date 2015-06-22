@@ -114,14 +114,13 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
         //    return deferred.promise;
     };
 
-    this.AEliminarEvento = function(args) {
+    this.ADeleteEvent = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'linkevents/AEliminarEvento',
+            url: 'linkevents/ADeleteEvent',
             method: 'GET',
             params: args
         });
-
         //    var labels = ["/VListEvents", "/VListEvents", ];
         //    var res = labels[0];
         //    var deferred = $q.defer();
@@ -143,10 +142,11 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
 
     this.VShowUser = function(args) {
         if(typeof args == 'undefined') args={};
+        console.log(args); 
         return $http({
             url: 'linkevents/VShowUser',
             method: 'GET',
-            data: args
+            params: args
         });
         //    var res = {};
         //    var deferred = $q.defer();
@@ -159,7 +159,7 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
         return $http({
             url: 'linkevents/ADeleteUser',
             method: 'GET',
-            data: args
+            params: args
         });
         //    var labels = ["/VListUsers", "/VListUsers", ];
         //    var res = labels[0];
@@ -177,6 +177,7 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
         });
     };
 
+<<<<<<< HEAD
     this.AEditarEvento = function(fEvento,eventoid) {
         return  $http.post( 
             "/linkevents/AEditarEvento",
@@ -188,9 +189,12 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
 
 
     this.AReserveEvent = function(args) {
+=======
+    this.AReservarEvento = function(args) {
+>>>>>>> 4a62a138588b07b867f0c3180ac1631b5d78318a
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'linkevents/AReserveEvent',
+            url: 'linkevents/AReservarEvento',
             method: 'GET',
             params: args
         });
@@ -252,18 +256,6 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
         //    deferred.resolve(res);
         //    return deferred.promise;
     };
-    this.VCredencial = function(args) {
-        if(typeof args == 'undefined') args={};
-        return $http({
-            url: 'linkevents/VCredencial',
-            method: 'GET',
-            params: args
-        });
-        //    var res = {};
-        //    var deferred = $q.defer();
-        //    deferred.resolve(res);
-        //    return deferred.promise;
-    };
 
     this.AGenerarCertificado = function(args) {
         if(typeof args == 'undefined') args={};
@@ -274,18 +266,6 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
         });
         //    var labels = ["/VCertificate", "/VShowEvent", ];
         //    var res = labels[0];
-        //    var deferred = $q.defer();
-        //    deferred.resolve(res);
-        //    return deferred.promise;
-    };
-    this.VCertificado = function(args) {
-        if(typeof args == 'undefined') args={};
-        return $http({
-            url: 'linkevents/VCertificado',
-            method: 'GET',
-            params: args
-        });
-        //    var res = {};
         //    var deferred = $q.defer();
         //    deferred.resolve(res);
         //    return deferred.promise;

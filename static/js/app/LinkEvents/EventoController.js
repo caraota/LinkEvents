@@ -73,12 +73,12 @@ LinkEventsModule.controller('VEventoController',
       };
 
       // Reserve the event
-      $scope.ReserveEvent = function() {
-        LinkEventsService.AReserveEvent({"eventId" : $routeParams.id}).then(function (object) {
+      $scope.ReservarEvento = function() {
+        LinkEventsService.AReservarEvento({"eventoid" : $routeParams.id}).then(function (object) {
           var msg = object.data["msg"];
           if (msg) flash(msg);
           var label = object.data["label"];
-          if (label == '/VShowEvent') {
+          if (label == '/VEvento') {
               $route.reload();
           } else {
               $location.path(label);

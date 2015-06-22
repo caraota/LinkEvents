@@ -32,8 +32,8 @@
         <strong>Descripción: </strong>{{evento.descripcion}}
         <hr>
     </div>
-        <div align="center">
-            <button ng-click="ReserveEvent()" class="btn btn-md">
+    <div align="center">
+            <button ng-click="ReservarEvento()" class="btn btn-md">
                 <span class="glyphicon glyphicon-pushpin"></span>
                 &nbsp;Reservar
             </button>
@@ -48,7 +48,7 @@
             <button ng-click="GenerarCertificado()" class="btn btn-md">
                 <span class="glyphicon glyphicon-certificate"></span>
                 &nbsp;Generar Certificado
-            </button>
+            </button>                     
             <button ng-click="AUsers2(event.eventid)" class="btn btn-md">
                 <span class="glyphicon glyphicon-user"></span>
                 &nbsp;Listar participantes
@@ -62,4 +62,3 @@
         <div align="center">
             <iframe src="{{evento.afiche}}" style="width:500px; height:500px;" frameborder="0"></iframe>
         </div>
-

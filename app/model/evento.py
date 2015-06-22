@@ -65,8 +65,6 @@ class Evento:
 
 		sql += 'WHERE eventoid = "' + str(eventid) + '"'
 
-		print "\n" + sql + "\n"
-
 		db = get_database()
 		cursor = db.cursor()
 		try:

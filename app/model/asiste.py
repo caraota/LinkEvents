@@ -45,5 +45,5 @@ class Asiste:
 		if fila is None:
 			return None
 		else:
-			asiste = Asiste(row[0], int(row[1]))
+			asiste = Asiste(fila[0], int(fila[1]))
 			return asiste
