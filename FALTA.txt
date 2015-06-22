@@ -3,17 +3,19 @@ COSAS QUE FALTAN:
 - Cerrar sesion
 
 - EVENTO
-	Crear
 
 	Modificar
 
 	Mostrar
-		Disponibilidad
-		ReservarEvento
+		Condiciones (cuando mostrar cada boton)
 		ObtenerCredencial (falta diseno del pdf y usuario)
         ObtenerCertificado (falta diseno del pdf y usuario)
 
-	Listar Participante
+    Reservar
+
+    Cancelar reserva
+
+	Listar Participantes
 
 - PARTICIPANTE
 	Editar
