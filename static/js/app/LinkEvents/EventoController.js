@@ -36,8 +36,8 @@ LinkEventsModule.controller('VCrearEventoController',
         }
       });
 
-      $scope.VListarEventos1 = function() {
-        $location.path('/events');
+      $scope.VPrincipal = function() {
+        $location.path('/VPrincipal');
       };
 
       $scope.fEventoCreado = false;

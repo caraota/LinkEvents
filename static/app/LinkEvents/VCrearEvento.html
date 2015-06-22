@@ -11,9 +11,8 @@
             <span class="navbar-brand" ></span>
         </div>
         <div class="collapse navbar-collapse" id="contenido-plegable">
-            <ul class="nav navbar-nav navbar-left">
-<li><a ng-click="VListEvents1()">
-  Regresar</a></li>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a ng-click="VPrincipal()">Regresar</a></li>
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -25,57 +24,67 @@
 
     <form name="fEventoForm" ng-submit="ACrearEvento0(fEventoForm.$valid)" novalidate>
         <div class="form-group" 
-            ng-class="{ 'has-error' : fEventoSubmitted && fEventoForm.name.$invalid 
+            ng-class="{ 'has-error' : fEventoCreado && fEventoForm.nombre.$invalid 
                                       && fEventoForm.name.$pristine && fEventoCreado}">
-            <label for="fEvento_nombre">Nombre</label>
+            <label for="fEvento_nombre">Nombre <font color="red">*</font></label>
             <input id="fEvento_nombre" type="text" name="nombre" 
                    class="form-control" ng-model="fEvento.nombre" required/>
-            <p ng-show="fEventoCreado && fEventoForm.nombre.$invalid" class="help-block">Error en campo Nombre.</p>
+            <p ng-show="fEventoCreado && fEventoForm.nombre.$invalid" class="help-block">
+                <font color="red">Debe ingresar el nombre del evento.</font>
+            </p>
         </div>
         <div class="form-group" 
-            ng-class="{ 'has-error' : fEventoSubmitted && fEventoForm.descripcion.$invalid 
+            ng-class="{ 'has-error' : fEventoCreado && fEventoForm.descripcion.$invalid 
                                       && fEventoForm.descripcion.$pristine && fEventoCreado}">
-            <label for="fEvento_descripcion">Descripción</label>
+            <label for="fEvento_descripcion">Descripción  <font color="red">*</font></label>
             <input id="fEvento_descripcion" type="text" name="descripcion" 
                    class="form-control" ng-model="fEvento.descripcion" required/>
-            <p ng-show="fEventoCreado && fEventoForm.descripcion.$invalid" class="help-block">Error en campo Descripción.</p>
+            <p ng-show="fEventoCreado && fEventoForm.descripcion.$invalid" class="help-block">
+                <font color="red">Debe ingresar la descripción del evento.</font>
+            </p>
         </div>
         <div class="form-group" 
-            ng-class="{ 'has-error' : fEventoCredo && fEventoForm.fecha.$invalid 
+            ng-class="{ 'has-error' : fEventoCreado && fEventoForm.fecha.$invalid 
                                       && fEventoForm.fecha.$pristine && fEventoCreado}">
-            <label for="fEvento_fecha">Fecha </label>
+            <label for="fEvento_fecha">Fecha <font color="red">*</font></label>
             <input id="fEvento_fecha" type="date" name="fecha" 
                    class="form-control" ng-model="fEvento.fecha" required/>
-            <p ng-show="fEventoCreado && fEventoForm.fecha.$invalid" class="help-block">Error en campo Fecha.</p>
+            <p ng-show="fEventoCreado && fEventoForm.fecha.$invalid" class="help-block">
+                <font color="red">Debe ingresar la fecha del evento.</font>
+            </p>
         </div>
         <div class="form-group" 
             ng-class="{ 'has-error' : fEventoCreado && fEventoForm.lugar.$invalid 
                                       && fEventoForm.lugar.$pristine && fEventoCreado}">
-            <label for="fEvento_lugar">Lugar</label>
-            <textarea id="fEvento_lugar" name="lugar" 
-                      class="form-control" ng-model="fEvento.lugar" required></textarea>
-            <p ng-show="fEventoCreado && fEventoForm.lugar.$invalid" class="help-block">Error en campo Lugar.</p>
+            <label for="fEvento_lugar">Dirección <font color="red">*</font></label>
+            <input id="fEvento_lugar" name="lugar" 
+                      class="form-control" ng-model="fEvento.lugar" required/>
+            <p ng-show="fEventoCreado && fEventoForm.lugar.$invalid" class="help-block">
+                <font color="red">Debe ingresar la dirección del evento.</font>
+            </p>
         </div>
         <div class="form-group" 
             ng-class="{ 'has-error' : fEventoCreado && fEventoForm.capacidad.$invalid 
                                       && fEventoForm.capacidad.$pristine && fEventoCreado}">
-            <label for="fEvento_capacidad">Capacidad</label>
+            <label for="fEvento_capacidad">Capacidad <font color="red">*</font></label>
             <input id="fEvento_capacidad" type="number" name="capacidad" 
                    class="form-control" ng-model="fEvento.capacidad" required/>
-            <p ng-show="fEventoCreado && fEventoForm.capacidad.$invalid" class="help-block">Error en campo Capacidad.</p>
+            <p ng-show="fEventoCreado && fEventoForm.capacidad.$invalid" class="help-block">
+                <font color="red">Debe ingresar la descripción del evento.</font>
+            </p>
         </div>
         <div class="form-group" 
             ng-class="{ 'has-error' : fEventoCreado && fEventoForm.afiche.$invalid 
                                       && fEventoForm.afiche.$pristine && fEventoCreado}">
-            <label for="fEvento_afiche">Afiche</label>
+            <label for="fEvento_afiche">Afiche <font color="red">*</font></label>
             <input type="file" id="fEvento_afiche" name="afiche" 
-                   class="form-control" file="fEvento.afiche" placeholder="Afiche" />
-            <p ng-show="fEventoCreado && fEventoForm.afiche.$invalid" class="help-block">Error en campo Afiche.</p>
+                    file="fEvento.afiche" placeholder="Afiche" />
+            <p ng-show="fEventoCreado && fEventoForm.afiche.$invalid" class="help-block">
+                <font color="red">Debe ingresar el afiche del evento.</font>
+            </p>
         </div>
 
-        <button type="submit" class="btn btn-md">
-            Agregar Evento
-        </button>
+        <button type="submit" class="btn btn-md">Agregar Evento</button>
     </form>
     <hr />
 

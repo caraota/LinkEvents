@@ -1,5 +1,3 @@
-COSAS QUE FALTAN:
-
 - Cerrar sesion
 
 - EVENTO
@@ -10,18 +8,18 @@ COSAS QUE FALTAN:
 		Condiciones (cuando mostrar cada boton)
 		ObtenerCredencial (falta diseno del pdf y usuario)
         ObtenerCertificado (falta diseno del pdf y usuario)
+	
+	Listar Participante
 
     Reservar
 
     Cancelar reserva
 
-	Listar Participantes
 
 - PARTICIPANTE
-	Editar
+	Editar (opcional)
 	Mostrar perfil (opcional)
 
 
 - PRIVILEGIOS
 	Admin -> crear, modificar, eliminar
-
