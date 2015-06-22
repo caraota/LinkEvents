@@ -11,7 +11,7 @@ from app.model.usuario import Usuario
 from flask import send_from_directory
 from flask import render_template
 from app.model.evento import crear_pdf
-from app.model.asiste import Asiste
+from app.model.asiste import Asiste, Listar
 
 
 @LinkEvents.route('/linkevents/ACrearUsuario', methods=['POST'])
@@ -267,9 +267,9 @@ def VListarUsuarios():
 
     if "actor" in session:
         res['actor']=session['actor']
-        usuarios = map(lambda x: x.__dict__, Asiste.all(eventoid))
+        usuarios = map(lambda x: x.__dict__, Listar.all(eventoid))
     else:
-        usuarios = map(lambda x: x.__dict__, Asiste.all(eventoid))
+        usuarios = map(lambda x: x.__dict__, Listar.all(eventoid))
 
     res['usuarios'] = usuarios
  
