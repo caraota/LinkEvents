@@ -14,7 +14,6 @@ class Asiste:
 		cursor = db.cursor()
 		try:
 			sql = 'INSERT INTO %s (participante, evento, asistio) VALUES ("%s", "%s", 0)' % (TABLA, self.usuario, self.evento)
-			print "\n" + sql + "\n"
 			cursor.execute(sql)
 			db.commit()
 			return True
@@ -25,7 +24,6 @@ class Asiste:
 
 	def delete(self):
 		sql = 'DELETE FROM %s WHERE participante="%s" AND evento="%s"' % (TABLA, self.usuario, self.evento)
-		print "\n" + sql + "\n"
 		try:
 			db = get_database()
 			cursor = db.cursor()
@@ -40,7 +38,6 @@ class Asiste:
 	@staticmethod
 	def get(usuario, evento):
 		sql = 'SELECT * FROM %s WHERE participante="%s" AND evento="%s"' % (TABLA, usuario, evento)
-		print "\n" + sql + "\n"
 		db = get_database()
 		cursor = db.cursor()
 		cursor.execute(sql)

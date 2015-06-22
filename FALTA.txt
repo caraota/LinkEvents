@@ -2,8 +2,6 @@
 
 - EVENTO
 
-	Modificar
-
 	Mostrar
 		Condiciones (cuando mostrar cada boton)
 		ObtenerCredencial (falta diseno del pdf)
@@ -13,11 +11,11 @@
 
     Cancelar reserva
 
+    Poster opcional
 
 - PARTICIPANTE
 	Editar (opcional)
 	Mostrar perfil (opcional)
-
 
 - PRIVILEGIOS
 	Admin -> crear, modificar, eliminar
