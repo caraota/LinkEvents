@@ -2,9 +2,6 @@ LinkEventsModule.config(function ($routeProvider) {
     $routeProvider.when('/VPrincipal', {
                 controller: 'VPrincipalController',
                 templateUrl: 'app/LinkEvents/VPrincipal.html'
-            }).when('/VListUsers/:requestedUser', {
-                controller: 'VListUsersController',
-                templateUrl: 'app/LinkEvents/VListUsers.html'
             });
 });
 
@@ -58,31 +55,3 @@ LinkEventsModule.controller('VPrincipalController',
           $location.path('/VEvento/'+eventid);
         };
     }]);
-
-LinkEventsModule.controller('VListEventsController', 
-        ['$scope', '$location', '$route', 'flash', 'LinkEventsService',
-    function ($scope, $location, $route, flash, LinkEventsService) {
-      $scope.msg = '';
-      LinkEventsService.VListEvents().then(function (object) {
-        $scope.res = object.data;
-        for (var key in object.data) {
-            $scope[key] = object.data[key];
-        }
-        if ($scope.logout) {
-            $location.path('/');
-        }
-      });
-
-      $scope.VRegisterEvent0 = function() {
-        $location.path('/event/new');
-      };
-
-      $scope.VPrincipal1 = function() {
-        $location.path('/VPrincipal');
-      };
-      $scope.VShowEvent2 = function(eventId) {
-        $location.path('/VShowEvent/'+eventId);
-      };
-    }]);
-
-

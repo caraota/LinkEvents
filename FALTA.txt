@@ -4,15 +4,9 @@
 
 	Mostrar
 		Marcar asistencia (1 en asistio) + condiciones
-	
-	Listar Participantes
 
 - PRIVILEGIOS
 	Admin -> crear, modificar, eliminar, marcar asistencia, listar participantes
-
-- Eventos del usuario
-
-- Arreglar widget cuando no hay PDF
 
 - Revision de Interfaz
 
@@ -20,13 +14,3 @@
 
 - Documentacion
 
-OPCIONALES (NO LOS HAREMOS :D)
-
-	- EVENTO
-
-	   Diseno de credencial
-       Diseno de certificado
-
-	- PARTICIPANTE
-		Editar (opcional)
-		Mostrar perfil (opcional)

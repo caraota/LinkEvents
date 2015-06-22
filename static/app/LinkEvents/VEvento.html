@@ -33,12 +33,13 @@
         <hr>
     </div>
     <div align="center">
-            <div ng-show="reservado">
-                <button ng-click="ReservarEvento()" class="btn btn-md">
-                    <span class="glyphicon glyphicon-pushpin"></span>
-                    &nbsp;Reservar
-                </button>
-            </div>
+            <button ng-click="ReservarEvento()" class="btn btn-md">
+                <span class="glyphicon glyphicon-pushpin"></span>
+                &nbsp;Reservar
+            </button>
+              
+            <button ng-click="AListarUsuarios2(evento.eventoid)" class="btn btn-md">
+
             <div ng-show="asistio==1 && reservado==0">
                     <button ng-click="EliminarReserva()" class="btn btn-md">
                         <span class="glyphicon glyphicon-remove"></span>
@@ -54,7 +55,8 @@
                     <span class="glyphicon glyphicon-certificate"></span>
                     &nbsp;Generar Certificado
                 </button>         
-            </div>                                            
+            </div>         
+
             <button ng-click="AUsers2(event.eventid)" class="btn btn-md">
                 <span class="glyphicon glyphicon-user"></span>
                 &nbsp;Listar participantes
@@ -65,7 +67,8 @@
             </button>   
         </div>
         </br>
-        <div align="center">
+
+        <div align="center" ng-hide="evento.afiche == 'None'">
             <iframe src="{{evento.afiche}}" style="width:500px; height:500px;" frameborder="0"></iframe>
         </div>
 

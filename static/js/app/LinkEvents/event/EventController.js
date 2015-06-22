@@ -145,7 +145,7 @@ LinkEventsModule.controller('ShowEventController',
       }
       // List the users that will assists to this event
       $scope.AUsers2 = function(eventId) {
-        LinkEventsService.VListUsers({"eventId" : $routeParams.id}).then(function (object) {
+        LinkEventsService.VListarUsuarios({"eventId" : $routeParams.id}).then(function (object) {
           var msg = object.data["msg"];
           if (msg) flash(msg);
 

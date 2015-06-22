@@ -99,13 +99,9 @@ LinkEventsModule.controller('VEventoController',
       
       }
       // List the users that will assists to this event
-      $scope.AUsers2 = function(eventId) {
-        LinkEventsService.VListUsers({"eventId" : $routeParams.id}).then(function (object) {
-          var msg = object.data["msg"];
-          if (msg) flash(msg);
-
-          $location.path('/users/'+eventId);
-        });};
+      $scope.AListarUsuarios2 = function(eventId) {
+          $location.path('/VListarUsuarios/'+eventId);
+      };
 
       // Generate the credentials 
       $scope.GenerarCredencial = function() {
@@ -138,7 +134,6 @@ LinkEventsModule.controller('VEventoController',
         $location.path('/VEditarEvento/'+eventid);
       };
     }]);
-
 
 
 LinkEventsModule.controller('VEditarEventoController', 

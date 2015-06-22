@@ -174,7 +174,7 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
             method: 'GET',
             params: args
         });
-        //    var labels = ["/VListUsers", "/VListUsers", ];
+        //    var labels = ["/VListarUsuarios", "/VListarUsuarios", ];
         //    var res = labels[0];
         //    var deferred = $q.defer();
         //    deferred.resolve(res);
@@ -197,7 +197,6 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
             { data: {fEvento,eventoid} }
            );
     };
-
 
     this.AReservarEvento = function(args) {
 
@@ -226,30 +225,14 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
         //    return deferred.promise;
     };
 
-    this.AUsers = function(args) {
+
+    this.VListarUsuarios = function(args) {
         if(typeof args == 'undefined') args={};
         return $http({
-            url: 'linkevents/AUsers',
+            url: 'linkevents/VListarUsuarios',
             method: 'GET',
             params: args
         });
-        //    var labels = ["/VListUsers", ];
-        //    var res = labels[0];
-        //    var deferred = $q.defer();
-        //    deferred.resolve(res);
-        //    return deferred.promise;
-    };
-    this.VListUsers = function(args) {
-        if(typeof args == 'undefined') args={};
-        return $http({
-            url: 'linkevents/VListUsers',
-            method: 'GET',
-            params: args
-        });
-        //    var res = {};
-        //    var deferred = $q.defer();
-        //    deferred.resolve(res);
-        //    return deferred.promise;
     };
 
     this.AGenerarCredencial = function(args) {
@@ -313,10 +296,19 @@ LinkEventsModule.service('LinkEventsService', ['$q', '$http', function($q, $http
             method: 'GET',
             params: args
         });
-        //    var labels = ["/VListUsers", "/VListUsers", ];
+        //    var labels = ["/VListarUsuarios", "/VListarUsuarios", ];
         //    var res = labels[0];
         //    var deferred = $q.defer();
         //    deferred.resolve(res);
         //    return deferred.promise;
+    };
+
+        this.AEliminarEvento = function(args) {
+        if(typeof args == 'undefined') args={};
+        return $http({
+            url: 'linkevents/AEliminarEvento',
+            method: 'GET',
+            params: args
+        });
     };
 }]);
