@@ -99,7 +99,7 @@ LinkEventsModule.controller('VEventoController',
       
       }
       // List the users that will assists to this event
-      $scope.AListarUsuarios2 = function(eventId) {
+      $scope.VListarUsuarios2 = function(eventId) {
           $location.path('/VListarUsuarios/'+eventId);
       };
 
