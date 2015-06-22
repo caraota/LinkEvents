@@ -11,6 +11,8 @@
 
     Cancelar reserva
 
+    Poster opcional
+
 - PARTICIPANTE
 	Editar (opcional)
 	Mostrar perfil (opcional)
