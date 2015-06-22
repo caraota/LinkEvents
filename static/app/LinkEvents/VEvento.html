@@ -49,7 +49,7 @@
                 <span class="glyphicon glyphicon-certificate"></span>
                 &nbsp;Generar Certificado
             </button>                     
-            <button ng-click="AUsers2(event.eventid)" class="btn btn-md">
+            <button ng-click="AListarUsuarios2(evento.eventoid)" class="btn btn-md">
                 <span class="glyphicon glyphicon-user"></span>
                 &nbsp;Listar participantes
             </button>
@@ -59,7 +59,8 @@
             </button>   
         </div>
         </br>
-        <div align="center">
+
+        <div align="center" ng-hide="evento.afiche == 'None'">
             <iframe src="{{evento.afiche}}" style="width:500px; height:500px;" frameborder="0"></iframe>
         </div>
 
