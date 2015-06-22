@@ -318,7 +318,7 @@ def AEliminarReserva():
         evento      = Evento.get(eventoid)
         asiste = Asiste.get(user, evento.eventoid)
 
-        if asiste is not None and evento.update({ 'capacidad' : evento.capacidad + 1 }):
+        if asiste is not None and evento.update(eventoid,{ 'capacidad' : evento.capacidad + 1 }):
             asiste.delete()
             res = {'label':'/VEvento', 'msg':[ur'Reserva eliminada']}
         else:
