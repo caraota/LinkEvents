@@ -16,6 +16,8 @@
 
 - Revision de codigo
 
+- Documentacion
+
 OPCIONALES (NO LOS HAREMOS :D)
 
 	- EVENTO
