@@ -1,7 +1,0 @@
-- Si no has iniciado sesion, no mostrar pagina principal
-
-- Revision de Interfaz
-
-- Revision de Codigo
-
-- Documentacion

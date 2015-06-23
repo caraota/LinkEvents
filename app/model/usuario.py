@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from base import get_database
 from flask import g
 
@@ -6,11 +8,6 @@ TABLA_ASISTE = 'ASISTE'
 TABLA_EVENTO = 'EVENTO'
 
 class Usuario:
-	username = ""
-	password = ""
-	nombre = ""
-	apellido = ""
-	admin = ""
 
 	def __init__(self,username,password,nombre,apellido,admin): 
 		self.username = username

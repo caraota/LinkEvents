@@ -135,7 +135,6 @@ LinkEventsModule.controller('VEventoController',
       };
     }]);
 
-
 LinkEventsModule.controller('VEditarEventoController', 
                               ['$scope', '$location', '$route', 
                                'flash', '$routeParams', 'LinkEventsService', 

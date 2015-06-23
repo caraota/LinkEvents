@@ -29,7 +29,6 @@ def root():
 from app.Nodos.LinkEvents import LinkEvents
 app.register_blueprint(LinkEvents)
 
-# CONEXION CON LA BASE DE DATOS
 def connect_db():
     return sqlite3.connect(app.config['DATABASE'])
 
@@ -50,7 +49,6 @@ def before_request():
     g.db = get_database()
     if g.db is None:
         print "Error conectando a la base de datos" + app.config['DATABASE']
-    #print request.get_json()
 
 @app.teardown_request
 def close_dabatase_connection(exception):

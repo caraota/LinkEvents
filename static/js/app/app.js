@@ -1,7 +1,5 @@
-// Creación del módulo de la aplicación
 var LinkEventsModule = angular.module('LinkEvents', ['ngRoute', 'ngAnimate', 'flash']);
 
-// Routing
 LinkEventsModule.config(function ($routeProvider) {
     $routeProvider
         .when('/', {

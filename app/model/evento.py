@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from base import get_database
 from flask import g
 from xhtml2pdf import pisa
@@ -125,3 +127,4 @@ class Evento:
 			print e.message
 			return False
 
+# END evento.py

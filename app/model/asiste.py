@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from base import get_database
 from flask import g
 
@@ -57,7 +59,6 @@ class Asiste:
 		filas = cursor.fetchall()
 
 		data = map(lambda x:{'username':x[0],'password':x[1],'nombre':x[2],'apellido':x[3],'admin':x[4]},filas)
-
 		usuarios = map(lambda x: Asiste(x), data)
 
 		return usuarios
@@ -91,8 +92,6 @@ class Asiste:
 			print e.message
 			return False
 
-
-
 class Listar:
 
 	def __init__(self,data): 
@@ -117,3 +116,4 @@ class Listar:
 
 		return usuarios
 
+# END asiste.py

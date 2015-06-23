@@ -13,7 +13,6 @@ from flask import render_template
 from app.model.evento import crear_pdf
 from app.model.asiste import Asiste, Listar
 
-
 @LinkEvents.route('/linkevents/ACrearUsuario', methods=['POST'])
 def ACrearUsuario():
     params = request.get_json()
@@ -67,7 +66,6 @@ def AIniciarSesion():
             session['actor'] = res['actor']
     return json.dumps(res)
 
-
 @LinkEvents.route('/linkevents/VIniciarSesion')
 def VIniciarSesion():
     res = {}
@@ -92,9 +90,9 @@ def ACrearEvento():
 
     if evento and evento.save():
         eventoid = Evento.ultimo()
-        res = { 'label' : '/VEvento/'+str(eventoid), 'msg':[ur'Evento creado exitosamente'] }
+        res = { 'label' : '/VEvento/'+str(eventoid), 'msg':[ur'Evento creado exitosamente.'] }
     else:
-        res = { 'label' : '/VCrearEvento', 'msg':[ur'Error al crear evento'] }
+        res = { 'label' : '/VCrearEvento', 'msg':[ur'Error al crear el evento.'] }
 
 
     #Action code ends here
@@ -141,14 +139,14 @@ def AEliminarEvento():
     eventid = request.args.get('eventId')
 
     if eventid is None:
-        res = {'label':'/VPrincipal', 'msg':[ur'Error al eliminar evento seleccionado.']}
+        res = {'label':'/VPrincipal', 'msg':[ur'Error al eliminar el evento seleccionado.']}
     else:
         evento = Evento.get(eventid)
 
         if evento.eliminar():
             res = {'label':'/VPrincipal', 'msg':[ur'El evento fue eliminado exitosamente.']}
         else:
-            res = {'label':'/VPrincipal', 'msg':[ur'Error al eliminar evento seleccionado.']}
+            res = {'label':'/VPrincipal', 'msg':[ur'Error al eliminar el evento seleccionado.']}
 
     #Action code ends here
     if "actor" in res:
@@ -157,10 +155,6 @@ def AEliminarEvento():
         else:
             session['actor'] = res['actor']
     return json.dumps(res)
-
-
-
-
 
 @LinkEvents.route('/linkevents/AConfirmarAsist')
 def AConfirmarAsist():
@@ -180,14 +174,13 @@ def AConfirmarAsist():
     evento3 = evento2.replace("}","")
     eventoid = evento3.replace("\"","")
 
-
     if eventoid is None:
-        res = {'label':'/VListarUsuarios/'+eventoid, 'msg':[ur'Error al confirmar la asistencia.']}
+        res = {'label':'/VListarUsuarios/'+eventoid, 'msg':[ur'Error al confirmar la asistencia al evento.']}
     else:
         if Asiste.confirmarAsistencia(user,eventoid):
             res = {'label':'/VListarUsuarios/'+eventoid, 'msg':[ur'Asistencia confirmada.']}
         else:
-            res = {'label':'/VListarUsuarios/'+eventoid, 'msg':[ur'Error al confirmar la asistencia.']}
+            res = {'label':'/VListarUsuarios/'+eventoid, 'msg':[ur'Error al confirmar la asistencia al evento.']}
 
     #Action code ends here
     if "actor" in res:
@@ -196,7 +189,6 @@ def AConfirmarAsist():
         else:
             session['actor'] = res['actor']
     return json.dumps(res)
-
 
 @LinkEvents.route('/linkevents/AEditarEvento', methods=['POST'])
 def AEditarEvento():
@@ -229,8 +221,6 @@ def AEditarEvento():
 
     return json.dumps(res)
 
-
-
 @LinkEvents.route('/linkevents/VEditarEvento')
 def VEditarEvento():
     eventoid = request.args.get('eventoid')
@@ -244,10 +234,8 @@ def VEditarEvento():
 
     return json.dumps(res)
 
-
 @LinkEvents.route('/linkevents/AEvents')
 def AEvents():
-    #GET parameter
     results = [{'label':'/VPrincipal', 'msg':''}, ]
     res = results[0]
 
@@ -289,7 +277,6 @@ def VEvento():
 
     return json.dumps(res)
 
-
 @LinkEvents.route('/linkevents/VListarUsuarios')
 def VListarUsuarios():
     res ={}
@@ -304,33 +291,20 @@ def VListarUsuarios():
  
     return json.dumps(res)
 
-
 @LinkEvents.route('/linkevents/ACerrarSesion')
 def ACerrarSesion():
-    #POST/PUT parameters
     params = request.get_json()
-    results = [{'label':'/VIniciarSesion', 'msg':[ur'Sesión exitosamente cerrada'], "actor":None}, 
-               {'label':'/VPrincipal', 'msg':[ur'Error al cerrar sesión']}, ]
+    results = [{'label':'/VIniciarSesion', 'msg':[ur'Sesión cerrada.'], "actor":None}, 
+               {'label':'/VPrincipal', 'msg':[ur'Error al cerrar sesión.']}, ]
 
     res = results[0]
-    #Action code goes here, res should be a list with a label and a message
 
-    #Action code ends here
     if "actor" in res:
         if res['actor'] is None:
             session.pop("actor", None)
         else:
             session['actor'] = res['actor']
     return json.dumps(res)
-
-
-# -----------------------------------------------------------------------
-# -----------------------------------------------------------------------
-# -----------------------------------------------------------------------
-# -----------------------------------------------------------------------
-
-
-
 
 @LinkEvents.route('/linkevents/AEliminarReserva')
 def AEliminarReserva():
@@ -347,9 +321,9 @@ def AEliminarReserva():
 
         if asiste is not None and evento.update(eventoid,{ 'capacidad' : evento.capacidad + 1 }):
             asiste.delete()
-            res = {'label':'/VEvento', 'msg':[ur'Reserva eliminada']}
+            res = {'label':'/VEvento', 'msg':[ur'Reserva eliminada.']}
         else:
-            res = {'label':'/VEvento', 'msg':[ur'Error']}
+            res = {'label':'/VEvento', 'msg':[ur'Error al eliminar la reserva.']}
 
     #Action code ends here
     if "actor" in res:
@@ -422,10 +396,9 @@ def AGenerarCredencial():
 
 @LinkEvents.route('/linkevents/AReservarEvento')
 def AReservarEvento():
-
     eventoid = request.args.get('eventoid')
     if eventoid is None:
-        res = {'label':'/VEvento', 'msg':[ur'Error al reservar evento']}
+        res = {'label':'/VEvento', 'msg':[ur'Error al reservar el evento']}
     else:
         user = session.get('actor')
 
@@ -440,9 +413,9 @@ def AReservarEvento():
             if asiste.save():
                 res = {'label':'/VEvento', 'msg':[ur'Evento reservado']}
             else:
-                res = {'label':'/VEvento', 'msg':[ur'Error']}
+                res = {'label':'/VEvento', 'msg':[ur'Error al reservar el evento']}
         else:
-            res = {'label':'/VEvento', 'msg':[ur'Error']}
+            res = {'label':'/VEvento', 'msg':[ur'Error al reservar el evento']}
 
     if "actor" in res:
         if res['actor'] is None:
@@ -451,3 +424,5 @@ def AReservarEvento():
             session['actor'] = res['actor']
 
     return json.dumps(res)
+
+# END LinkEvents.py
